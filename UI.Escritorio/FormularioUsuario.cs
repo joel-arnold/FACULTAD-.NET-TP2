@@ -82,9 +82,9 @@ namespace UI.Escritorio
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
+            //AGREGO COMENTARIO SOLO PARA HACER UNA PRUEBA
         }
-
+        
         private void label2_Click(object sender, EventArgs e)
         {
 
