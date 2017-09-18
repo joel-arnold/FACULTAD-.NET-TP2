@@ -15,6 +15,7 @@ namespace UI.Consola
         public Usuarios()
         {
             _UsuarioNegocio = new Negocio.LogicaUsuario();
+            //Comentario de prueba
         }
 
         public LogicaUsuario UsuarioNegocio{get{ return _UsuarioNegocio;} set{ _UsuarioNegocio = value; }}
