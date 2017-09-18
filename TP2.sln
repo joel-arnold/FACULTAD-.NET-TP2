@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Escritorio", "UI.Escritorio\UI.Escritorio.csproj", "{90EF7AA5-7593-4064-892A-3BEC7C328D1E}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Database", "Datos.BaseDeDatos\Data.Database.csproj", "{18D1C50F-58E0-4D94-B05B-4A95A146E6BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Consola", "UI.Consola\UI.Consola.csproj", "{0211DF40-A17F-495F-9071-A68C86B0F1FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Web", "UI.Web\UI.Web.csproj", "{D2A76AD6-47A4-40DD-A595-99F16739F969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{0211DF40-A17F-495F-9071-A68C86B0F1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0211DF40-A17F-495F-9071-A68C86B0F1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0211DF40-A17F-495F-9071-A68C86B0F1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A76AD6-47A4-40DD-A595-99F16739F969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A76AD6-47A4-40DD-A595-99F16739F969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A76AD6-47A4-40DD-A595-99F16739F969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A76AD6-47A4-40DD-A595-99F16739F969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
