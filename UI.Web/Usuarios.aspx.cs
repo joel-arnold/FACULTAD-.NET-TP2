@@ -11,6 +11,51 @@ namespace UI.Web {
     public partial class Usuarios : System.Web.UI.Page {
 
         LogicaUsuario _logic;
+        private Usuario Entity
+        {
+            get;
+            set;
+        }
+
+        private int SelectedID
+        {
+            get
+            {
+                if (this.ViewState["SelectedID"] != null)
+                {
+                    return (int)this.ViewState["SelectedID"];
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                this.ViewState["SelectedID"] = value;
+            }
+        }
+
+        private bool IsEntitySelected
+        {
+            get
+            {
+                return (this.SelectedID != 0);
+            }
+        }
+
+        public enum FormModes
+        {
+            Alta,
+            Baja,
+            Modificacion
+        }
+
+        public FormModes FormMode
+        {
+            get { return (FormModes)this.ViewState["FormMode"]; }
+            set { this.ViewState["FormMode"]=value; }
+        }
 
         public LogicaUsuario Logic
         {
