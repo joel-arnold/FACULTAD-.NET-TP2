@@ -83,7 +83,6 @@ namespace UI.Web {
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SelectedID = (int)this.gridView.SelectedValue;
-            //this.SelectedID = Convert.ToInt32(gridView.SelectedIndex);
         }
 
         private void LoadForm(int id)
@@ -159,14 +158,14 @@ namespace UI.Web {
                     }
                 case FormModes.Alta:
                     {
-                        this.Entity = new Usuario();
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
-                        break;
+                       this.Entity = new Usuario();
+                       this.LoadEntity(this.Entity);
+                       this.SaveEntity(this.Entity);
+                       this.LoadGrid();
+                       this.formPanel.Visible = false;
+                       break;
                     }
-                default:
-                    break;
+                default: break;
             }
             this.formPanel.Visible = false;
         }
