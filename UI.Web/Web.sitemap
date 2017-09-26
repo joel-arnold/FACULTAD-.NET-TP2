@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode url="" title="Menu"  description="">
-        <siteMapNode url="Default.aspx" title="Default"  description="Descripcion de default" />
-        <siteMapNode url="Usuarios.aspx" title="Usuarios"  description="Descripcion de usuarios" />
+      <siteMapNode url="Ingreso.aspx" title="Iniciar sesión"  description="" />  
+      <siteMapNode url="Default.aspx" title="Inicio"  description="" />
+        <siteMapNode url="Usuarios.aspx" title="Usuarios"  description="" />
     </siteMapNode>
 </siteMap>

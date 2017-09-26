@@ -4,8 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <asp:Panel ID="gridPanel" runat="server">
     <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="false"
-        SelectedRowStyle-BackColor="Black"
-        SelectedRowStyle-ForeColor="Red"
+        SelectedRowStyle-BackColor="Green"
+        SelectedRowStyle-ForeColor="White"
         DataKeyNames="ID" OnSelectedIndexChanged="gridView_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
