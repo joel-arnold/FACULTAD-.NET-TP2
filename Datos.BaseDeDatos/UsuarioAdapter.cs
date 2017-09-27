@@ -31,11 +31,11 @@ namespace Data.Database
                 }
                 drUsuarios.Close();
             }
-            /*catch (Exception Ex)
+            catch (Exception Ex)
             {
                 Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
                 throw ExcepcionManejada;
-            }*/
+            }
             finally
             {
                 this.CloseConnection();
@@ -158,6 +158,38 @@ namespace Data.Database
             {
                 this.CloseConnection();
             }
+        }
+
+        public bool existeUsuario(string nombreUsuario, string clave)
+        {
+            bool respuesta = false;
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuario = new SqlCommand("select * from usuarios where nombre_usuario = @nombreUsuario and clave = @clave", SqlConn);
+                cmdUsuario.Parameters.Add("@nombreUsuario", SqlDbType.VarChar).Value = nombreUsuario;
+                cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar).Value = clave;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+                if (drUsuario.HasRows)
+                {
+                    respuesta = true;
+                }
+                else
+                {
+                    respuesta = false;
+                }
+                drUsuario.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("No se encontró un usuario con esos datos", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return respuesta;
         }
     }
 }

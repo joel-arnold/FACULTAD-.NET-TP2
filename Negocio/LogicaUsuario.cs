@@ -70,5 +70,10 @@ namespace Negocio
         {
             UsuarioData.Update(usuario);
         }
+
+        public bool existeUsuario(string usuario, string clave)
+        {
+            return UsuarioData.existeUsuario(usuario, clave);
+        }
     }
 }

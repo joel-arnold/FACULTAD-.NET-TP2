@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Util
 {
-    public class Validacion
+    public static class Validacion
     {
-        public bool esMailValido(string correoIngresado)
+        public static bool esMailValido(string correoIngresado)
         {
             string expresionCorrecta = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 
@@ -23,12 +23,12 @@ namespace Util
             }
         }
 
-        public bool esClaveValida(string claveIngresada)
+        public static bool esClaveValida(string claveIngresada)
         {
             if (claveIngresada.Length < 8) return false; else return true;
         }
 
-        public bool clavesCoinciden(string clave1, string clave2)
+        public static bool clavesCoinciden(string clave1, string clave2)
         {
             if (clave1.Equals(clave2)) return true; else return false;
         }

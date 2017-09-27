@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace UI.Web
 {
@@ -23,11 +24,12 @@ namespace UI.Web
                 Response.Redirect("Default.aspx");
             }
         }
-        private bool IngresoCorrecto(string Usuario, string Contrasena)
+        private bool IngresoCorrecto(string usuario, string clave)
                 {
-                    if (Usuario.Equals("admin") && Contrasena.Equals("admin"))
-                        return true;
-                        return false;
+                    LogicaUsuario lu = new LogicaUsuario();
+                    if (lu.existeUsuario(usuario, clave))
+                    return true;
+                    return false;
                 }
 
             }

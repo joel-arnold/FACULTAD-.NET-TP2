@@ -11,6 +11,12 @@ h3{
     font-size:large;
 }
 
+h5{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:medium;
+}
+
 .pagPrincipal{
     width: 900px;
     font-weight:bolder;
@@ -18,4 +24,9 @@ h3{
     background-color:green;
 	color: black;
 	margin-bottom: 100px;
-}}
+    text-align:center;
+}
+
+#ingresar{
+    font-size:large;
+}
