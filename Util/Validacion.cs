@@ -9,10 +9,10 @@ namespace Util
 {
     public class Validacion
     {
-        string expresionCorrecta = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-
         public bool esMailValido(string correoIngresado)
         {
+            string expresionCorrecta = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+
             if (Regex.IsMatch(correoIngresado, expresionCorrecta))
             {
                 return true;

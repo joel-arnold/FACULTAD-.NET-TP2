@@ -180,9 +180,9 @@ namespace UI.Escritorio
             if (txtApellido.Text.Trim().Length == 0 || txtNombre.Text.Trim().Length == 0 || txtCorreoE.Text.Trim().Length == 0
                 || txtUsuario.Text.Trim().Length == 0 || txtClave.Text.Trim().Length == 0 || txtConfirmarClave.Text.Trim().Length == 0)
                 mensaje += "Debe completar todos los campos" + "\n";
-            if (!Validador.esClaveValida(txtClave.Text))
+            if (!validador.esClaveValida(txtClave.Text))
                 mensaje += "La clave debe contener al menos 8 caracteres" + "\n";
-            if (!validador.clavesCoinciden(txtClave.Text, txtConfirmarClave.Text))
+            if (!Validador.clavesCoinciden(txtClave.Text, txtConfirmarClave.Text))
                 mensaje += "Las claves no coinciden" + "\n";
             if (!Validador.esMailValido(txtCorreoE.Text))
                 mensaje += "El correo electrónico ingresado no es válido";
