@@ -51,11 +51,23 @@
     <Compile Include="FormularioAplicacion.Designer.cs">
       <DependentUpon>FormularioAplicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioMenu.Designer.cs">
+      <DependentUpon>FormularioMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormularioUsuario.Designer.cs">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
       <SubType>Form</SubType>
@@ -68,8 +80,14 @@
     <EmbeddedResource Include="FormularioAplicacion.resx">
       <DependentUpon>FormularioAplicacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioMenu.resx">
+      <DependentUpon>FormularioMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioUsuario.resx">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
