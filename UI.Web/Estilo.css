@@ -11,10 +11,11 @@ h3{
     font-size:large;
 }
 
-.principal {
+.pagPrincipal{
     width: 900px;
+    font-weight:bolder;
 	margin: 0 auto;
+    background-color:green;
 	color: black;
 	margin-bottom: 100px;
-}
-
+}}

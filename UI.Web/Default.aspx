@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
+    <div class="pagPrincipal">
         <h1>BIENVENIDO AL SISTEMA ACADEMIA</h1>
         <h3>(Trabajo Práctico Nº 2 de la materia .NET)</h3>
     </div>
