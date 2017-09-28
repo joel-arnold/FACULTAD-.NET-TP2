@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class Usuario : Entidad
     {
-        string _NombreUsuario, _Clave, _Nombre, _Apellido, _Email;
+        string _NombreUsuario, _Clave, _Nombre, _Apellido, _Email, _Privilegio;
         bool _Habilitado;
 
         public string NombreUsuario { get { return _NombreUsuario; } set { _NombreUsuario = value; } }
@@ -17,5 +17,6 @@ namespace Entidades
         public string Apellido { get { return _Apellido; } set { _Apellido = value; } }
         public string Email { get { return _Email; } set { _Email = value; } }
         public bool Habilitado { get { return _Habilitado; } set { _Habilitado = value; } }
+        public string Privilegio { get { return _Privilegio; } set { _Privilegio = value; } }
     }
 }

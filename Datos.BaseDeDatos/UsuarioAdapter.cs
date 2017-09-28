@@ -160,9 +160,9 @@ namespace Data.Database
             }
         }
 
-        public bool existeUsuario(string nombreUsuario, string clave)
+        public Usuario existeUsuario(string nombreUsuario, string clave)
         {
-            bool respuesta = false;
+            Usuario usuario = new Usuario();
             try
             {
                 this.OpenConnection();
@@ -170,13 +170,20 @@ namespace Data.Database
                 cmdUsuario.Parameters.Add("@nombreUsuario", SqlDbType.VarChar).Value = nombreUsuario;
                 cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar).Value = clave;
                 SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
-                if (drUsuario.HasRows)
+                if (drUsuario.Read())
                 {
-                    respuesta = true;
+                    usuario.ID = (int)drUsuario["id_usuario"];
+                    usuario.NombreUsuario = (string)drUsuario["nombre_usuario"];
+                    usuario.Clave = (string)drUsuario["clave"];
+                    usuario.Habilitado = (bool)drUsuario["habilitado"];
+                    usuario.Nombre = (string)drUsuario["nombre"];
+                    usuario.Apellido = (string)drUsuario["apellido"];
+                    usuario.Email = (string)drUsuario["email"];
+                    usuario.Privilegio = (string)drUsuario["privilegio"];
                 }
                 else
                 {
-                    respuesta = false;
+                    usuario = null;
                 }
                 drUsuario.Close();
             }
@@ -189,7 +196,7 @@ namespace Data.Database
             {
                 this.CloseConnection();
             }
-            return respuesta;
+            return usuario;
         }
     }
 }

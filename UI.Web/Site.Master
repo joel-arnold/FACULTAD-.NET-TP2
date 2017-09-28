@@ -9,11 +9,37 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="stylesheet" type="text/css" href="Estilo.css" media="screen" />
+    <style type="text/css">
+        .auto-style3 {
+            width: 100%;
+        }
+        .auto-style4 {
+            width: 534px;
+        }
+        .auto-style5 {
+            width: 135px;
+        }
+    </style>
 </head>
 <body>
     <form id="bodyForm" runat="server">
+        <table class="auto-style3">
+            <tr>
+                <td class="auto-style5">
         <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource">
             </asp:Menu>
+                </td>
+                <td class="auto-style4" dir="rtl">
+                    <asp:Button ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" Text="Cerrar Sesión" />
+                </td>
+                <td aria-atomic="False" aria-autocomplete="none" aria-expanded="undefined" dir="rtl">
+                    <asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Usuario ingresado"></asp:Label>
+                </td>
+                <td aria-pressed="mixed" dir="auto">
+                    <asp:Label ID="lblUsuarioIngre" runat="server" Text="Sesión no iniciada"></asp:Label>
+                </td>
+            </tr>
+        </table>
             <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server"/>
         <br />
         <br />

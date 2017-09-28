@@ -11,11 +11,6 @@ namespace UI.Web {
 
         }
 
-        protected void botones_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Ingreso.aspx");
