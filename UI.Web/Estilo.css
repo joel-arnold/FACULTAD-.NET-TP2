@@ -30,3 +30,13 @@ h5{
 #ingresar{
     font-size:large;
 }
+
+.noInicioSesion{
+    width: 900px;
+    font-weight:bolder;
+	margin: 0 auto;
+    background-color:indianred;
+	color: black;
+	margin-bottom: 100px;
+    text-align:center;
+}

@@ -77,7 +77,21 @@ namespace UI.Web {
         }
 
         protected void Page_Load(object sender, EventArgs e) {
-            LoadGrid();
+            if (Session["usuario"] != null)
+            {
+                LoadGrid();
+                if ((string)Session["privilegio"] != "admin")
+                {
+                    this.nuevoLinkButton.Visible = false;
+                    this.eliminarLinkButton.Visible = false;
+                    this.editarLinkButton.Visible = false;
+                }
+            }
+            else
+            {
+                Response.Redirect("noInicioSesion.aspx");
+            }
+            
         }
 
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
