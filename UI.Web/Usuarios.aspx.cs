@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
+using Util;
 
 namespace UI.Web {
     public partial class Usuarios : System.Web.UI.Page {
@@ -172,12 +173,19 @@ namespace UI.Web {
                     }
                 case FormModes.Alta:
                     {
-                       this.Entity = new Usuario();
-                       this.LoadEntity(this.Entity);
-                       this.SaveEntity(this.Entity);
-                       this.LoadGrid();
-                       this.formPanel.Visible = false;
-                       break;
+                        if (Validar())
+                        {
+                            this.Entity = new Usuario();
+                            this.LoadEntity(this.Entity);
+                            this.SaveEntity(this.Entity);
+                            this.LoadGrid();
+                            this.formPanel.Visible = false;
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 default: break;
             }
@@ -223,5 +231,33 @@ namespace UI.Web {
             this.formPanel.Visible = false;
             this.LoadGrid();
         }
+
+        public bool Validar()
+        {
+            bool valida = false;
+            string mensaje = "";
+
+            if (nombreUsuarioTextBox.Text.Trim().Length == 0 || nombreTextBox.Text.Trim().Length == 0 || emailTextBox.Text.Trim().Length == 0
+                || apellidoTextBox.Text.Trim().Length == 0 || claveTextBox.Text.Trim().Length == 0 || repetirClaveTextBox.Text.Trim().Length == 0)
+                mensaje += "Debe completar todos los campos." + "\n";
+            if (!Validacion.esClaveValida(claveTextBox.Text))
+                mensaje += "La clave debe contener al menos 8 caracteres" + "\n";
+            if (!Validacion.clavesCoinciden(claveTextBox.Text, repetirClaveTextBox.Text))
+                mensaje += "Las claves no coinciden" + "\n";
+            if (!Validacion.esMailValido(emailTextBox.Text))
+                mensaje += "El correo electrónico ingresado no es válido";
+
+            if (!String.IsNullOrEmpty(mensaje))
+            {
+                valida = false;
+            }
+            else
+            {
+                valida = true;
+            }
+
+            return valida;
+        }
+
     }
 }

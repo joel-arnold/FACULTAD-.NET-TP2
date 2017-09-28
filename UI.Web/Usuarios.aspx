@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="UI.Web.Usuarios" %>
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -31,6 +32,11 @@
 <asp:Panel ID="formPanel" Visible="false" runat="server">
     <asp:Label ID="nombreLabel" runat="server" Text="Nombre: "></asp:Label>
     <asp:TextBox ID="nombreTextBox" runat="server"></asp:TextBox>
+<%--<asp:RequiredFieldValidator id="ValidadorNombre" runat="server"
+      ControlToValidate="nombreTextBox"
+      ErrorMessage="El nombre es un campo obligatorio."
+      ForeColor="Red">
+    </asp:RequiredFieldValidator>--%>
     <br />
     <asp:Label ID="apellidoLabel" runat="server" Text="Apellido: "></asp:Label>
     <asp:TextBox ID="apellidoTextBox" runat="server"></asp:TextBox>
@@ -55,7 +61,8 @@
     <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
 </asp:Panel>
 </asp:Panel>
-    
+
+    <br />
     <br />
 
 </asp:Content>
