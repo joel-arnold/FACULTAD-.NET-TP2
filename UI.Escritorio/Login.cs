@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Negocio;
+using Entidades;
 
 namespace UI.Escritorio
 {
@@ -19,7 +21,8 @@ namespace UI.Escritorio
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (this.txtUsuario.Text == "admin" && this.txtContraseña.Text == "admin")
+            Usuario usr = existeUsuario(this.txtUsuario.Text, this.txtContraseña.Text);
+            if (usr != null)
             {
                 this.DialogResult = DialogResult.OK;
             }
@@ -36,6 +39,14 @@ namespace UI.Escritorio
             MessageBox.Show("Metodo aun no desarrollado. Sepa ser paciente, muchas gracias", "Olvidé mi contraseña",
         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+        }
+
+        private Usuario existeUsuario(string user, string pass)
+        {
+            Usuario usr;
+            LogicaUsuario lu = new LogicaUsuario();
+            usr = lu.existeUsuario(user, pass);
+            return usr;
         }
     }
 }
