@@ -59,7 +59,7 @@ namespace UI.Web
             set { this.ViewState["FormMode"] = value; }
         }
 
-        public LogicaPlan Logic
+        public LogicaPlan LogPlan
         {
             get
             {
@@ -74,9 +74,21 @@ namespace UI.Web
 
         private void LoadGrid()
         {
-            this.gridViewPlanes.DataSource = this.Logic.GetAll();
-            this.gridViewPlanes.DataBind();
-            this.gridViewPlanes.SelectedIndex = 999999;
+            DataTable tblPlanes = new DataTable();
+            tblPlanes.Columns.Add("ID", typeof(int));
+            tblPlanes.Columns.Add("Plan", typeof(string));
+            tblPlanes.Columns.Add("Especialidad", typeof(string));
+            foreach (Plan plan in LogPlan.GetAll())
+            {
+                DataRow fila = tblPlanes.NewRow();
+                fila["ID"] = plan.ID;
+                fila["Plan"] = plan.Descripcion;
+                fila["Especialidad"] = new LogicaEspecialidad().GetOne(plan.IdEspecialidad).Descripcion;
+                tblPlanes.Rows.Add(fila);
+            }
+            tblPlanes.DefaultView.Sort = "ID,Especialidad,Plan";
+            gridViewPlanes.DataSource = tblPlanes;
+            gridViewPlanes.DataBind();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -95,7 +107,6 @@ namespace UI.Web
             {
                 Response.Redirect("noInicioSesion.aspx");
             }
-
         }
 
         protected void gridViewPlanes_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,21 +116,10 @@ namespace UI.Web
 
         private void LoadForm(int id)
         {
-            DataTable tblPlanes = new DataTable();
-            tblPlanes.Columns.Add("ID", typeof(int));
-            tblPlanes.Columns.Add("Plan", typeof(string));
-            tblPlanes.Columns.Add("Especialidad", typeof(string));
-            foreach (Plan plan in Logic.GetAll())
-            {
-                DataRow fila = tblPlanes.NewRow();
-                fila["ID"] = plan.ID;
-                fila["Plan"] = plan.Descripcion;
-                fila["Especialidad"] = new LogicaEspecialidad().GetOne(plan.IdEspecialidad).Descripcion;
-                tblPlanes.Rows.Add(fila);
-            }
-            tblPlanes.DefaultView.Sort = "Especialidad,Plan";
-            gridViewPlanes.DataSource = tblPlanes;
-            gridViewPlanes.DataBind();
+            this.Entity = LogPlan.GetOne(id);
+            this.idTextBox.Text = this.Entity.ID.ToString();
+            this.descripcionTextBox.Text = this.Entity.Descripcion;
+            this.especialidadTextBox.Text = this.Entity.IdEspecialidad.ToString();
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -141,13 +141,14 @@ namespace UI.Web
 
         private void SaveEntity(Plan plan)
         {
-            this.Logic.Save(plan);
+            this.LogPlan.Save(plan);
         }
 
         private void EnableForm(bool enable)
         {
             this.idTextBox.Enabled = enable;
             this.descripcionTextBox.Enabled = enable;
+            this.especialidadTextBox.Enabled = enable;
         }
 
 
@@ -199,7 +200,7 @@ namespace UI.Web
 
         private void DeleteEntity(int id)
         {
-            this.Logic.Delete(id);
+            this.LogPlan.Delete(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)

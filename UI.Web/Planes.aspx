@@ -3,17 +3,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="gridPanelPlanes" runat="server">
-        <asp:GridView ID="gridViewPlanes" runat="server" AutoGenerateColumns="false"
-        SelectedRowStyle-BackColor="Blue"
-        SelectedRowStyle-ForeColor="White"
-        DataKeyNames="ID" OnSelectedIndexChanged="gridViewPlanes_SelectedIndexChanged">
-        <Columns>
-            <asp:BoundField HeaderText="ID Plan" DataField="ID" />
-            <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
-            <asp:BoundField HeaderText="Especialidad" DataField="Descripcion" />
-            <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
-        </Columns>
-    </asp:GridView>
+        <asp:GridView ID="gridViewPlanes" runat="server" AutoGenerateColumns="False" 
+                    onselectedindexchanged="gridViewPlanes_SelectedIndexChanged" DataKeyNames="ID" 
+                    EmptyDataText="No hay planes registrados"
+                    SelectedRowStyle-BackColor="Green"
+                    SelectedRowStyle-ForeColor="White">
+                    <Columns>
+                        <asp:BoundField DataField="ID" HeaderText="ID Plan"></asp:BoundField>
+                        <asp:BoundField DataField="Especialidad" HeaderText="Especialidad"></asp:BoundField>
+                        <asp:BoundField DataField="Plan" HeaderText="Plan" />
+                        <asp:CommandField ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
 </asp:Panel>
     
     
@@ -34,13 +35,14 @@
     <asp:Label ID="etiqDescripcion" runat="server" Text="Descripción "></asp:Label>
     <asp:TextBox ID="descripcionTextBox" runat="server" Width="114px"></asp:TextBox>
     <br />
-<asp:Panel ID="formActionsPanel" runat="server">
     <asp:Label ID="etiqEspecialidad" runat="server" Text="Especialidad:"></asp:Label>
     <asp:TextBox ID="especialidadTextBox" runat="server"></asp:TextBox>
 </asp:Panel>
-</asp:Panel>
+
     <br />
+<asp:Panel ID="formActionsPanel" Visible="false" runat="server">    
     <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
     <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
     <br />
+</asp:Panel>
 </asp:Content>

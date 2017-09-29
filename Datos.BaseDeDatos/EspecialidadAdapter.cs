@@ -45,19 +45,19 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("select * from especialidades where id_especialidad = @id", SqlConn);
-                cmdPlanes.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-                SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
-                if (drPlanes.Read())
+                SqlCommand cmdEspecialidades = new SqlCommand("select * from especialidades where id_especialidad = @id", SqlConn);
+                cmdEspecialidades.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drEspecialidades = cmdEspecialidades.ExecuteReader();
+                if (drEspecialidades.Read())
                 {
-                    esp.ID = (int)drPlanes["id_especialidad"];
-                    esp.Descripcion = (string)drPlanes["desc_especialidad"];
+                    esp.ID = (int)drEspecialidades["id_especialidad"];
+                    esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
                 }
-                drPlanes.Close();
+                drEspecialidades.Close();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al recuperar los datos de plan", Ex);
+                Exception ExcepcionManejada = new Exception("Error al recuperar los datos de la especialidad", Ex);
                 throw ExcepcionManejada;
             }
             finally
