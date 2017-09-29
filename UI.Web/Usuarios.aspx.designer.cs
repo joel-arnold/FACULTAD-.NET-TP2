@@ -94,6 +94,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreTextBox;
         
         /// <summary>
+        /// Control etiqErrorNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorNombre;
+        
+        /// <summary>
         /// Control apellidoLabel.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox apellidoTextBox;
         
         /// <summary>
+        /// Control etiqErrorApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorApellido;
+        
+        /// <summary>
         /// Control emailLabel.
         /// </summary>
         /// <remarks>
@@ -128,6 +146,24 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox emailTextBox;
+        
+        /// <summary>
+        /// Control etiqErrorEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorEmail;
+        
+        /// <summary>
+        /// Control etiqErrorFormaEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorFormaEmail;
         
         /// <summary>
         /// Control habilitadoLabel.
@@ -166,6 +202,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreUsuarioTextBox;
         
         /// <summary>
+        /// Control etiqErrorUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorUsuario;
+        
+        /// <summary>
         /// Control claveLabel.
         /// </summary>
         /// <remarks>
@@ -184,6 +229,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox claveTextBox;
         
         /// <summary>
+        /// Control etiqErrorClave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorClave;
+        
+        /// <summary>
         /// Control repetirClaveLabel.
         /// </summary>
         /// <remarks>
@@ -200,6 +254,15 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox repetirClaveTextBox;
+        
+        /// <summary>
+        /// Control etiqErrorClavesCoinciden.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqErrorClavesCoinciden;
         
         /// <summary>
         /// Control formActionsPanel.

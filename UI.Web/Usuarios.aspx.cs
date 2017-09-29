@@ -75,6 +75,7 @@ namespace UI.Web {
         {
             this.gridView.DataSource = this.Logic.GetAll();
             this.gridView.DataBind();
+            this.gridView.SelectedIndex = 999999;
         }
 
         protected void Page_Load(object sender, EventArgs e) {
@@ -159,17 +160,27 @@ namespace UI.Web {
                     {
                         this.DeleteEntity(this.SelectedID);
                         this.LoadGrid();
+                        this.formPanel.Visible = false;
                         break;
                     }
                 case FormModes.Modificacion:
                     {
-                        this.Entity = new Usuario();
-                        this.Entity.ID = this.SelectedID;
-                        this.Entity.State = Entidad.States.Modified;
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
-                        break;
+                        if (Validar())
+                        {
+                            this.Entity = new Usuario();
+                            this.Entity.ID = this.SelectedID;
+                            this.Entity.State = Entidad.States.Modified;
+                            this.LoadEntity(this.Entity);
+                            this.SaveEntity(this.Entity);
+                            this.LoadGrid();
+                            this.formPanel.Visible = false;
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        
                     }
                 case FormModes.Alta:
                     {
@@ -189,7 +200,6 @@ namespace UI.Web {
                     }
                 default: break;
             }
-            this.formPanel.Visible = false;
         }
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
@@ -234,28 +244,120 @@ namespace UI.Web {
 
         public bool Validar()
         {
-            bool valida = false;
-            string mensaje = "";
-
-            if (nombreUsuarioTextBox.Text.Trim().Length == 0 || nombreTextBox.Text.Trim().Length == 0 || emailTextBox.Text.Trim().Length == 0
-                || apellidoTextBox.Text.Trim().Length == 0 || claveTextBox.Text.Trim().Length == 0 || repetirClaveTextBox.Text.Trim().Length == 0)
-                mensaje += "Debe completar todos los campos." + "\n";
-            if (!Validacion.esClaveValida(claveTextBox.Text))
-                mensaje += "La clave debe contener al menos 8 caracteres" + "\n";
-            if (!Validacion.clavesCoinciden(claveTextBox.Text, repetirClaveTextBox.Text))
-                mensaje += "Las claves no coinciden" + "\n";
-            if (!Validacion.esMailValido(emailTextBox.Text))
-                mensaje += "El correo electrónico ingresado no es válido";
-
-            if (!String.IsNullOrEmpty(mensaje))
+            bool valida = true;
+                         
+            if (nombreTextBox.Text.Trim().Length == 0)
             {
-                valida = false;
+                etiqErrorNombre.Text = "El nombre no puede estar vacío.";
+                if(valida == true)
+                {
+                    valida = false;
+                }
             }
             else
             {
-                valida = true;
+                etiqErrorNombre.Text = "Ok";
+                etiqErrorNombre.ForeColor = System.Drawing.Color.Green;
             }
 
+
+            if (apellidoTextBox.Text.Trim().Length == 0)
+            {
+                etiqErrorApellido.Text = "El apellido no puede estar vacío.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else
+            {
+                etiqErrorApellido.Text = "Ok";
+                etiqErrorApellido.ForeColor = System.Drawing.Color.Green;
+            }
+
+            if (nombreUsuarioTextBox.Text.Trim().Length == 0)
+            {
+                etiqErrorUsuario.Text = "El usuario no puede estar vacío.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else
+            {
+                etiqErrorUsuario.Text = "Ok";
+                etiqErrorUsuario.ForeColor = System.Drawing.Color.Green;
+            }
+
+            if (emailTextBox.Text.Trim().Length == 0)
+            {
+                etiqErrorEmail.Text = "El correo electrónico no puede estar vacío.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else
+            {
+                etiqErrorEmail.Text = "Ok";
+                etiqErrorEmail.ForeColor = System.Drawing.Color.Green;
+            }
+
+            if (!Validacion.clavesCoinciden(claveTextBox.Text, repetirClaveTextBox.Text))
+            {
+                etiqErrorClavesCoinciden.Text = "Las claves ingresadas no coinciden.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else
+            {
+                etiqErrorClavesCoinciden.Text = "";
+            }
+
+            if (!Validacion.esClaveValida(claveTextBox.Text))
+            {
+                etiqErrorClave.Text = "La clave debe contener al menos 8 caracteres.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else
+            {
+                etiqErrorClave.Text = "Ok";
+                etiqErrorClave.ForeColor = System.Drawing.Color.Green;
+            }
+            
+
+            if(emailTextBox.Text.Trim().Length == 0)
+            {
+                etiqErrorEmail.Text = "El correo electrónico no puede estar vacío.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else
+            {
+                etiqErrorEmail.Text = "";
+            }
+
+            if ((!Validacion.esMailValido(emailTextBox.Text)) && (emailTextBox.Text.Trim().Length != 0))
+            {
+                etiqErrorFormaEmail.Text = "El formato de email ingresado no es correcto.";
+                if (valida == true)
+                {
+                    valida = false;
+                }
+            }
+            else if(emailTextBox.Text.Trim().Length != 0)
+            {
+                etiqErrorFormaEmail.Text = "Ok";
+                etiqErrorFormaEmail.ForeColor = System.Drawing.Color.Green;
+            }
+            
             return valida;
         }
 

@@ -12,6 +12,11 @@ namespace UI.Web {
             {
                 lblUsuarioIngre.Text = (string)Session["usuario"];
             }
+
+            if (Session["usuario"] == null)
+            {
+                btnCerrarSesion.Visible = false;
+            }
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
