@@ -119,7 +119,7 @@ namespace UI.Web
             this.Entity = LogPlan.GetOne(id);
             this.idTextBox.Text = this.Entity.ID.ToString();
             this.descripcionTextBox.Text = this.Entity.Descripcion;
-            this.especialidadTextBox.Text = this.Entity.IdEspecialidad.ToString();
+            this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().GetOne(Entity.IdEspecialidad).Descripcion;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -127,6 +127,7 @@ namespace UI.Web
             if (this.IsEntitySelected)
             {
                 this.EnableForm(true);
+                this.EnableButton(true);
                 this.formPanel.Visible = true;
                 this.FormMode = FormModes.Modificacion;
                 this.LoadForm(this.SelectedID);
@@ -136,7 +137,7 @@ namespace UI.Web
         private void LoadEntity(Plan plan)
         {
             plan.Descripcion = this.descripcionTextBox.Text;
-            plan.IdEspecialidad = Int32.Parse(this.especialidadTextBox.Text);
+            plan.IdEspecialidad = Int32.Parse(this.ddlEspecialidad.SelectedValue);
         }
 
         private void SaveEntity(Plan plan)
@@ -148,10 +149,24 @@ namespace UI.Web
         {
             this.idTextBox.Enabled = enable;
             this.descripcionTextBox.Enabled = enable;
-            this.especialidadTextBox.Enabled = enable;
+            cargarEspecialidades();
+            this.ddlEspecialidad.Enabled = enable;
         }
 
+        private void EnableButton(bool enable)
+        {
+            this.aceptarLinkButton.Visible = enable;
+            this.cancelarLinkButton.Visible = enable;
+        }
 
+        private void cargarEspecialidades()
+        {
+            LogicaEspecialidad le = new LogicaEspecialidad();
+            ddlEspecialidad.DataSource = le.GetAll();
+            ddlEspecialidad.DataTextField = "Descripcion";
+            //ddlEspecialidad.DataValueField = "ID";
+            ddlEspecialidad.DataBind();
+        }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
@@ -194,6 +209,7 @@ namespace UI.Web
                 this.formPanel.Visible = true;
                 this.FormMode = FormModes.Baja;
                 this.EnableForm(false);
+                this.EnableButton(true);
                 this.LoadForm(this.SelectedID);
             }
         }
@@ -209,6 +225,7 @@ namespace UI.Web
             this.FormMode = FormModes.Alta;
             this.ClearForm();
             this.EnableForm(true);
+            this.EnableButton(true);
         }
 
         private void ClearForm()
@@ -224,5 +241,6 @@ namespace UI.Web
             this.LoadGrid();
         }
 
+        
     }
 }

@@ -46,7 +46,7 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("select * plan where id_plan = @id", SqlConn);
+                SqlCommand cmdPlanes = new SqlCommand("select * from planes where id_plan = @id", SqlConn);
                 cmdPlanes.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 if (drPlanes.Read())

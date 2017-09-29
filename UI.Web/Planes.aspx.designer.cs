@@ -121,13 +121,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Label etiqEspecialidad;
         
         /// <summary>
-        /// Control especialidadTextBox.
+        /// Control ddlEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox especialidadTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
         
         /// <summary>
         /// Control formActionsPanel.

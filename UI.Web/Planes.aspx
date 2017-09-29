@@ -36,13 +36,13 @@
     <asp:TextBox ID="descripcionTextBox" runat="server" Width="114px"></asp:TextBox>
     <br />
     <asp:Label ID="etiqEspecialidad" runat="server" Text="Especialidad:"></asp:Label>
-    <asp:TextBox ID="especialidadTextBox" runat="server"></asp:TextBox>
-</asp:Panel>
-
+    <asp:DropDownList ID="ddlEspecialidad" runat="server">
+    </asp:DropDownList>
     <br />
-<asp:Panel ID="formActionsPanel" Visible="false" runat="server">    
+    <asp:Panel ID="formActionsPanel" runat="server">    
     <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
     <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
     <br />
+</asp:Panel>
 </asp:Panel>
 </asp:Content>
