@@ -29,10 +29,10 @@ namespace Negocio
             _EspecialidadData = new EspecialidadAdapter();
         }
 
-        /*public Especialidad GetOne(int ID)
+        public Especialidad GetOne(int ID)
         {
             return EspecialidadData.GetOne(ID);
-        }*/
+        }
 
         public List<Especialidad> GetAll()
         {

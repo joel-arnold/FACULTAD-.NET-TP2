@@ -8,10 +8,46 @@ namespace Entidades
 {
     public class Plan : Entidad
     {
-        string _Descripcion;
-        int _IDEspecialidad;
+        private string descripcion;
+        private int idEspecialidad, idPlan;
 
-        public string Descripcion { get { return _Descripcion; } set { _Descripcion = value; } }
-        public int IDEspecialidad { get { return _IDEspecialidad; } set { _IDEspecialidad = value; } }
+        public string Descripcion
+        {
+            get
+            {
+                return descripcion;
+            }
+
+            set
+            {
+                descripcion = value;
+            }
+        }
+
+        public int IdEspecialidad
+        {
+            get
+            {
+                return idEspecialidad;
+            }
+
+            set
+            {
+                idEspecialidad = value;
+            }
+        }
+
+        public int IdPlan
+        {
+            get
+            {
+                return idPlan;
+            }
+
+            set
+            {
+                idPlan = value;
+            }
+        }
     }
 }

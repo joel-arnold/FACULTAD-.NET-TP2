@@ -22,7 +22,7 @@ namespace Data.Database
                     Plan pl = new Plan();
                     pl.ID = (int)drPlanes["id_plan"];
                     pl.Descripcion = (string)drPlanes["desc_plan"];
-                    pl.IDEspecialidad = (int)drPlanes["id_especialidad"];
+                    pl.IdEspecialidad= (int)drPlanes["id_especialidad"];
                                         
                     planes.Add(pl);
                 }
@@ -46,14 +46,14 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("select * from planes where id_plan = @id", SqlConn);
+                SqlCommand cmdPlanes = new SqlCommand("select * plan where id_plan = @id", SqlConn);
                 cmdPlanes.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 if (drPlanes.Read())
                 {
                     pl.ID = (int)drPlanes["id_plan"];
                     pl.Descripcion = (string)drPlanes["desc_plan"];
-                    pl.IDEspecialidad = (int)drPlanes["id_especialidad"];
+                    pl.IdEspecialidad = (int)drPlanes["id_especialidad"];
                 }
                 drPlanes.Close();
             }
@@ -101,7 +101,7 @@ namespace Data.Database
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
                 cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
-                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IDEspecialidad;
+                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
 
                 cmdSave.ExecuteNonQuery();
             }
@@ -127,7 +127,7 @@ namespace Data.Database
                     "select @@identity", SqlConn);
 
                 cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
-                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IDEspecialidad;
+                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
 
                 //Obtengo el ID que asignó la BD automáticamente
                 plan.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());

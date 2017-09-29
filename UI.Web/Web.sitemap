@@ -3,5 +3,6 @@
     <siteMapNode url="" title="Menu"  description="">
       <siteMapNode url="Default.aspx" title="Inicio"  description="" />
       <siteMapNode url="Usuarios.aspx" title="ABM de Usuarios"  description="" />
+    <siteMapNode url="Planes.aspx" title="ABM de Planes"  description="" />
     </siteMapNode>
 </siteMap>
