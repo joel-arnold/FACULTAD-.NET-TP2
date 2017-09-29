@@ -10,70 +10,65 @@ namespace Negocio
 {
     public class LogicaPlan : Logica
     {
-        UsuarioAdapter _UsuarioData;
+        PlanAdapter _PlanData;
 
-        public UsuarioAdapter UsuarioData
+        public PlanAdapter PlanData
         {
             get
             {
-                return _UsuarioData;
+                return _PlanData;
             }
             set
             {
-                _UsuarioData = value;
+                _PlanData = value;
             }
         }
 
         public LogicaPlan()
         {
-            _UsuarioData = new UsuarioAdapter();
+            _PlanData = new PlanAdapter();
         }
 
-        public Usuario GetOne(int ID)
+        public Plan GetOne(int ID)
         {
-           return UsuarioData.GetOne(ID);
+           return PlanData.GetOne(ID);
         }
 
-        public List<Usuario> GetAll()
+        public List<Plan> GetAll()
         {
-            return UsuarioData.GetAll();
+            return PlanData.GetAll();
         }
 
-        public void Save(Usuario usuario)
+        public void Save(Plan plan)
         {
-            if(usuario.State == Entidad.States.Deleted)
+            if(plan.State == Entidad.States.Deleted)
             {
-                this.Delete(usuario.ID);
+                this.Delete(plan.ID);
             }
-            else if(usuario.State == Entidad.States.New)
+            else if(plan.State == Entidad.States.New)
             {
-                this.Insert(usuario);
+                this.Insert(plan);
             }
-            else if(usuario.State == Entidad.States.Modified)
+            else if(plan.State == Entidad.States.Modified)
             {
-                this.Update(usuario);
+                this.Update(plan);
             }
-            usuario.State = Entidad.States.Unmodified;
+            plan.State = Entidad.States.Unmodified;
         }
 
         public void Delete(int ID)
         {
-            UsuarioData.Delete(ID);
+            PlanData.Delete(ID);
         }
 
-        public void Insert(Usuario usuario)
+        public void Insert(Plan plan)
         {
-            UsuarioData.Insert(usuario);
+            PlanData.Insert(plan);
         }
 
-        public void Update(Usuario usuario)
+        public void Update(Plan plan)
         {
-            UsuarioData.Update(usuario);
-        }
-
-        public Usuario existeUsuario(string usuario, string clave)
-        {
-            return UsuarioData.existeUsuario(usuario, clave);
+            PlanData.Update(plan);
         }
     }
 }

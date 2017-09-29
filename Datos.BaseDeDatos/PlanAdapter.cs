@@ -9,72 +9,64 @@ namespace Data.Database
 {
     public class PlanAdapter:Adapter
     {
-        public List<Usuario> GetAll()
+        public List<Plan> GetAll()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            List<Plan> planes = new List<Plan>();
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios", SqlConn);
-                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
-                while (drUsuarios.Read())
+                SqlCommand cmdPlanes = new SqlCommand("select * from planes", SqlConn);
+                SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
+                while (drPlanes.Read())
                 {
-                    Usuario usr = new Usuario();
-                    usr.ID = (int)drUsuarios["id_usuario"];
-                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usr.Clave = (string)drUsuarios["clave"];
-                    usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.Email = (string)drUsuarios["email"];
+                    Plan pl = new Plan();
+                    pl.ID = (int)drPlanes["id_plan"];
+                    pl.Descripcion = (string)drPlanes["desc_plan"];
+                    pl.IDEspecialidad = (int)drPlanes["id_especialidad"];
                                         
-                    usuarios.Add(usr);
+                    planes.Add(pl);
                 }
-                drUsuarios.Close();
+                drPlanes.Close();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de planes", Ex);
                 throw ExcepcionManejada;
             }
             finally
             {
                 this.CloseConnection();
             }
-            return usuarios;
+            return planes;
         }
 
-        public Usuario GetOne(int ID)
+        public Plan GetOne(int ID)
         {
-            Usuario usuario = new Usuario();
+            Plan pl = new Plan();
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios where id_usuario = @id", SqlConn);
-                cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
-                if (drUsuarios.Read())
+                SqlCommand cmdPlanes = new SqlCommand("select * from planes where id_plan = @id", SqlConn);
+                cmdPlanes.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
+                if (drPlanes.Read())
                 {
-                    usuario.ID = (int)drUsuarios["id_usuario"];
-                    usuario.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usuario.Clave = (string)drUsuarios["clave"];
-                    usuario.Habilitado = (bool)drUsuarios["habilitado"];
-                    usuario.Nombre = (string)drUsuarios["nombre"];
-                    usuario.Apellido = (string)drUsuarios["apellido"];
-                    usuario.Email = (string)drUsuarios["email"];
+                    pl.ID = (int)drPlanes["id_plan"];
+                    pl.Descripcion = (string)drPlanes["desc_plan"];
+                    pl.IDEspecialidad = (int)drPlanes["id_especialidad"];
                 }
-                drUsuarios.Close();
+                drPlanes.Close();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al recuperar los datos de usuario", Ex);
+                Exception ExcepcionManejada = new Exception("Error al recuperar los datos de plan", Ex);
                 throw ExcepcionManejada;
             }
             finally
             {
                 this.CloseConnection();
             }
-            return usuario;
+            return pl;
         }
 
         public void Delete(int ID)
@@ -83,13 +75,13 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdDelete =
-                    new SqlCommand("delete usuarios where id_usuario = @id", SqlConn);
+                    new SqlCommand("delete planes where id_plan = @id", SqlConn);
                 cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al eliminar usuario", Ex);
+                Exception ExcepcionManejada = new Exception("Error al eliminar plan", Ex);
                 throw ExcepcionManejada;
             }
             finally
@@ -98,29 +90,24 @@ namespace Data.Database
             }
         }
 
-        public void Update(Usuario usuario)
+        public void Update(Plan plan)
         {
             try
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, " +
-                    "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email " +
-                    "WHERE id_usuario = @id", SqlConn);
+                    "update planes set desc_plan = @desc_plan, id_especialidad = @id_especialidad," +
+                    "WHERE id_plan = @id", SqlConn);
 
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
-                cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
+                cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
+                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IDEspecialidad;
 
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al modificar datos del usuario", Ex);
+                Exception ExcepcionManejada = new Exception("Error al modificar datos del plan", Ex);
                 throw ExcepcionManejada;
             }
             finally
@@ -129,75 +116,32 @@ namespace Data.Database
             }
         }
 
-        public void Insert(Usuario usuario)
+        public void Insert(Plan plan)
         {
             try
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "insert into usuarios(nombre_usuario, clave, habilitado, nombre, apellido, email) " +
-                    "values(@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email) " +
+                    "insert into planes(desc_plan, id_especialidad) " +
+                    "values(@desc_plan, @id_especialidad) " +
                     "select @@identity", SqlConn);
-                                
-                cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+
+                cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
+                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IDEspecialidad;
 
                 //Obtengo el ID que asignó la BD automáticamente
-                usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
-                
-            }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al crear el usuario", Ex);
-                throw ExcepcionManejada;
-            }
-            finally
-            {
-                this.CloseConnection();
-            }
-        }
+                plan.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
 
-        public Usuario existeUsuario(string nombreUsuario, string clave)
-        {
-            Usuario usuario = new Usuario();
-            try
-            {
-                this.OpenConnection();
-                SqlCommand cmdUsuario = new SqlCommand("select * from usuarios where nombre_usuario = @nombreUsuario and clave = @clave", SqlConn);
-                cmdUsuario.Parameters.Add("@nombreUsuario", SqlDbType.VarChar).Value = nombreUsuario;
-                cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar).Value = clave;
-                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
-                if (drUsuario.Read())
-                {
-                    usuario.ID = (int)drUsuario["id_usuario"];
-                    usuario.NombreUsuario = (string)drUsuario["nombre_usuario"];
-                    usuario.Clave = (string)drUsuario["clave"];
-                    usuario.Habilitado = (bool)drUsuario["habilitado"];
-                    usuario.Nombre = (string)drUsuario["nombre"];
-                    usuario.Apellido = (string)drUsuario["apellido"];
-                    usuario.Email = (string)drUsuario["email"];
-                    usuario.Privilegio = (string)drUsuario["privilegio"];
-                }
-                else
-                {
-                    usuario = null;
-                }
-                drUsuario.Close();
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("No se encontró un usuario con esos datos", Ex);
+                Exception ExcepcionManejada = new Exception("Error al crear el plan", Ex);
                 throw ExcepcionManejada;
             }
             finally
             {
                 this.CloseConnection();
             }
-            return usuario;
-        }
+        } 
     }
 }
