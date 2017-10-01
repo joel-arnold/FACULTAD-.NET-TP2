@@ -25,21 +25,21 @@ namespace UI.Escritorio
         }
 
         //CONSTRUCTOR PARA ALTAS
-        public FormularioUsuario(ModoForm modo) :this()
+        public FormularioUsuario(ModosFormulario modo) :this()
         {
             this.Modo = modo;
             this.txtID.ReadOnly = true;
         }
 
         //CONSTRUCTOR PARA MODIFICACION, BAJA Y CONSULTA
-        public FormularioUsuario(int ID, ModoForm modo) : this()
+        public FormularioUsuario(int ID, ModosFormulario modo) : this()
         {
             this.Modo = modo;
             Negocio.LogicaUsuario usuario = new Negocio.LogicaUsuario();
             UsuarioActual = usuario.TraerUno(ID);
             MapearDeDatos();
             this.txtID.ReadOnly = true;
-            if(this.Modo == ModoForm.Baja)
+            if(this.Modo == ModosFormulario.Baja)
             {
                 this.txtNombre.ReadOnly = true;
                 this.txtApellido.ReadOnly = true;
@@ -96,22 +96,22 @@ namespace UI.Escritorio
         //SOBRE-ESCRITURA DE LOS METODOS DE LA CLASE PADRE
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            if (Modo == ModosFormulario.Alta)
             {
                 Usuario usuarioActual = new Usuario();
                 UsuarioActual.Estado = Entidad.Estados.Nuevo;
             }
-            else if (Modo == ModoForm.Modificacion)
+            else if (Modo == ModosFormulario.Modificacion)
             {
                 UsuarioActual.ID = int.Parse(txtID.Text);
                 UsuarioActual.Estado = Entidad.Estados.Modificado;
             }
-            else if (Modo == ModoForm.Baja)
+            else if (Modo == ModosFormulario.Baja)
             {
                 UsuarioActual.ID = int.Parse(txtID.Text);
                 UsuarioActual.Estado = Entidad.Estados.Borrado;
             }
-            else if (Modo == ModoForm.Consulta)
+            else if (Modo == ModosFormulario.Consulta)
             {
                 UsuarioActual.ID = int.Parse(txtID.Text);
                 UsuarioActual.Estado = Entidad.Estados.SinModificar;
@@ -138,16 +138,16 @@ namespace UI.Escritorio
             //Acá configuro el texto del botón aceptar según sea el modo con el que se llamó al formulario
             switch (Modo)
             {
-                case  ModoForm.Alta: btnAceptar.Text = "Guardar";
+                case  ModosFormulario.Alta: btnAceptar.Text = "Guardar";
                     break;
 
-                case ModoForm.Modificacion: btnAceptar.Text = "Guardar";
+                case ModosFormulario.Modificacion: btnAceptar.Text = "Guardar";
                     break;
 
-                case ModoForm.Baja: btnAceptar.Text = "Eliminar";
+                case ModosFormulario.Baja: btnAceptar.Text = "Eliminar";
                 break;
 
-                case ModoForm.Consulta: btnAceptar.Text = "Aceptar";
+                case ModosFormulario.Consulta: btnAceptar.Text = "Aceptar";
                 break;
             }
         }
@@ -202,7 +202,7 @@ namespace UI.Escritorio
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-          if(this.Modo != ModoForm.Baja)
+          if(this.Modo != ModosFormulario.Baja)
             {
                 if (Validar())
                 {

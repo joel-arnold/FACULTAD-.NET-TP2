@@ -49,7 +49,7 @@ namespace UI.Escritorio
         // ESTO CREA UNA GRILLA PARA ALTAS (BOTONCITO +)
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            FormularioUsuario formABM = new FormularioUsuario(FormularioAplicacion.ModoForm.Alta);
+            FormularioUsuario formABM = new FormularioUsuario(FormularioAplicacion.ModosFormulario.Alta);
             formABM.ShowDialog();
             this.Listar();
         }
@@ -60,7 +60,7 @@ namespace UI.Escritorio
             if(this.dgvUsuarios.SelectedRows.Count != 0)
             {
                 int ID = ((Entidades.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                FormularioUsuario formABM = new FormularioUsuario(ID, FormularioAplicacion.ModoForm.Modificacion);
+                FormularioUsuario formABM = new FormularioUsuario(ID, FormularioAplicacion.ModosFormulario.Modificacion);
                 formABM.ShowDialog();
                 this.Listar();
             }
@@ -72,7 +72,7 @@ namespace UI.Escritorio
           if (this.dgvUsuarios.SelectedRows.Count != 0)
             {
                 int ID = ((Entidades.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                FormularioUsuario formABM = new FormularioUsuario(ID, FormularioAplicacion.ModoForm.Baja);
+                FormularioUsuario formABM = new FormularioUsuario(ID, FormularioAplicacion.ModosFormulario.Baja);
                 formABM.ShowDialog();
                 this.Listar();
             }

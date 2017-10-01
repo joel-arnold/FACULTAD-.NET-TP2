@@ -45,16 +45,16 @@ namespace UI.Web {
             }
         }
 
-        public enum FormModes
+        public enum ModosFormulario
         {
             Alta,
             Baja,
             Modificacion
         }
 
-        public FormModes FormMode
+        public ModosFormulario ModoFormulario
         {
-            get { return (FormModes)this.ViewState["FormMode"]; }
+            get { return (ModosFormulario)this.ViewState["FormMode"]; }
             set { this.ViewState["FormMode"]=value; }
         }
 
@@ -116,8 +116,8 @@ namespace UI.Web {
             if (this.IsEntitySelected)
             {
                 this.EnableForm(true);
-                this.formPanel.Visible = true;
-                this.FormMode = FormModes.Modificacion;
+                this.panelFormulario.Visible = true;
+                this.ModoFormulario = ModosFormulario.Modificacion;
                 this.LoadForm(this.SelectedID);
                 Console.WriteLine(Entity.Apellido);
             }
@@ -154,16 +154,16 @@ namespace UI.Web {
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            switch (this.FormMode)
+            switch (this.ModoFormulario)
             {
-                case FormModes.Baja:
+                case ModosFormulario.Baja:
                     {
                         this.DeleteEntity(this.SelectedID);
                         this.LoadGrid();
-                        this.formPanel.Visible = false;
+                        this.panelFormulario.Visible = false;
                         break;
                     }
-                case FormModes.Modificacion:
+                case ModosFormulario.Modificacion:
                     {
                         if (Page.IsValid)
                         {
@@ -173,7 +173,7 @@ namespace UI.Web {
                             this.LoadEntity(this.Entity);
                             this.SaveEntity(this.Entity);
                             this.LoadGrid();
-                            this.formPanel.Visible = false;
+                            this.panelFormulario.Visible = false;
                             break;
                         }
                         else
@@ -182,7 +182,7 @@ namespace UI.Web {
                         }
                         
                     }
-                case FormModes.Alta:
+                case ModosFormulario.Alta:
                     {
                         if (Page.IsValid)
                         {
@@ -190,7 +190,7 @@ namespace UI.Web {
                             this.LoadEntity(this.Entity);
                             this.SaveEntity(this.Entity);
                             this.LoadGrid();
-                            this.formPanel.Visible = false;
+                            this.panelFormulario.Visible = false;
                             break;
                         }
                         else
@@ -206,8 +206,8 @@ namespace UI.Web {
         {
             if (this.IsEntitySelected)
             {
-                this.formPanel.Visible = true;
-                this.FormMode = FormModes.Baja;
+                this.panelFormulario.Visible = true;
+                this.ModoFormulario = ModosFormulario.Baja;
                 this.EnableForm(false);
                 this.LoadForm(this.SelectedID);
             }
@@ -220,8 +220,8 @@ namespace UI.Web {
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
-            this.formPanel.Visible = true;
-            this.FormMode = FormModes.Alta;
+            this.panelFormulario.Visible = true;
+            this.ModoFormulario = ModosFormulario.Alta;
             this.ClearForm();
             this.EnableForm(true);
         }
@@ -238,128 +238,9 @@ namespace UI.Web {
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
             this.ClearForm();
-            this.formPanel.Visible = false;
+            this.panelFormulario.Visible = false;
             this.LoadGrid();
         }
-
-        //public bool Validar()
-        //{
-        //    bool valida = true;
-                         
-        //    if (nombreTextBox.Text.Trim().Length == 0)
-        //    {
-        //        etiqErrorNombre.Text = "El nombre no puede estar vacío.";
-        //        if(valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorNombre.Text = "Ok";
-        //        etiqErrorNombre.ForeColor = System.Drawing.Color.Green;
-        //    }
-
-
-        //    if (apellidoTextBox.Text.Trim().Length == 0)
-        //    {
-        //        etiqErrorApellido.Text = "El apellido no puede estar vacío.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorApellido.Text = "Ok";
-        //        etiqErrorApellido.ForeColor = System.Drawing.Color.Green;
-        //    }
-
-        //    if (nombreUsuarioTextBox.Text.Trim().Length == 0)
-        //    {
-        //        etiqErrorUsuario.Text = "El usuario no puede estar vacío.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorUsuario.Text = "Ok";
-        //        etiqErrorUsuario.ForeColor = System.Drawing.Color.Green;
-        //    }
-
-        //    if (emailTextBox.Text.Trim().Length == 0)
-        //    {
-        //        etiqErrorEmail.Text = "El correo electrónico no puede estar vacío.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorEmail.Text = "Ok";
-        //        etiqErrorEmail.ForeColor = System.Drawing.Color.Green;
-        //    }
-
-        //    if (!Validacion.clavesCoinciden(claveTextBox.Text, repetirClaveTextBox.Text))
-        //    {
-        //        etiqErrorClavesCoinciden.Text = "Las claves ingresadas no coinciden.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorClavesCoinciden.Text = "";
-        //    }
-
-        //    if (!Validacion.esClaveValida(claveTextBox.Text))
-        //    {
-        //        etiqErrorClave.Text = "La clave debe contener al menos 8 caracteres.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorClave.Text = "Ok";
-        //        etiqErrorClave.ForeColor = System.Drawing.Color.Green;
-        //    }
-            
-
-        //    if(emailTextBox.Text.Trim().Length == 0)
-        //    {
-        //        etiqErrorEmail.Text = "El correo electrónico no puede estar vacío.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        etiqErrorEmail.Text = "";
-        //    }
-
-        //    if ((!Validacion.esMailValido(emailTextBox.Text)) && (emailTextBox.Text.Trim().Length != 0))
-        //    {
-        //        etiqErrorFormaEmail.Text = "El formato de email ingresado no es correcto.";
-        //        if (valida == true)
-        //        {
-        //            valida = false;
-        //        }
-        //    }
-        //    else if(emailTextBox.Text.Trim().Length != 0)
-        //    {
-        //        etiqErrorFormaEmail.Text = "Ok";
-        //        etiqErrorFormaEmail.ForeColor = System.Drawing.Color.Green;
-        //    }
-            
-        //    return valida;
-        //}
 
     }
 }

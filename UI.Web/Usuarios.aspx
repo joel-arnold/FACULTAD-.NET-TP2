@@ -31,14 +31,9 @@
     
     <br />
 
-<asp:Panel ID="formPanel" Visible="false" runat="server">
+<asp:Panel ID="panelFormulario" Visible="false" runat="server">
     <asp:Label ID="nombreLabel" runat="server" Text="Nombre: "></asp:Label>
     <asp:TextBox ID="nombreTextBox" runat="server"></asp:TextBox>
-<%--<asp:RequiredFieldValidator id="ValidadorNombre" runat="server"
-      ControlToValidate="nombreTextBox"
-      ErrorMessage="El nombre es un campo obligatorio."
-      ForeColor="Red">
-    </asp:RequiredFieldValidator>--%>
     <asp:RequiredFieldValidator ID="validadorNombre" runat="server" ControlToValidate="nombreTextBox" ErrorMessage="El nombre no puede estar en blanco." ValidationGroup="validaciones" ForeColor="Red">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="apellidoLabel" runat="server" Text="Apellido: "></asp:Label>

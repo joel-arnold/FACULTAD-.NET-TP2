@@ -14,9 +14,9 @@ namespace UI.Escritorio
     public partial class FormularioAplicacion : Form
     {
 
-        private ModoForm modo;
+        private ModosFormulario modo;
 
-        public enum ModoForm
+        public enum ModosFormulario
         {
             Alta,
             Baja,
@@ -24,7 +24,7 @@ namespace UI.Escritorio
             Consulta
         }
 
-        public ModoForm Modo
+        public ModosFormulario Modo
         { get { return modo; } set { modo = value; } }
 
         public virtual void MapearADatos(){}
