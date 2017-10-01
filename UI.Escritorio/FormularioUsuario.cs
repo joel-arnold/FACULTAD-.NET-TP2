@@ -36,7 +36,7 @@ namespace UI.Escritorio
         {
             this.Modo = modo;
             Negocio.LogicaUsuario usuario = new Negocio.LogicaUsuario();
-            UsuarioActual = usuario.GetOne(ID);
+            UsuarioActual = usuario.TraerUno(ID);
             MapearDeDatos();
             this.txtID.ReadOnly = true;
             if(this.Modo == ModoForm.Baja)
@@ -155,7 +155,7 @@ namespace UI.Escritorio
         public override void GuardarCambios() {
             MapearADatos();
             LogicaUsuario logicaUsuarioActual = new LogicaUsuario();
-            logicaUsuarioActual.Save(UsuarioActual);
+            logicaUsuarioActual.Guardar(UsuarioActual);
         }
 
         public override bool Validar()

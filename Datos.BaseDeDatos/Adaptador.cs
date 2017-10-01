@@ -10,37 +10,37 @@ namespace Data.Database
     {
         //private SqlConnection sqlConn = new SqlConnection("ConnectionString;");
 
-        private SqlConnection sqlConn;
+        private SqlConnection sqlCon;
 
         //Clave por defecto a utlizar para la cadena de conexion
 
-        const string consKeyDefaultCnnString = "ConnStringLocal";
+        const string claveConexionPorDefecto = "ConnStringLocal";
 
-        public SqlConnection SqlConn
+        public SqlConnection SqlCon
         {
             get
             {
-                return sqlConn;
+                return sqlCon;
             }
 
             set
             {
-                sqlConn = value;
+                sqlCon = value;
             }
         }
 
-        protected void OpenConnection()
+        protected void AbrirConexion()
         {
-            string connString = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;
-            sqlConn = new SqlConnection(connString);
-            sqlConn.Open();
+            string cadenaConexion = ConfigurationManager.ConnectionStrings[claveConexionPorDefecto].ConnectionString;
+            sqlCon = new SqlConnection(cadenaConexion);
+            sqlCon.Open();
             //throw new Exception("Error al conectar a base de datos");
         }
 
-        protected void CloseConnection()
+        protected void CerrarConexion()
         {
-            sqlConn.Close();
-            sqlConn = null;
+            sqlCon.Close();
+            sqlCon = null;
             //throw new Exception("Metodo no implementado");
         }
 

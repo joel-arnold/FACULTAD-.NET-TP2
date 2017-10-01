@@ -14,8 +14,8 @@ namespace Data.Database
             List<Especialidad> especialidades = new List<Especialidad>();
             try
             {
-                this.OpenConnection();
-                SqlCommand cmdEspecialidades = new SqlCommand("select * from especialidades", SqlConn);
+                this.AbrirConexion();
+                SqlCommand cmdEspecialidades = new SqlCommand("select * from especialidades", SqlCon);
                 SqlDataReader drEspecialidades = cmdEspecialidades.ExecuteReader();
                 while (drEspecialidades.Read())
                 {
@@ -34,7 +34,7 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
             return especialidades;
         }
@@ -44,8 +44,8 @@ namespace Data.Database
             Especialidad esp = new Especialidad();
             try
             {
-                this.OpenConnection();
-                SqlCommand cmdEspecialidades = new SqlCommand("select * from especialidades where id_especialidad = @id", SqlConn);
+                this.AbrirConexion();
+                SqlCommand cmdEspecialidades = new SqlCommand("select * from especialidades where id_especialidad = @id", SqlCon);
                 cmdEspecialidades.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drEspecialidades = cmdEspecialidades.ExecuteReader();
                 if (drEspecialidades.Read())
@@ -62,22 +62,22 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
             return esp;
         }
 
-        public void Delete(int ID)
+        public void Borrar(int ID)
         {
             
         }
 
-        public void Update(Especialidad esp)
+        public void Actualizar(Especialidad esp)
         {
             
         }
 
-        public void Insert(Especialidad esp)
+        public void Agregar(Especialidad esp)
         {
             
         } 

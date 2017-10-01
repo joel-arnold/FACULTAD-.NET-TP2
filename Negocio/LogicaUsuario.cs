@@ -29,46 +29,45 @@ namespace Negocio
             _DatosUsuario = new AdaptadorUsuario();
         }
 
-        public Usuario GetOne(int ID)
+        public Usuario TraerUno(int ID)
         {
-           return DatosUsuario.GetOne(ID);
+           return DatosUsuario.TraerUno(ID);
         }
 
-        public List<Usuario> GetAll()
+        public List<Usuario> TraerTodos()
         {
-            return DatosUsuario.GetAll();
+            return DatosUsuario.TraerTodos();
         }
 
-        public void Save(Usuario usuario)
+        public void Guardar(Usuario usuario)
         {
             if(usuario.Estado == Entidad.Estados.Borrado)
             {
-                this.Delete(usuario.ID);
+                this.Borrar(usuario.ID);
             }
             else if(usuario.Estado == Entidad.Estados.Nuevo)
             {
-                this.Insert(usuario);
+                this.Agregar(usuario);
             }
             else if(usuario.Estado == Entidad.Estados.Modificado)
             {
-                this.Update(usuario);
+                this.Actualizar(usuario);
             }
-            usuario.Estado = Entidad.Estados.SinModificar;
         }
 
-        public void Delete(int ID)
+        public void Borrar(int ID)
         {
-            DatosUsuario.Delete(ID);
+            DatosUsuario.Borrar(ID);
         }
 
-        public void Insert(Usuario usuario)
+        public void Agregar(Usuario usuario)
         {
-            DatosUsuario.Insert(usuario);
+            DatosUsuario.Agregar(usuario);
         }
 
-        public void Update(Usuario usuario)
+        public void Actualizar(Usuario usuario)
         {
-            DatosUsuario.Update(usuario);
+            DatosUsuario.Actualizar(usuario);
         }
 
         public Usuario existeUsuario(string usuario, string clave)

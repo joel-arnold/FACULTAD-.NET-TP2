@@ -22,8 +22,10 @@ namespace UI.Escritorio
         public void Listar()
         {
             LogicaUsuario ul = new LogicaUsuario();
-            this.dgvUsuarios.DataSource = ul.GetAll();
+            this.dgvUsuarios.DataSource = ul.TraerTodos();
             this.dgvUsuarios.ReadOnly = true;
+            dgvUsuarios.Columns["Estado"].Visible = false;
+            dgvUsuarios.Columns["Privilegio"].Visible = false;
             this.dgvUsuarios.AutoGenerateColumns = false;
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
@@ -75,6 +77,10 @@ namespace UI.Escritorio
                 this.Listar();
             }
         }
-    
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

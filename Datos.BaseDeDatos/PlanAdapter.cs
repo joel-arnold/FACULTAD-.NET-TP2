@@ -14,8 +14,8 @@ namespace Data.Database
             List<Plan> planes = new List<Plan>();
             try
             {
-                this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("select * from planes", SqlConn);
+                this.AbrirConexion();
+                SqlCommand cmdPlanes = new SqlCommand("select * from planes", SqlCon);
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 while (drPlanes.Read())
                 {
@@ -35,7 +35,7 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
             return planes;
         }
@@ -45,8 +45,8 @@ namespace Data.Database
             Plan pl = new Plan();
             try
             {
-                this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("select * from planes where id_plan = @id", SqlConn);
+                this.AbrirConexion();
+                SqlCommand cmdPlanes = new SqlCommand("select * from planes where id_plan = @id", SqlCon);
                 cmdPlanes.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 if (drPlanes.Read())
@@ -64,7 +64,7 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
             return pl;
         }
@@ -73,9 +73,9 @@ namespace Data.Database
         {
             try
             {
-                this.OpenConnection();
+                this.AbrirConexion();
                 SqlCommand cmdDelete =
-                    new SqlCommand("delete planes where id_plan = @id", SqlConn);
+                    new SqlCommand("delete planes where id_plan = @id", SqlCon);
                 cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdDelete.ExecuteNonQuery();
             }
@@ -86,7 +86,7 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
         }
 
@@ -94,10 +94,10 @@ namespace Data.Database
         {
             try
             {
-                this.OpenConnection();
+                this.AbrirConexion();
                 SqlCommand cmdSave = new SqlCommand(
                     "update planes set desc_plan = @desc_plan, id_especialidad = @id_especialidad," +
-                    "WHERE id_plan = @id", SqlConn);
+                    "WHERE id_plan = @id", SqlCon);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
                 cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
@@ -112,7 +112,7 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
         }
 
@@ -120,11 +120,11 @@ namespace Data.Database
         {
             try
             {
-                this.OpenConnection();
+                this.AbrirConexion();
                 SqlCommand cmdSave = new SqlCommand(
                     "insert into planes(desc_plan, id_especialidad) " +
                     "values(@desc_plan, @id_especialidad) " +
-                    "select @@identity", SqlConn);
+                    "select @@identity", SqlCon);
 
                 cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
                 cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
@@ -140,7 +140,7 @@ namespace Data.Database
             }
             finally
             {
-                this.CloseConnection();
+                this.CerrarConexion();
             }
         } 
     }

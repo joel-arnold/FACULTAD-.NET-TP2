@@ -58,17 +58,17 @@ namespace Negocio
 
         public void Delete(int ID)
         {
-            EspecialidadData.Delete(ID);
+            EspecialidadData.Borrar(ID);
         }
 
         public void Insert(Especialidad especialidad)
         {
-            EspecialidadData.Insert(especialidad);
+            EspecialidadData.Agregar(especialidad);
         }
 
         public void Update(Especialidad especialidad)
         {
-            EspecialidadData.Update(especialidad);
+            EspecialidadData.Actualizar(especialidad);
         }
     }
 }

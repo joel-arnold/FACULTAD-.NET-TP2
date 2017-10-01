@@ -58,7 +58,7 @@ namespace UI.Consola
         public void ListadoGeneral()
         {
             Console.Clear();
-            foreach (Usuario usr in _UsuarioNegocio.GetAll())
+            foreach (Usuario usr in _UsuarioNegocio.TraerTodos())
             {
                 MostrarDatos(usr);
             }
@@ -70,11 +70,11 @@ namespace UI.Consola
                 Console.Clear();
                 Console.Write("Ingrese el ID del usuario a consultar: ");
                 int ID = int.Parse(Console.ReadLine());
-                this.MostrarDatos(UsuarioNegocio.GetOne(ID));
+                this.MostrarDatos(UsuarioNegocio.TraerUno(ID));
             }
             catch (FormatException fe)
             {
-                Console.WriteLine("\nEl ID ingresado tiene que ser numérico.");
+                Console.WriteLine("fe", "\nEl ID ingresado tiene que ser numérico.");
             }
             catch (Exception e)
             {
@@ -106,7 +106,7 @@ namespace UI.Consola
                 Console.Clear();
                 Console.Write("Ingrese el ID del usuario que va a modificar: ");
                 int ID = int.Parse(Console.ReadLine());
-                Usuario usuario = UsuarioNegocio.GetOne(ID);
+                Usuario usuario = UsuarioNegocio.TraerUno(ID);
                 Console.Write("Ingresá el nombre: ");
                 usuario.Nombre = Console.ReadLine();
                 Console.Write("Ingresá el apellido: ");
@@ -120,7 +120,7 @@ namespace UI.Consola
                 Console.Write("Ingresá habilitación de usuario (1 - Si / Otro - No ): ");
                 usuario.Habilitado = (Console.ReadLine()=="1");
                 usuario.Estado = Entidad.Estados.Modificado;
-                UsuarioNegocio.Save(usuario);
+                UsuarioNegocio.Guardar(usuario);
             }
             catch (FormatException)
             {
@@ -157,7 +157,7 @@ namespace UI.Consola
                 Console.Write("Ingresá habilitación de usuario (1 - Si / Otro - No ): ");
                 usuario.Habilitado = (Console.ReadLine() == "1");
                 usuario.Estado = Entidad.Estados.Nuevo;
-                UsuarioNegocio.Save(usuario);
+                UsuarioNegocio.Guardar(usuario);
                 Console.Write("\nID: {0}", usuario.ID);
             }
             catch (FormatException)
@@ -182,7 +182,7 @@ namespace UI.Consola
                 Console.Clear();
                 Console.WriteLine("Ingresá el ID del usuario a eliminar: ");
                 int ID = int.Parse(Console.ReadLine());
-                UsuarioNegocio.Delete(ID);
+                UsuarioNegocio.Borrar(ID);
                 
             }
             catch (FormatException)

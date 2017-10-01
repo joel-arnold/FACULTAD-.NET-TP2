@@ -73,7 +73,7 @@ namespace UI.Web {
 
         private void LoadGrid()
         {
-            this.gridView.DataSource = this.Logic.GetAll();
+            this.gridView.DataSource = this.Logic.TraerTodos();
             this.gridView.DataBind();
             this.gridView.SelectedIndex = 999999;
         }
@@ -103,7 +103,7 @@ namespace UI.Web {
 
         private void LoadForm(int id)
         {
-            this.Entity = this.Logic.GetOne(id);
+            this.Entity = this.Logic.TraerUno(id);
             this.nombreTextBox.Text = this.Entity.Nombre;
             this.apellidoTextBox.Text = this.Entity.Apellido;
             this.emailTextBox.Text = this.Entity.Email;
@@ -135,7 +135,7 @@ namespace UI.Web {
 
         private void SaveEntity(Usuario usuario)
         {
-            this.Logic.Save(usuario);
+            this.Logic.Guardar(usuario);
         }
 
         private void EnableForm(bool enable)
@@ -215,7 +215,7 @@ namespace UI.Web {
 
         private void DeleteEntity(int id)
         {
-            this.Logic.Delete(id);
+            this.Logic.Borrar(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
