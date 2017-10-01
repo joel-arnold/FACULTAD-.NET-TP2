@@ -39,37 +39,37 @@
       ErrorMessage="El nombre es un campo obligatorio."
       ForeColor="Red">
     </asp:RequiredFieldValidator>--%>
-    <asp:Label ID="etiqErrorNombre" runat="server" ForeColor="Red" Text="*"></asp:Label>
+    <asp:RequiredFieldValidator ID="validadorNombre" runat="server" ControlToValidate="nombreTextBox" ErrorMessage="El nombre no puede estar en blanco." ValidationGroup="validaciones" ForeColor="Red">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="apellidoLabel" runat="server" Text="Apellido: "></asp:Label>
     <asp:TextBox ID="apellidoTextBox" runat="server"></asp:TextBox>
-    <asp:Label ID="etiqErrorApellido" runat="server" ForeColor="Red" Text="*"></asp:Label>
+    <asp:RequiredFieldValidator ID="validadorApellido" runat="server" ControlToValidate="apellidoTextBox" ErrorMessage="El apellido no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="emailLabel" runat="server" Text="Email: "></asp:Label>
     <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
-    <asp:Label ID="etiqErrorEmail" runat="server" ForeColor="Red" Text="*"></asp:Label>
-    <asp:Label ID="etiqErrorFormaEmail" runat="server" ForeColor="Red"></asp:Label>
+    <asp:RegularExpressionValidator ID="validadorCorreoFormato" runat="server" ControlToValidate="emailTextBox" ErrorMessage="El correo electrónico ingresado es inválido." ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="validaciones">*</asp:RegularExpressionValidator>
+    <asp:RequiredFieldValidator ID="validadorCorreoVacio" runat="server" ControlToValidate="emailTextBox" ErrorMessage="El correo eléctronico no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="habilitadoLabel" runat="server" Text="Habilitado: "></asp:Label>
     <asp:CheckBox ID="habilitadoCheckBox" runat="server" />
     <br />
     <asp:Label ID="nombreUsuarioLabel" runat="server" Text="Usuario: "></asp:Label>
     <asp:TextBox ID="nombreUsuarioTextBox" runat="server"></asp:TextBox>
-    <asp:Label ID="etiqErrorUsuario" runat="server" ForeColor="Red" Text="*"></asp:Label>
+    <asp:RequiredFieldValidator ID="validadorUsuario" runat="server" ControlToValidate="nombreUsuarioTextBox" ErrorMessage="El nombre de usuario no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
     <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server"></asp:TextBox>
-    <asp:Label ID="etiqErrorClave" runat="server" ForeColor="Red" Text="*"></asp:Label>
     <br />
     <asp:Label ID="repetirClaveLabel" runat="server" Text="Repetir clave: "></asp:Label>
     <asp:TextBox ID="repetirClaveTextBox" TextMode="Password" runat="server"></asp:TextBox>
-    <asp:Label ID="etiqErrorClavesCoinciden" runat="server" ForeColor="Red" Text="*"></asp:Label>
+    <asp:CompareValidator ID="validadorClavesCoinciden" runat="server" ControlToCompare="repetirClaveTextBox" ControlToValidate="claveTextBox" ErrorMessage="Las claves ingresadas no coinciden." ForeColor="Red" ValidationGroup="validaciones">*</asp:CompareValidator>
     <br />
 <asp:Panel ID="formActionsPanel" runat="server">
-    <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
+    <asp:LinkButton ID="aceptarLinkButton" runat="server" ValidationGroup="validaciones" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
     <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
 </asp:Panel>
 </asp:Panel>
     <br />
+    <asp:ValidationSummary ID="sumarioDeValidacion" runat="server" ForeColor="Red" BorderStyle="Dotted" HeaderText="Listado de errorres:" ValidationGroup="validaciones" />
     <br />
 </asp:Content>

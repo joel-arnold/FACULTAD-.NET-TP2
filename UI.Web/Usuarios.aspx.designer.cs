@@ -94,13 +94,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreTextBox;
         
         /// <summary>
-        /// Control etiqErrorNombre.
+        /// Control validadorNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorNombre;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorNombre;
         
         /// <summary>
         /// Control apellidoLabel.
@@ -121,13 +121,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox apellidoTextBox;
         
         /// <summary>
-        /// Control etiqErrorApellido.
+        /// Control validadorApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorApellido;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorApellido;
         
         /// <summary>
         /// Control emailLabel.
@@ -148,22 +148,22 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox emailTextBox;
         
         /// <summary>
-        /// Control etiqErrorEmail.
+        /// Control validadorCorreoFormato.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorEmail;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator validadorCorreoFormato;
         
         /// <summary>
-        /// Control etiqErrorFormaEmail.
+        /// Control validadorCorreoVacio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorFormaEmail;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorCorreoVacio;
         
         /// <summary>
         /// Control habilitadoLabel.
@@ -202,13 +202,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreUsuarioTextBox;
         
         /// <summary>
-        /// Control etiqErrorUsuario.
+        /// Control validadorUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorUsuario;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorUsuario;
         
         /// <summary>
         /// Control claveLabel.
@@ -229,15 +229,6 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox claveTextBox;
         
         /// <summary>
-        /// Control etiqErrorClave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorClave;
-        
-        /// <summary>
         /// Control repetirClaveLabel.
         /// </summary>
         /// <remarks>
@@ -256,13 +247,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox repetirClaveTextBox;
         
         /// <summary>
-        /// Control etiqErrorClavesCoinciden.
+        /// Control validadorClavesCoinciden.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqErrorClavesCoinciden;
+        protected global::System.Web.UI.WebControls.CompareValidator validadorClavesCoinciden;
         
         /// <summary>
         /// Control formActionsPanel.
@@ -290,5 +281,14 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton cancelarLinkButton;
+        
+        /// <summary>
+        /// Control sumarioDeValidacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary sumarioDeValidacion;
     }
 }
