@@ -15,7 +15,6 @@ namespace UI.Consola
         public Usuarios()
         {
             _UsuarioNegocio = new Negocio.LogicaUsuario();
-            //Comentario de prueba
         }
 
         public LogicaUsuario UsuarioNegocio{get{ return _UsuarioNegocio;} set{ _UsuarioNegocio = value; }}
@@ -120,7 +119,7 @@ namespace UI.Consola
                 usuario.Email = Console.ReadLine();
                 Console.Write("Ingresá habilitación de usuario (1 - Si / Otro - No ): ");
                 usuario.Habilitado = (Console.ReadLine()=="1");
-                usuario.State = Entidad.States.Modified;
+                usuario.Estado = Entidad.Estados.Modificado;
                 UsuarioNegocio.Save(usuario);
             }
             catch (FormatException)
@@ -157,7 +156,7 @@ namespace UI.Consola
                 usuario.Email = Console.ReadLine();
                 Console.Write("Ingresá habilitación de usuario (1 - Si / Otro - No ): ");
                 usuario.Habilitado = (Console.ReadLine() == "1");
-                usuario.State = Entidad.States.New;
+                usuario.Estado = Entidad.Estados.Nuevo;
                 UsuarioNegocio.Save(usuario);
                 Console.Write("\nID: {0}", usuario.ID);
             }

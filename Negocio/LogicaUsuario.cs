@@ -10,70 +10,70 @@ namespace Negocio
 {
     public class LogicaUsuario : Logica
     {
-        UsuarioAdapter _UsuarioData;
+        AdaptadorUsuario _DatosUsuario;
 
-        public UsuarioAdapter UsuarioData
+        public AdaptadorUsuario DatosUsuario
         {
             get
             {
-                return _UsuarioData;
+                return _DatosUsuario;
             }
             set
             {
-                _UsuarioData = value;
+                _DatosUsuario = value;
             }
         }
 
         public LogicaUsuario()
         {
-            _UsuarioData = new UsuarioAdapter();
+            _DatosUsuario = new AdaptadorUsuario();
         }
 
         public Usuario GetOne(int ID)
         {
-           return UsuarioData.GetOne(ID);
+           return DatosUsuario.GetOne(ID);
         }
 
         public List<Usuario> GetAll()
         {
-            return UsuarioData.GetAll();
+            return DatosUsuario.GetAll();
         }
 
         public void Save(Usuario usuario)
         {
-            if(usuario.State == Entidad.States.Deleted)
+            if(usuario.Estado == Entidad.Estados.Borrado)
             {
                 this.Delete(usuario.ID);
             }
-            else if(usuario.State == Entidad.States.New)
+            else if(usuario.Estado == Entidad.Estados.Nuevo)
             {
                 this.Insert(usuario);
             }
-            else if(usuario.State == Entidad.States.Modified)
+            else if(usuario.Estado == Entidad.Estados.Modificado)
             {
                 this.Update(usuario);
             }
-            usuario.State = Entidad.States.Unmodified;
+            usuario.Estado = Entidad.Estados.SinModificar;
         }
 
         public void Delete(int ID)
         {
-            UsuarioData.Delete(ID);
+            DatosUsuario.Delete(ID);
         }
 
         public void Insert(Usuario usuario)
         {
-            UsuarioData.Insert(usuario);
+            DatosUsuario.Insert(usuario);
         }
 
         public void Update(Usuario usuario)
         {
-            UsuarioData.Update(usuario);
+            DatosUsuario.Update(usuario);
         }
 
         public Usuario existeUsuario(string usuario, string clave)
         {
-            return UsuarioData.existeUsuario(usuario, clave);
+            return DatosUsuario.existeUsuario(usuario, clave);
         }
     }
 }

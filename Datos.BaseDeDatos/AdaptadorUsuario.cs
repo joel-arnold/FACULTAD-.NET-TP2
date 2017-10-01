@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Data.Database
 {
-    public class UsuarioAdapter:Adapter
+    public class AdaptadorUsuario:Adaptador
     {
         public List<Usuario> GetAll()
         {
@@ -32,11 +32,11 @@ namespace Data.Database
                 }
                 drUsuarios.Close();
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CloseConnection();

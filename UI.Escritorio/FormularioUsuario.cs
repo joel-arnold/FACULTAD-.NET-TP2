@@ -99,22 +99,22 @@ namespace UI.Escritorio
             if (Modo == ModoForm.Alta)
             {
                 Usuario usuarioActual = new Usuario();
-                UsuarioActual.State = Entidad.States.New;
+                UsuarioActual.Estado = Entidad.Estados.Nuevo;
             }
             else if (Modo == ModoForm.Modificacion)
             {
                 UsuarioActual.ID = int.Parse(txtID.Text);
-                UsuarioActual.State = Entidad.States.Modified;
+                UsuarioActual.Estado = Entidad.Estados.Modificado;
             }
             else if (Modo == ModoForm.Baja)
             {
                 UsuarioActual.ID = int.Parse(txtID.Text);
-                UsuarioActual.State = Entidad.States.Deleted;
+                UsuarioActual.Estado = Entidad.Estados.Borrado;
             }
             else if (Modo == ModoForm.Consulta)
             {
                 UsuarioActual.ID = int.Parse(txtID.Text);
-                UsuarioActual.State = Entidad.States.Unmodified;
+                UsuarioActual.Estado = Entidad.Estados.SinModificar;
             }
             UsuarioActual.Habilitado = this.chkHabilitado.Checked;
             UsuarioActual.Nombre = this.txtNombre.Text;

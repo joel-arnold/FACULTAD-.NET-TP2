@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace Data.Database
 {
-    public class Adapter
+    public class Adaptador
     {
         //private SqlConnection sqlConn = new SqlConnection("ConnectionString;");
 

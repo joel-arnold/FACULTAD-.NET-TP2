@@ -10,22 +10,22 @@ namespace Entidades
     {
         public Entidad()
         {
-            this.State = States.New;
+            this.Estado = Estados.Nuevo;
         }
 
         private int _ID;
         public int ID { get { return _ID; } set { _ID = value; } }
         
-        private States _State;
-        public States State
-        { get { return _State; } set { _State = value; } }
+        private Estados _Estado;
+        public Estados Estado
+        { get { return _Estado; } set { _Estado = value; } }
 
-        public enum States
+        public enum Estados
         {
-            Deleted,
-            New,
-            Modified,
-            Unmodified
+            Borrado,
+            Nuevo,
+            Modificado,
+            SinModificar
         }
     }
 }

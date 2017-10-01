@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Data.Database
 {
-    public class PlanAdapter:Adapter
+    public class PlanAdapter:Adaptador
     {
         public List<Plan> GetAll()
         {

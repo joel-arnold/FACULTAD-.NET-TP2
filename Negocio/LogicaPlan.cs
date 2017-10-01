@@ -41,19 +41,19 @@ namespace Negocio
 
         public void Save(Plan plan)
         {
-            if(plan.State == Entidad.States.Deleted)
+            if(plan.Estado == Entidad.Estados.Borrado)
             {
                 this.Delete(plan.ID);
             }
-            else if(plan.State == Entidad.States.New)
+            else if(plan.Estado == Entidad.Estados.Nuevo)
             {
                 this.Insert(plan);
             }
-            else if(plan.State == Entidad.States.Modified)
+            else if(plan.Estado == Entidad.Estados.Modificado)
             {
                 this.Update(plan);
             }
-            plan.State = Entidad.States.Unmodified;
+            plan.Estado = Entidad.Estados.SinModificar;
         }
 
         public void Delete(int ID)

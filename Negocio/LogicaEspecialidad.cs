@@ -10,9 +10,9 @@ namespace Negocio
 {
     public class LogicaEspecialidad : Logica
     {
-        EspecialidadAdapter _EspecialidadData;
+        AdaptadorEspecialidad _EspecialidadData;
 
-        public EspecialidadAdapter EspecialidadData
+        public AdaptadorEspecialidad EspecialidadData
         {
             get
             {
@@ -26,7 +26,7 @@ namespace Negocio
 
         public LogicaEspecialidad()
         {
-            _EspecialidadData = new EspecialidadAdapter();
+            _EspecialidadData = new AdaptadorEspecialidad();
         }
 
         public Especialidad GetOne(int ID)
@@ -41,19 +41,19 @@ namespace Negocio
 
         public void Save(Especialidad especialidad)
         {
-            if(especialidad.State == Entidad.States.Deleted)
+            if(especialidad.Estado == Entidad.Estados.Borrado)
             {
                 this.Delete(especialidad.ID);
             }
-            else if(especialidad.State == Entidad.States.New)
+            else if(especialidad.Estado == Entidad.Estados.Nuevo)
             {
                 this.Insert(especialidad);
             }
-            else if(especialidad.State == Entidad.States.Modified)
+            else if(especialidad.Estado == Entidad.Estados.Modificado)
             {
                 this.Update(especialidad);
             }
-            especialidad.State = Entidad.States.Unmodified;
+            especialidad.Estado = Entidad.Estados.SinModificar;
         }
 
         public void Delete(int ID)

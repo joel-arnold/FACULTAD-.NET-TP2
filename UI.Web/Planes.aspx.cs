@@ -183,7 +183,7 @@ namespace UI.Web
                     {
                             this.Entity = new Plan();
                             this.Entity.ID = this.SelectedID;
-                            this.Entity.State = Entidad.States.Modified;
+                            this.Entity.Estado = Entidad.Estados.Modificado;
                             this.LoadEntity(this.Entity);
                             this.SaveEntity(this.Entity);
                             this.LoadGrid();
