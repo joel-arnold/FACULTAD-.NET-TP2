@@ -95,9 +95,7 @@ namespace Data.Database
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdActualizar = new SqlCommand(
-                    "update planes set desc_plan = @desc_plan, id_especialidad = @id_especialidad," +
-                    "WHERE id_plan = @id", SqlCon);
+                SqlCommand cmdActualizar = new SqlCommand("update planes set desc_plan = @desc_plan, id_especialidad = @id_especialidad WHERE id_plan = @id", SqlCon);
 
                 cmdActualizar.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
                 cmdActualizar.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;

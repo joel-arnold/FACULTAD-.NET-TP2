@@ -119,7 +119,7 @@ namespace UI.Web
             this.Plan = LogicaPlan.TraerUno(id);
             this.idTextBox.Text = this.Plan.ID.ToString();
             this.descripcionTextBox.Text = this.Plan.Descripcion;
-            this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().TraerUno(Plan.IdEspecialidad).Descripcion;
+            //this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().TraerUno(Plan.IdEspecialidad).Descripcion;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
