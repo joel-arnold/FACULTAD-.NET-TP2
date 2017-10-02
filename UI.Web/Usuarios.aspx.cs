@@ -242,5 +242,11 @@ namespace UI.Web {
             this.CargarGrilla();
         }
 
+        protected void validadorTamanioClave_ServerValidate(object source, ServerValidateEventArgs args) {
+            if (claveTextBox.Text.Trim().Length < 8) {
+                args.IsValid = false;
+            }
+        }
+
     }
 }

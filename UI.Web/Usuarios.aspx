@@ -53,7 +53,9 @@
     <asp:RequiredFieldValidator ID="validadorUsuario" runat="server" ControlToValidate="nombreUsuarioTextBox" ErrorMessage="El nombre de usuario no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
-    <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server"></asp:TextBox>
+    <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server" Width="157px"></asp:TextBox>
+    <asp:CustomValidator ID="validadorTamanioClave" runat="server" ControlToValidate="claveTextBox" ErrorMessage="La clave debe contener al menos 8 caracteres" ForeColor="Red" OnServerValidate="validadorTamanioClave_ServerValidate" ValidationGroup="validaciones">*</asp:CustomValidator>
+    <asp:RequiredFieldValidator ID="validadorClaveVacia" runat="server" ControlToValidate="claveTextBox" ErrorMessage="La clave no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="repetirClaveLabel" runat="server" Text="Repetir clave: "></asp:Label>
     <asp:TextBox ID="repetirClaveTextBox" TextMode="Password" runat="server"></asp:TextBox>

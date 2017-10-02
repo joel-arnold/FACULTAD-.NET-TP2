@@ -229,6 +229,24 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox claveTextBox;
         
         /// <summary>
+        /// Control validadorTamanioClave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator validadorTamanioClave;
+        
+        /// <summary>
+        /// Control validadorClaveVacia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorClaveVacia;
+        
+        /// <summary>
         /// Control repetirClaveLabel.
         /// </summary>
         /// <remarks>

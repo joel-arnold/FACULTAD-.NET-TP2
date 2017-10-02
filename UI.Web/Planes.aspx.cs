@@ -182,6 +182,7 @@ namespace UI.Web
                     }
                 case ModosFormulario.Modificacion:
                     {
+                        if (Page.IsValid) {
                             this.Plan = new Plan();
                             this.Plan.ID = this.IDSeleccionado;
                             this.Plan.Estado = Entidad.Estados.Modificado;
@@ -189,14 +190,23 @@ namespace UI.Web
                             this.Guardar(this.Plan);
                             this.CargarGrilla();
                             break;
+                        }
+                        else {
+                            break;
+                        }
                     }
                 case ModosFormulario.Alta:
                     {
-                        this.Plan = new Plan();
-                        this.MapearAPlan(this.Plan);
-                        this.Guardar(this.Plan);
-                        this.CargarGrilla();
-                        break;
+                        if(Page.IsValid){
+                            this.Plan = new Plan();
+                            this.MapearAPlan(this.Plan);
+                            this.Guardar(this.Plan);
+                            this.CargarGrilla();
+                            break;
+                        }
+                        else{
+                            break;
+                        }
                     }
                 default: break;
             }
