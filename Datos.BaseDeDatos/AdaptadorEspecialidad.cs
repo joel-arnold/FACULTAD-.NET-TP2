@@ -9,7 +9,7 @@ namespace Data.Database
 {
     public class AdaptadorEspecialidad:Adaptador
     {
-        public List<Especialidad> GetAll()
+        public List<Especialidad> TraerTodos()
         {
             List<Especialidad> especialidades = new List<Especialidad>();
             try
@@ -39,7 +39,7 @@ namespace Data.Database
             return especialidades;
         }
 
-        public Especialidad GetOne(int ID)
+        public Especialidad TraerUno(int ID)
         {
             Especialidad esp = new Especialidad();
             try
@@ -79,7 +79,29 @@ namespace Data.Database
 
         public void Agregar(Especialidad esp)
         {
-            
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAgregar = new SqlCommand(
+                    "insert into especialidades(desc_especialidad) " +
+                    "values(@desc_especialidad) " +
+                    "select @@identity", SqlCon);
+
+                cmdAgregar.Parameters.Add("@desc_especialidad", SqlDbType.VarChar, 50).Value = esp.Descripcion;
+
+                //Obtengo el ID que asignó la BD automáticamente
+                esp.ID = Decimal.ToInt32((decimal)cmdAgregar.ExecuteScalar());
+
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al crear el plan", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         } 
     }
 }

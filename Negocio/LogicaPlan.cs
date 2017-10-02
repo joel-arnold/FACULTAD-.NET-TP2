@@ -10,65 +10,64 @@ namespace Negocio
 {
     public class LogicaPlan : Logica
     {
-        PlanAdapter _PlanData;
+        AdaptadorPlan _DatosPlan;
 
-        public PlanAdapter PlanData
+        public AdaptadorPlan DatosPlan
         {
             get
             {
-                return _PlanData;
+                return _DatosPlan;
             }
             set
             {
-                _PlanData = value;
+                _DatosPlan = value;
             }
         }
 
         public LogicaPlan()
         {
-            _PlanData = new PlanAdapter();
+            _DatosPlan = new AdaptadorPlan();
         }
 
-        public Plan GetOne(int ID)
+        public Plan TraerUno(int ID)
         {
-           return PlanData.GetOne(ID);
+           return DatosPlan.TraerUno(ID);
         }
 
-        public List<Plan> GetAll()
+        public List<Plan> TraerTodos()
         {
-            return PlanData.GetAll();
+            return DatosPlan.TraerTodos();
         }
 
-        public void Save(Plan plan)
+        public void Guardar(Plan plan)
         {
             if(plan.Estado == Entidad.Estados.Borrado)
             {
-                this.Delete(plan.ID);
+                this.Borrar(plan.ID);
             }
             else if(plan.Estado == Entidad.Estados.Nuevo)
             {
-                this.Insert(plan);
+                this.Agregar(plan);
             }
             else if(plan.Estado == Entidad.Estados.Modificado)
             {
-                this.Update(plan);
+                this.Actualizar(plan);
             }
-            plan.Estado = Entidad.Estados.SinModificar;
         }
 
-        public void Delete(int ID)
+        public void Borrar(int ID)
         {
-            PlanData.Delete(ID);
+            DatosPlan.Borrar(ID);
         }
 
-        public void Insert(Plan plan)
+        public void Agregar(Plan plan)
         {
-            PlanData.Insert(plan);
+            DatosPlan.Agregar(plan);
         }
 
-        public void Update(Plan plan)
+        public void Actualizar(Plan plan)
         {
-            PlanData.Update(plan);
+            DatosPlan.Actualizar(plan);
         }
     }
 }

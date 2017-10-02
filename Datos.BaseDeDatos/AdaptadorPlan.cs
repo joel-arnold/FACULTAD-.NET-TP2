@@ -7,9 +7,9 @@ using System.Data.SqlClient;
 
 namespace Data.Database
 {
-    public class PlanAdapter:Adaptador
+    public class AdaptadorPlan:Adaptador
     {
-        public List<Plan> GetAll()
+        public List<Plan> TraerTodos()
         {
             List<Plan> planes = new List<Plan>();
             try
@@ -40,7 +40,7 @@ namespace Data.Database
             return planes;
         }
 
-        public Plan GetOne(int ID)
+        public Plan TraerUno(int ID)
         {
             Plan pl = new Plan();
             try
@@ -69,15 +69,15 @@ namespace Data.Database
             return pl;
         }
 
-        public void Delete(int ID)
+        public void Borrar(int ID)
         {
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdDelete =
+                SqlCommand cmdBorrar =
                     new SqlCommand("delete planes where id_plan = @id", SqlCon);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-                cmdDelete.ExecuteNonQuery();
+                cmdBorrar.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                cmdBorrar.ExecuteNonQuery();
             }
             catch (Exception Ex)
             {
@@ -90,20 +90,20 @@ namespace Data.Database
             }
         }
 
-        public void Update(Plan plan)
+        public void Actualizar(Plan plan)
         {
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdSave = new SqlCommand(
+                SqlCommand cmdActualizar = new SqlCommand(
                     "update planes set desc_plan = @desc_plan, id_especialidad = @id_especialidad," +
                     "WHERE id_plan = @id", SqlCon);
 
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
-                cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
-                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
+                cmdActualizar.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
+                cmdActualizar.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
+                cmdActualizar.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
 
-                cmdSave.ExecuteNonQuery();
+                cmdActualizar.ExecuteNonQuery();
             }
             catch (Exception Ex)
             {
@@ -116,21 +116,21 @@ namespace Data.Database
             }
         }
 
-        public void Insert(Plan plan)
+        public void Agregar(Plan plan)
         {
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdSave = new SqlCommand(
+                SqlCommand cmdAgregar = new SqlCommand(
                     "insert into planes(desc_plan, id_especialidad) " +
                     "values(@desc_plan, @id_especialidad) " +
                     "select @@identity", SqlCon);
 
-                cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
-                cmdSave.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
+                cmdAgregar.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
+                cmdAgregar.Parameters.Add("@id_especialidad", SqlDbType.Int, 50).Value = plan.IdEspecialidad;
 
                 //Obtengo el ID que asignó la BD automáticamente
-                plan.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
+                plan.ID = Decimal.ToInt32((decimal)cmdAgregar.ExecuteScalar());
 
             }
             catch (Exception Ex)

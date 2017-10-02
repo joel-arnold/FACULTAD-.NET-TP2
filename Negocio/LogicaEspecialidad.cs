@@ -10,65 +10,64 @@ namespace Negocio
 {
     public class LogicaEspecialidad : Logica
     {
-        AdaptadorEspecialidad _EspecialidadData;
+        AdaptadorEspecialidad _DatosEspecialidad;
 
-        public AdaptadorEspecialidad EspecialidadData
+        public AdaptadorEspecialidad DatosEspecialidad
         {
             get
             {
-                return _EspecialidadData;
+                return _DatosEspecialidad;
             }
             set
             {
-                _EspecialidadData = value;
+                _DatosEspecialidad = value;
             }
         }
 
         public LogicaEspecialidad()
         {
-            _EspecialidadData = new AdaptadorEspecialidad();
+            _DatosEspecialidad = new AdaptadorEspecialidad();
         }
 
-        public Especialidad GetOne(int ID)
+        public Especialidad TraerUno(int ID)
         {
-            return EspecialidadData.GetOne(ID);
+            return DatosEspecialidad.TraerUno(ID);
         }
 
-        public List<Especialidad> GetAll()
+        public List<Especialidad> TraerTodos()
         {
-            return EspecialidadData.GetAll();
+            return DatosEspecialidad.TraerTodos();
         }
 
-        public void Save(Especialidad especialidad)
+        public void Guardar(Especialidad especialidad)
         {
             if(especialidad.Estado == Entidad.Estados.Borrado)
             {
-                this.Delete(especialidad.ID);
+                this.Borrar(especialidad.ID);
             }
             else if(especialidad.Estado == Entidad.Estados.Nuevo)
             {
-                this.Insert(especialidad);
+                this.Agregar(especialidad);
             }
             else if(especialidad.Estado == Entidad.Estados.Modificado)
             {
-                this.Update(especialidad);
+                this.Actualizar(especialidad);
             }
-            especialidad.Estado = Entidad.Estados.SinModificar;
         }
 
-        public void Delete(int ID)
+        public void Borrar(int ID)
         {
-            EspecialidadData.Borrar(ID);
+            DatosEspecialidad.Borrar(ID);
         }
 
-        public void Insert(Especialidad especialidad)
+        public void Agregar(Especialidad especialidad)
         {
-            EspecialidadData.Agregar(especialidad);
+            DatosEspecialidad.Agregar(especialidad);
         }
 
-        public void Update(Especialidad especialidad)
+        public void Actualizar(Especialidad especialidad)
         {
-            EspecialidadData.Actualizar(especialidad);
+            DatosEspecialidad.Actualizar(especialidad);
         }
     }
 }

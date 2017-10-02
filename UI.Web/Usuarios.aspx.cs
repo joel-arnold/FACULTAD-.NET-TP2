@@ -11,20 +11,20 @@ using Util;
 namespace UI.Web {
     public partial class Usuarios : System.Web.UI.Page {
 
-        LogicaUsuario _logic;
-        private Usuario Entity
+        LogicaUsuario _LogicaUsuario;
+        private Usuario UsuarioActual
         {
             get;
             set;
         }
 
-        private int SelectedID
+        private int IDSeleccionado
         {
             get
             {
-                if (this.ViewState["SelectedID"] != null)
+                if (this.ViewState["IDSeleccionado"] != null)
                 {
-                    return (int)this.ViewState["SelectedID"];
+                    return (int)this.ViewState["IDSeleccionado"];
                 }
                 else
                 {
@@ -33,15 +33,15 @@ namespace UI.Web {
             }
             set
             {
-                this.ViewState["SelectedID"] = value;
+                this.ViewState["IDSeleccionado"] = value;
             }
         }
 
-        private bool IsEntitySelected
+        private bool HayUsuarioSeleccionado
         {
             get
             {
-                return (this.SelectedID != 0);
+                return (this.IDSeleccionado != 0);
             }
         }
 
@@ -58,30 +58,30 @@ namespace UI.Web {
             set { this.ViewState["FormMode"]=value; }
         }
 
-        public LogicaUsuario Logic
+        public LogicaUsuario LogicaUsuario
         {
             get
             {
-                if (_logic == null)
+                if (_LogicaUsuario == null)
                 {
-                    _logic = new LogicaUsuario();
+                    _LogicaUsuario = new LogicaUsuario();
                 }
-                return _logic;
+                return _LogicaUsuario;
             }
         }
 
 
-        private void LoadGrid()
+        private void CargarGrilla()
         {
-            this.gridView.DataSource = this.Logic.TraerTodos();
+            this.gridView.DataSource = this.LogicaUsuario.TraerTodos();
             this.gridView.DataBind();
-            this.gridView.SelectedIndex = 999999;
+            this.gridView.SelectedIndex = 0;
         }
 
         protected void Page_Load(object sender, EventArgs e) {
             if (Session["usuario"] != null)
             {
-                LoadGrid();
+                CargarGrilla();
                 if ((string)Session["privilegio"] != "admin")
                 {
                     this.nuevoLinkButton.Visible = false;
@@ -98,32 +98,32 @@ namespace UI.Web {
 
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gridView.SelectedValue;
+            this.IDSeleccionado = (int)this.gridView.SelectedValue;
         }
 
-        private void LoadForm(int id)
+        private void CargarFormulario(int id)
         {
-            this.Entity = this.Logic.TraerUno(id);
-            this.nombreTextBox.Text = this.Entity.Nombre;
-            this.apellidoTextBox.Text = this.Entity.Apellido;
-            this.emailTextBox.Text = this.Entity.Email;
-            this.habilitadoCheckBox.Checked = this.Entity.Habilitado;
-            this.nombreUsuarioTextBox.Text = this.Entity.NombreUsuario;
+            this.UsuarioActual = this.LogicaUsuario.TraerUno(id);
+            this.nombreTextBox.Text = this.UsuarioActual.Nombre;
+            this.apellidoTextBox.Text = this.UsuarioActual.Apellido;
+            this.emailTextBox.Text = this.UsuarioActual.Email;
+            this.habilitadoCheckBox.Checked = this.UsuarioActual.Habilitado;
+            this.nombreUsuarioTextBox.Text = this.UsuarioActual.NombreUsuario;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.IsEntitySelected)
+            if (this.HayUsuarioSeleccionado)
             {
-                this.EnableForm(true);
+                this.HabilitarFormulario(true);
                 this.panelFormulario.Visible = true;
                 this.ModoFormulario = ModosFormulario.Modificacion;
-                this.LoadForm(this.SelectedID);
-                Console.WriteLine(Entity.Apellido);
+                this.CargarFormulario(this.IDSeleccionado);
+                Console.WriteLine(UsuarioActual.Apellido);
             }
         }
 
-        private void LoadEntity(Usuario usuario)
+        private void MapearAUsuario(Usuario usuario)
         {
             usuario.Nombre = this.nombreTextBox.Text;
             usuario.Apellido = this.apellidoTextBox.Text;
@@ -133,12 +133,12 @@ namespace UI.Web {
             usuario.Habilitado = this.habilitadoCheckBox.Checked;
         }
 
-        private void SaveEntity(Usuario usuario)
+        private void Guardar(Usuario usuario)
         {
-            this.Logic.Guardar(usuario);
+            this.LogicaUsuario.Guardar(usuario);
         }
 
-        private void EnableForm(bool enable)
+        private void HabilitarFormulario(bool enable)
         {
             this.nombreTextBox.Enabled = enable;
             this.apellidoTextBox.Enabled = enable;
@@ -158,8 +158,8 @@ namespace UI.Web {
             {
                 case ModosFormulario.Baja:
                     {
-                        this.DeleteEntity(this.SelectedID);
-                        this.LoadGrid();
+                        this.BorrarUsuario(this.IDSeleccionado);
+                        this.CargarGrilla();
                         this.panelFormulario.Visible = false;
                         break;
                     }
@@ -167,12 +167,12 @@ namespace UI.Web {
                     {
                         if (Page.IsValid)
                         {
-                            this.Entity = new Usuario();
-                            this.Entity.ID = this.SelectedID;
-                            this.Entity.Estado = Entidad.Estados.Modificado;
-                            this.LoadEntity(this.Entity);
-                            this.SaveEntity(this.Entity);
-                            this.LoadGrid();
+                            this.UsuarioActual = new Usuario();
+                            this.UsuarioActual.ID = this.IDSeleccionado;
+                            this.UsuarioActual.Estado = Entidad.Estados.Modificado;
+                            this.MapearAUsuario(this.UsuarioActual);
+                            this.Guardar(this.UsuarioActual);
+                            this.CargarGrilla();
                             this.panelFormulario.Visible = false;
                             break;
                         }
@@ -186,10 +186,10 @@ namespace UI.Web {
                     {
                         if (Page.IsValid)
                         {
-                            this.Entity = new Usuario();
-                            this.LoadEntity(this.Entity);
-                            this.SaveEntity(this.Entity);
-                            this.LoadGrid();
+                            this.UsuarioActual = new Usuario();
+                            this.MapearAUsuario(this.UsuarioActual);
+                            this.Guardar(this.UsuarioActual);
+                            this.CargarGrilla();
                             this.panelFormulario.Visible = false;
                             break;
                         }
@@ -204,29 +204,29 @@ namespace UI.Web {
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.IsEntitySelected)
+            if (this.HayUsuarioSeleccionado)
             {
                 this.panelFormulario.Visible = true;
                 this.ModoFormulario = ModosFormulario.Baja;
-                this.EnableForm(false);
-                this.LoadForm(this.SelectedID);
+                this.HabilitarFormulario(false);
+                this.CargarFormulario(this.IDSeleccionado);
             }
         }
 
-        private void DeleteEntity(int id)
+        private void BorrarUsuario(int id)
         {
-            this.Logic.Borrar(id);
+            this.LogicaUsuario.Borrar(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
             this.panelFormulario.Visible = true;
             this.ModoFormulario = ModosFormulario.Alta;
-            this.ClearForm();
-            this.EnableForm(true);
+            this.LimpiarFormulario();
+            this.HabilitarFormulario(true);
         }
 
-        private void ClearForm()
+        private void LimpiarFormulario()
         {
             this.nombreTextBox.Text = string.Empty;
             this.apellidoTextBox.Text = string.Empty;
@@ -237,9 +237,9 @@ namespace UI.Web {
 
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
-            this.ClearForm();
+            this.LimpiarFormulario();
             this.panelFormulario.Visible = false;
-            this.LoadGrid();
+            this.CargarGrilla();
         }
 
     }

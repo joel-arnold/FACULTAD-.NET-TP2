@@ -12,20 +12,20 @@ namespace UI.Web
 {
     public partial class Planes : System.Web.UI.Page
     {
-        LogicaPlan _logic;
-        private Plan Entity
+        LogicaPlan _LogicaPlan;
+        private Plan Plan
         {
             get;
             set;
         }
 
-        private int SelectedID
+        private int IDSeleccionado
         {
             get
             {
-                if (this.ViewState["SelectedID"] != null)
+                if (this.ViewState["IDSeleccionado"] != null)
                 {
-                    return (int)this.ViewState["SelectedID"];
+                    return (int)this.ViewState["IDSeleccionado"];
                 }
                 else
                 {
@@ -34,56 +34,56 @@ namespace UI.Web
             }
             set
             {
-                this.ViewState["SelectedID"] = value;
+                this.ViewState["IDSeleccionado"] = value;
             }
         }
 
-        private bool IsEntitySelected
+        private bool HayPlanSeleccionado
         {
             get
             {
-                return (this.SelectedID != 0);
+                return (this.IDSeleccionado != 0);
             }
         }
 
-        public enum FormModes
+        public enum ModosFormulario
         {
             Alta,
             Baja,
             Modificacion
         }
 
-        public FormModes FormMode
+        public ModosFormulario ModoFormulario
         {
-            get { return (FormModes)this.ViewState["FormMode"]; }
-            set { this.ViewState["FormMode"] = value; }
+            get { return (ModosFormulario)this.ViewState["ModoFormulario"]; }
+            set { this.ViewState["ModoFormulario"] = value; }
         }
 
-        public LogicaPlan LogPlan
+        public LogicaPlan LogicaPlan
         {
             get
             {
-                if (_logic == null)
+                if (_LogicaPlan == null)
                 {
-                    _logic = new LogicaPlan();
+                    _LogicaPlan = new LogicaPlan();
                 }
-                return _logic;
+                return _LogicaPlan;
             }
         }
 
 
-        private void LoadGrid()
+        private void CargarGrilla()
         {
             DataTable tblPlanes = new DataTable();
             tblPlanes.Columns.Add("ID", typeof(int));
             tblPlanes.Columns.Add("Plan", typeof(string));
             tblPlanes.Columns.Add("Especialidad", typeof(string));
-            foreach (Plan plan in LogPlan.GetAll())
+            foreach (Plan plan in LogicaPlan.TraerTodos())
             {
                 DataRow fila = tblPlanes.NewRow();
                 fila["ID"] = plan.ID;
                 fila["Plan"] = plan.Descripcion;
-                fila["Especialidad"] = new LogicaEspecialidad().GetOne(plan.IdEspecialidad).Descripcion;
+                fila["Especialidad"] = new LogicaEspecialidad().TraerUno(plan.IdEspecialidad).Descripcion;
                 tblPlanes.Rows.Add(fila);
             }
             tblPlanes.DefaultView.Sort = "ID,Especialidad,Plan";
@@ -95,7 +95,7 @@ namespace UI.Web
         {
             if (Session["usuario"] != null)
             {
-                LoadGrid();
+                CargarGrilla();
                 if ((string)Session["privilegio"] != "admin")
                 {
                     this.nuevoLinkButton.Visible = false;
@@ -111,49 +111,50 @@ namespace UI.Web
 
         protected void gridViewPlanes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gridViewPlanes.SelectedValue;
+            this.IDSeleccionado = (int)this.gridViewPlanes.SelectedValue;
         }
 
-        private void LoadForm(int id)
+        private void CargarFormulario(int id)
         {
-            this.Entity = LogPlan.GetOne(id);
-            this.idTextBox.Text = this.Entity.ID.ToString();
-            this.descripcionTextBox.Text = this.Entity.Descripcion;
-            this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().GetOne(Entity.IdEspecialidad).Descripcion;
+            this.Plan = LogicaPlan.TraerUno(id);
+            this.idTextBox.Text = this.Plan.ID.ToString();
+            this.descripcionTextBox.Text = this.Plan.Descripcion;
+            this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().TraerUno(Plan.IdEspecialidad).Descripcion;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.IsEntitySelected)
+            if (this.HayPlanSeleccionado)
             {
-                this.EnableForm(true);
-                this.EnableButton(true);
+                this.HabilitarFormulario(true);
+                this.HabilitarBotones(true);
                 this.formPanel.Visible = true;
-                this.FormMode = FormModes.Modificacion;
-                this.LoadForm(this.SelectedID);
+                this.ModoFormulario = ModosFormulario.Modificacion;
+                this.idTextBox.Enabled = false;
+                this.CargarFormulario(this.IDSeleccionado);
             }
         }
 
-        private void LoadEntity(Plan plan)
+        private void MapearAPlan(Plan plan)
         {
-            plan.Descripcion = this.descripcionTextBox.Text;
-            plan.IdEspecialidad = Int32.Parse(this.ddlEspecialidad.SelectedValue);
+            plan.Descripcion = this.descripcionTextBox.Text.Trim();
+            plan.IdEspecialidad = int.Parse(this.ddlEspecialidad.SelectedValue);
         }
 
-        private void SaveEntity(Plan plan)
+        private void Guardar(Plan plan)
         {
-            this.LogPlan.Save(plan);
+            this.LogicaPlan.Guardar(plan);
         }
 
-        private void EnableForm(bool enable)
+        private void HabilitarFormulario(bool enable)
         {
-            this.idTextBox.Enabled = enable;
-            this.descripcionTextBox.Enabled = enable;
+            idTextBox.Enabled = enable;
+            descripcionTextBox.Enabled = enable;
             cargarEspecialidades();
-            this.ddlEspecialidad.Enabled = enable;
+            ddlEspecialidad.Enabled = enable;
         }
 
-        private void EnableButton(bool enable)
+        private void HabilitarBotones(bool enable)
         {
             this.aceptarLinkButton.Visible = enable;
             this.cancelarLinkButton.Visible = enable;
@@ -162,39 +163,39 @@ namespace UI.Web
         private void cargarEspecialidades()
         {
             LogicaEspecialidad le = new LogicaEspecialidad();
-            ddlEspecialidad.DataSource = le.GetAll();
+            ddlEspecialidad.DataSource = le.TraerTodos();
             ddlEspecialidad.DataTextField = "Descripcion";
-            //ddlEspecialidad.DataValueField = "ID";
+            ddlEspecialidad.DataValueField = "ID";
             ddlEspecialidad.DataBind();
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
-            switch (this.FormMode)
+            switch (this.ModoFormulario)
             {
-                case FormModes.Baja:
+                case ModosFormulario.Baja:
                     {
-                        this.DeleteEntity(this.SelectedID);
-                        this.LoadGrid();
+                        this.Borrar(this.IDSeleccionado);
+                        this.CargarGrilla();
                         this.formPanel.Visible = false;
                         break;
                     }
-                case FormModes.Modificacion:
+                case ModosFormulario.Modificacion:
                     {
-                            this.Entity = new Plan();
-                            this.Entity.ID = this.SelectedID;
-                            this.Entity.Estado = Entidad.Estados.Modificado;
-                            this.LoadEntity(this.Entity);
-                            this.SaveEntity(this.Entity);
-                            this.LoadGrid();
+                            this.Plan = new Plan();
+                            this.Plan.ID = this.IDSeleccionado;
+                            this.Plan.Estado = Entidad.Estados.Modificado;
+                            this.MapearAPlan(this.Plan);
+                            this.Guardar(this.Plan);
+                            this.CargarGrilla();
                             break;
                     }
-                case FormModes.Alta:
+                case ModosFormulario.Alta:
                     {
-                        this.Entity = new Plan();
-                        this.LoadEntity(this.Entity);
-                        this.SaveEntity(this.Entity);
-                        this.LoadGrid();
+                        this.Plan = new Plan();
+                        this.MapearAPlan(this.Plan);
+                        this.Guardar(this.Plan);
+                        this.CargarGrilla();
                         break;
                     }
                 default: break;
@@ -204,31 +205,32 @@ namespace UI.Web
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.IsEntitySelected)
+            if (this.HayPlanSeleccionado)
             {
                 this.formPanel.Visible = true;
-                this.FormMode = FormModes.Baja;
-                this.EnableForm(false);
-                this.EnableButton(true);
-                this.LoadForm(this.SelectedID);
+                this.ModoFormulario = ModosFormulario.Baja;
+                this.HabilitarFormulario(false);
+                this.HabilitarBotones(true);
+                this.CargarFormulario(this.IDSeleccionado);
             }
         }
 
-        private void DeleteEntity(int id)
+        private void Borrar(int id)
         {
-            this.LogPlan.Delete(id);
+            this.LogicaPlan.Borrar(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
             this.formPanel.Visible = true;
-            this.FormMode = FormModes.Alta;
-            this.ClearForm();
-            this.EnableForm(true);
-            this.EnableButton(true);
+            this.ModoFormulario = ModosFormulario.Alta;
+            this.LimpiarFormulario();
+            this.HabilitarFormulario(true);
+            this.HabilitarBotones(true);
+            this.idTextBox.Enabled = false;
         }
 
-        private void ClearForm()
+        private void LimpiarFormulario()
         {
             this.idTextBox.Text = string.Empty;
             this.descripcionTextBox.Text = string.Empty;
@@ -236,9 +238,9 @@ namespace UI.Web
 
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
         {
-            this.ClearForm();
+            this.LimpiarFormulario();
             this.formPanel.Visible = false;
-            this.LoadGrid();
+            this.CargarGrilla();
         }
 
         

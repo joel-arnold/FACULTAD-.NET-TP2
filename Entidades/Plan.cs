@@ -9,7 +9,7 @@ namespace Entidades
     public class Plan : Entidad
     {
         private string descripcion;
-        private int idEspecialidad, idPlan;
+        private int idEspecialidad;
 
         public string Descripcion
         {
@@ -34,19 +34,6 @@ namespace Entidades
             set
             {
                 idEspecialidad = value;
-            }
-        }
-
-        public int IdPlan
-        {
-            get
-            {
-                return idPlan;
-            }
-
-            set
-            {
-                idPlan = value;
             }
         }
     }
