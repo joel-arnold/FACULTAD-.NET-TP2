@@ -88,6 +88,7 @@ namespace UI.Web
             tblPlanes.DefaultView.Sort = "ID,Especialidad,Plan";
             gridViewPlanes.DataSource = tblPlanes;
             gridViewPlanes.DataBind();
+            gridViewPlanes.SelectedIndex = 0;
         }
 
         protected void Page_Load(object sender, EventArgs e)

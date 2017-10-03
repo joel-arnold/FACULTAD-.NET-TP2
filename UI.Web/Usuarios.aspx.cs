@@ -161,6 +161,7 @@ namespace UI.Web {
                         this.BorrarUsuario(this.IDSeleccionado);
                         this.CargarGrilla();
                         this.panelFormulario.Visible = false;
+                        this.sumarioDeValidacion.ShowValidationErrors = false;
                         break;
                     }
                 case ModosFormulario.Modificacion:

@@ -94,15 +94,6 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox idTextBox;
         
         /// <summary>
-        /// Control validadorIDPlan.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorIDPlan;
-        
-        /// <summary>
         /// Control etiqDescripcion.
         /// </summary>
         /// <remarks>
