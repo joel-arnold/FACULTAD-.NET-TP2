@@ -31,10 +31,11 @@
 <asp:Panel ID="formPanel" Visible="false" runat="server">
     <asp:Label ID="etiqIdPlan" runat="server" Text="ID Plan: "></asp:Label>
     <asp:TextBox ID="idTextBox" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="validadorIDPlan" runat="server" ControlToValidate="idTextBox" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="validar">aaaa</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="etiqDescripcion" runat="server" Text="Descripción "></asp:Label>
     <asp:TextBox ID="descripcionTextBox" runat="server" Width="114px"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="validadorDescripcion" runat="server" ControlToValidate="descripcionTextBox" ErrorMessage="Debe completar la descripción." ForeColor="Red" ValidationGroup="validacionesPlan">*</asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="validadorDescripcion" runat="server" ControlToValidate="descripcionTextBox" ErrorMessage="Debe completar la descripción." ForeColor="Red" ValidationGroup="validar">*</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="etiqEspecialidad" runat="server" Text="Especialidad:"></asp:Label>
     <asp:DropDownList ID="ddlEspecialidad" runat="server">
@@ -43,9 +44,9 @@
     <asp:Panel ID="formActionsPanel" runat="server">    
     <asp:LinkButton ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
     <asp:LinkButton ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
-        <br />
-        <asp:ValidationSummary ID="sumarioValidacionPlan" runat="server" BorderStyle="Dotted" ForeColor="Red" ValidationGroup="validacionesPlan" />
     <br />
+    </asp:Panel>
 </asp:Panel>
-</asp:Panel>
+    <br />
+    <asp:ValidationSummary ID="sumarioValidacione" runat="server" BorderStyle="Dotted" ForeColor="Red" ValidationGroup="validar" />
 </asp:Content>

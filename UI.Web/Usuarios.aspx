@@ -18,7 +18,7 @@
             <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
         </Columns>
     </asp:GridView>
-</asp:Panel>
+    </asp:Panel>
     
     
     <br />

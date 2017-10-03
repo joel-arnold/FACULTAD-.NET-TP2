@@ -71,7 +71,6 @@ namespace UI.Web
             }
         }
 
-
         private void CargarGrilla()
         {
             DataTable tblPlanes = new DataTable();
@@ -119,7 +118,7 @@ namespace UI.Web
             this.Plan = LogicaPlan.TraerUno(id);
             this.idTextBox.Text = this.Plan.ID.ToString();
             this.descripcionTextBox.Text = this.Plan.Descripcion;
-            //this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().TraerUno(Plan.IdEspecialidad).Descripcion;
+            this.ddlEspecialidad.SelectedValue = new LogicaEspecialidad().TraerUno(Plan.IdEspecialidad).ID.ToString();
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -150,8 +149,8 @@ namespace UI.Web
         {
             idTextBox.Enabled = enable;
             descripcionTextBox.Enabled = enable;
-            cargarEspecialidades();
             ddlEspecialidad.Enabled = enable;
+            cargarEspecialidades();
         }
 
         private void HabilitarBotones(bool enable)
@@ -182,35 +181,40 @@ namespace UI.Web
                     }
                 case ModosFormulario.Modificacion:
                     {
-                        if (Page.IsValid) {
+                        if (Page.IsValid)
+                        {
                             this.Plan = new Plan();
                             this.Plan.ID = this.IDSeleccionado;
                             this.Plan.Estado = Entidad.Estados.Modificado;
                             this.MapearAPlan(this.Plan);
                             this.Guardar(this.Plan);
                             this.CargarGrilla();
+                            this.formPanel.Visible = false;
                             break;
                         }
-                        else {
+                        else
+                        {
                             break;
                         }
                     }
                 case ModosFormulario.Alta:
                     {
-                        if(Page.IsValid){
+                        if(Page.IsValid)
+                        {
                             this.Plan = new Plan();
                             this.MapearAPlan(this.Plan);
                             this.Guardar(this.Plan);
                             this.CargarGrilla();
+                            this.formPanel.Visible = false;
                             break;
                         }
-                        else{
+                        else
+                        {
                             break;
                         }
                     }
                 default: break;
             }
-            this.formPanel.Visible = false;
         }
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
@@ -252,7 +256,5 @@ namespace UI.Web
             this.formPanel.Visible = false;
             this.CargarGrilla();
         }
-
-        
     }
 }
