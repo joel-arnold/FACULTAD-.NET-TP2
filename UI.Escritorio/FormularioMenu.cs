@@ -12,6 +12,8 @@ namespace UI.Escritorio
 {
     public partial class FormularioMenu : Form
     {
+        public enum Tipo { eUsuarios, ePLanes, eEspecialidades }
+
         public FormularioMenu()
         {
             InitializeComponent();
@@ -34,9 +36,24 @@ namespace UI.Escritorio
 
         private void mnuABMCUsuarios_Click(object sender, EventArgs e)
         {
-            Usuarios usrs = new Usuarios();
-            usrs.Show();
+            String Tipo = "tUsuarios";
+            General gral = new General(Tipo);
+            gral.Show();
 
+        }
+
+        private void mnuABMCEspecialidad_Click(object sender, EventArgs e)
+        {
+            String Tipo = "tEspecialidades";
+            General gral = new General(Tipo);
+            gral.Show();
+        }
+
+        private void mnuABMCPlanes_Click(object sender, EventArgs e)
+        {
+            String Tipo = "tPlanes";
+            General gral = new General(Tipo);
+            gral.Show();
         }
     }
 }

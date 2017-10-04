@@ -30,6 +30,7 @@ namespace UI.Escritorio
             {
                 MessageBox.Show("Usuario y/o contraseña incorrectos", "Login"
                     , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.limpiaCampos();
             }
 
         }
@@ -47,6 +48,13 @@ namespace UI.Escritorio
             LogicaUsuario lu = new LogicaUsuario();
             usr = lu.existeUsuario(user, pass);
             return usr;
+        }
+
+        private void limpiaCampos()
+        {
+            this.txtUsuario.Text = "";
+            this.txtContraseña.Text = "";
+            this.txtUsuario.Focus();
         }
     }
 }

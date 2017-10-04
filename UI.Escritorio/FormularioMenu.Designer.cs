@@ -29,44 +29,62 @@
         private void InitializeComponent()
         {
             this.mnsPrincipal = new System.Windows.Forms.MenuStrip();
-            this.mnuArchivo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuABMCUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuABMCPlanes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuABMCEspecialidad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsPrincipal
             // 
             this.mnsPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuArchivo});
+            this.mnuAcciones});
             this.mnsPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnsPrincipal.Name = "mnsPrincipal";
             this.mnsPrincipal.Size = new System.Drawing.Size(284, 24);
             this.mnsPrincipal.TabIndex = 1;
             this.mnsPrincipal.Text = "menuStrip1";
             // 
-            // mnuArchivo
+            // mnuAcciones
             // 
-            this.mnuArchivo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAcciones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuABMCUsuarios,
+            this.mnuABMCEspecialidad,
+            this.mnuABMCPlanes,
             this.mnuSalir});
-            this.mnuArchivo.Name = "mnuArchivo";
-            this.mnuArchivo.Size = new System.Drawing.Size(60, 20);
-            this.mnuArchivo.Text = "Archivo";
+            this.mnuAcciones.Name = "mnuAcciones";
+            this.mnuAcciones.Size = new System.Drawing.Size(67, 20);
+            this.mnuAcciones.Text = "Acciones";
             // 
             // mnuABMCUsuarios
             // 
             this.mnuABMCUsuarios.Name = "mnuABMCUsuarios";
-            this.mnuABMCUsuarios.Size = new System.Drawing.Size(156, 22);
+            this.mnuABMCUsuarios.Size = new System.Drawing.Size(176, 22);
             this.mnuABMCUsuarios.Text = "ABMC Usuarios";
             this.mnuABMCUsuarios.Click += new System.EventHandler(this.mnuABMCUsuarios_Click);
             // 
             // mnuSalir
             // 
             this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(156, 22);
+            this.mnuSalir.Size = new System.Drawing.Size(176, 22);
             this.mnuSalir.Text = "Salir";
             this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
+            // 
+            // mnuABMCPlanes
+            // 
+            this.mnuABMCPlanes.Name = "mnuABMCPlanes";
+            this.mnuABMCPlanes.Size = new System.Drawing.Size(176, 22);
+            this.mnuABMCPlanes.Text = "ABMC Planes";
+            this.mnuABMCPlanes.Click += new System.EventHandler(this.mnuABMCPlanes_Click);
+            // 
+            // mnuABMCEspecialidad
+            // 
+            this.mnuABMCEspecialidad.Name = "mnuABMCEspecialidad";
+            this.mnuABMCEspecialidad.Size = new System.Drawing.Size(176, 22);
+            this.mnuABMCEspecialidad.Text = "ABMC Especialidad";
+            this.mnuABMCEspecialidad.Click += new System.EventHandler(this.mnuABMCEspecialidad_Click);
             // 
             // FormularioMenu
             // 
@@ -90,8 +108,10 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip mnsPrincipal;
-        private System.Windows.Forms.ToolStripMenuItem mnuArchivo;
+        private System.Windows.Forms.ToolStripMenuItem mnuAcciones;
         private System.Windows.Forms.ToolStripMenuItem mnuABMCUsuarios;
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
+        private System.Windows.Forms.ToolStripMenuItem mnuABMCEspecialidad;
+        private System.Windows.Forms.ToolStripMenuItem mnuABMCPlanes;
     }
 }

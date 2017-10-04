@@ -101,7 +101,7 @@ namespace Data.Database
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al modificar datos del plan", Ex);
+                Exception ExcepcionManejada = new Exception("Error al modificar datos de la especialidad", Ex);
                 throw ExcepcionManejada;
             }
             finally
