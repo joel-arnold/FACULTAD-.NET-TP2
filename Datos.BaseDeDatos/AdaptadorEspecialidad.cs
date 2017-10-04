@@ -69,12 +69,45 @@ namespace Data.Database
 
         public void Borrar(int ID)
         {
-            
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdBorrar = new SqlCommand("delete especialidades where id_especialidad = @id", SqlCon);
+                cmdBorrar.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                cmdBorrar.ExecuteNonQuery();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al eliminar la especialidad", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public void Actualizar(Especialidad esp)
         {
-            
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdActualizar = new SqlCommand("update especialidades set desc_especialidad = @desc_especialidad WHERE id_especialidad = @id", SqlCon);
+
+                cmdActualizar.Parameters.Add("@id", SqlDbType.Int).Value = esp.ID;
+                cmdActualizar.Parameters.Add("@desc_especialidad", SqlDbType.VarChar, 50).Value = esp.Descripcion;
+
+                cmdActualizar.ExecuteNonQuery();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al modificar datos del plan", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public void Agregar(Especialidad esp)
@@ -95,7 +128,7 @@ namespace Data.Database
             }
             catch (Exception Ex)
             {
-                Exception ExcepcionManejada = new Exception("Error al crear el plan", Ex);
+                Exception ExcepcionManejada = new Exception("Error al crear la especialidad", Ex);
                 throw ExcepcionManejada;
             }
             finally
