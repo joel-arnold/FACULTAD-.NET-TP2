@@ -59,9 +59,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABM-Inscripciones.aspx" />
     <Content Include="Ingreso.aspx" />
     <Content Include="noInicioSesion.aspx" />
-    <Content Include="Planes.aspx" />
+    <Content Include="ABM-Planes.aspx" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -75,10 +76,17 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Usuarios.aspx" />
+    <Content Include="ABM-Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM-Inscripciones.aspx.cs">
+      <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM-Inscripciones.aspx.designer.cs">
+      <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -103,12 +111,12 @@
     <Compile Include="noInicioSesion.aspx.designer.cs">
       <DependentUpon>noInicioSesion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Planes.aspx.cs">
-      <DependentUpon>Planes.aspx</DependentUpon>
+    <Compile Include="ABM-Planes.aspx.cs">
+      <DependentUpon>ABM-Planes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Planes.aspx.designer.cs">
-      <DependentUpon>Planes.aspx</DependentUpon>
+    <Compile Include="ABM-Planes.aspx.designer.cs">
+      <DependentUpon>ABM-Planes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -118,12 +126,12 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.aspx.cs">
-      <DependentUpon>Usuarios.aspx</DependentUpon>
+    <Compile Include="ABM-Usuarios.aspx.cs">
+      <DependentUpon>ABM-Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuarios.aspx.designer.cs">
-      <DependentUpon>Usuarios.aspx</DependentUpon>
+    <Compile Include="ABM-Usuarios.aspx.designer.cs">
+      <DependentUpon>ABM-Usuarios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

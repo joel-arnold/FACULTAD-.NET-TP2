@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Adaptador.cs" />
     <Compile Include="AdaptadorEspecialidad.cs" />
+    <Compile Include="AdaptadorInscripcion.cs" />
     <Compile Include="AdaptadorPlan.cs" />
     <Compile Include="AdaptadorUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
