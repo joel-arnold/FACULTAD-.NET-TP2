@@ -38,13 +38,6 @@
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tscUsuarios.ContentPanel.SuspendLayout();
             this.tscUsuarios.TopToolStripPanel.SuspendLayout();
             this.tscUsuarios.SuspendLayout();
@@ -95,14 +88,6 @@
             this.dgvUsuarios.AllowUserToResizeColumns = false;
             this.dgvUsuarios.AllowUserToResizeRows = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.clave,
-            this.usuario,
-            this.email,
-            this.habilitado,
-            this.apellido,
-            this.nombre});
             this.tlUsuarios.SetColumnSpan(this.dgvUsuarios, 2);
             this.dgvUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -179,56 +164,6 @@
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // clave
-            // 
-            this.clave.DataPropertyName = "Clave";
-            this.clave.HeaderText = "Clave";
-            this.clave.Name = "clave";
-            this.clave.ReadOnly = true;
-            this.clave.Visible = false;
-            // 
-            // usuario
-            // 
-            this.usuario.DataPropertyName = "NombreUsuario";
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.Name = "usuario";
-            this.usuario.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "Email";
-            this.email.HeaderText = "Correo electrónico";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            // 
-            // habilitado
-            // 
-            this.habilitado.DataPropertyName = "Habilitado";
-            this.habilitado.HeaderText = "Habilitado";
-            this.habilitado.Name = "habilitado";
-            this.habilitado.ReadOnly = true;
-            // 
-            // apellido
-            // 
-            this.apellido.DataPropertyName = "Apellido";
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            // 
-            // nombre
-            // 
-            this.nombre.DataPropertyName = "Nombre";
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,13 +196,6 @@
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn habilitado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
     }
 }
 

@@ -32,5 +32,17 @@ namespace Util
         {
             if (clave1.Equals(clave2)) return true; else return false;
         }
+
+        public static bool esPrivilegioValido(string PrivilegioIngresado)
+        {
+            if(PrivilegioIngresado == "admin" || PrivilegioIngresado == "invitado")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

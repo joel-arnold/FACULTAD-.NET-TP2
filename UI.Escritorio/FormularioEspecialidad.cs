@@ -16,138 +16,115 @@ using Util;
 
 namespace UI.Escritorio
 {
-    public partial class FormularioPlan : FormularioAplicacion
+    public partial class FormularioEspecialidad : FormularioAplicacion
     {
         //CONSTRUCTOR POR DEFECTO
-        public FormularioPlan()
+        public FormularioEspecialidad()
         {
             InitializeComponent();
-            CargarEspecialidades();                     //para que muestre el combo box cargado
         }
 
         //CONSTRUCTOR PARA ALTAS
-        public FormularioPlan(ModosFormulario modo) : this()
+        public FormularioEspecialidad(ModosFormulario modo) : this()
         {
             this.Modo = modo;
             this.txtID.ReadOnly = true;
         }
 
         //CONSTRUCTOR PARA MODIFICACION, BAJA Y CONSULTA
-        public FormularioPlan(int ID, ModosFormulario modo) : this()
+        public FormularioEspecialidad(int ID, ModosFormulario modo) : this()
         {
             this.Modo = modo;
-            Negocio.LogicaPlan plan = new Negocio.LogicaPlan();
-            PlanActual = plan.TraerUno(ID);
+            Negocio.LogicaEspecialidad le = new Negocio.LogicaEspecialidad();
+            EspecialidadActual = le.TraerUno(ID);
             MapearDeDatos();
             this.txtID.ReadOnly = true;
             if (this.Modo == ModosFormulario.Baja)
             {
                 this.txtDescripcion.ReadOnly = true;
                 this.txtID.ReadOnly = true;
-                //combobox especialidad en readonly (crear un controlador durante el proceso?)
             }
         }
 
-        private Plan planActual = new Plan();
+        private Especialidad especialidadActual = new Especialidad();
 
-        public Plan PlanActual
+        public Especialidad EspecialidadActual
         {
             get
             {
-                return planActual;
+                return especialidadActual;
             }
             set
             {
-                planActual = value;
+                especialidadActual = value;
             }
         }
-
+        
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
+
 
         //SOBRE-ESCRITURA DE LOS METODOS DE LA CLASE PADRE
         public override void MapearADatos()
         {
             if (Modo == ModosFormulario.Alta)
             {
-                Plan planActual = new Plan();
-                PlanActual.Estado = Entidad.Estados.Nuevo;
+                Especialidad especialidadActual = new Especialidad();
+                especialidadActual.Estado = Entidad.Estados.Nuevo;
             }
             else if (Modo == ModosFormulario.Modificacion)
             {
-                PlanActual.ID = int.Parse(txtID.Text);
-                PlanActual.Estado = Entidad.Estados.Modificado;
+                especialidadActual.ID = int.Parse(txtID.Text);
+                especialidadActual.Estado = Entidad.Estados.Modificado;
             }
             else if (Modo == ModosFormulario.Baja)
             {
-                PlanActual.ID = int.Parse(txtID.Text);
-                PlanActual.Estado = Entidad.Estados.Borrado;
+                especialidadActual.ID = int.Parse(txtID.Text);
+                especialidadActual.Estado = Entidad.Estados.Borrado;
             }
             else if (Modo == ModosFormulario.Consulta)
             {
-                PlanActual.ID = int.Parse(txtID.Text);
-                PlanActual.Estado = Entidad.Estados.SinModificar;
+                especialidadActual.ID = int.Parse(txtID.Text);
+                especialidadActual.Estado = Entidad.Estados.SinModificar;
             }
-            PlanActual.Descripcion = this.txtDescripcion.Text;
-            PlanActual.IdEspecialidad = Convert.ToInt32(this.cbbxEspecialidad.SelectedValue);
+            especialidadActual.Descripcion = this.txtDescripcion.Text;
         }
 
         public override void MapearDeDatos()
         {
-            this.txtID.Text = this.PlanActual.ID.ToString();
-            this.txtDescripcion.Text = this.PlanActual.Descripcion;
-            this.cbbxEspecialidad.SelectedValue = PlanActual.IdEspecialidad;
+            this.txtID.Text = this.especialidadActual.ID.ToString();
+            this.txtDescripcion.Text = this.especialidadActual.Descripcion;
 
             //Acá configuro el texto del botón aceptar según sea el modo con el que se llamó al formulario
             switch (Modo)
             {
                 case ModosFormulario.Alta:
-                    btnAceptar.Text = "Guardar";
+                    btnGuardar.Text = "Guardar";
                     break;
 
                 case ModosFormulario.Modificacion:
-                    btnAceptar.Text = "Guardar";
+                    btnGuardar.Text = "Guardar";
                     break;
 
                 case ModosFormulario.Baja:
-                    btnAceptar.Text = "Eliminar";
+                    btnGuardar.Text = "Eliminar";
                     break;
 
                 case ModosFormulario.Consulta:
-                    btnAceptar.Text = "Aceptar";
+                    btnGuardar.Text = "Aceptar";
                     break;
             }
         }
 
-        private void CargarEspecialidades()
-        {
-            LogicaEspecialidad oEspecialidad = new LogicaEspecialidad();
-            try
-            {
-                DataTable dtEspecialidad = new DataTable();
-                dtEspecialidad.Columns.Add("Descripción", typeof(string));
-                dtEspecialidad.Columns.Add("ID", typeof(int));
-                foreach (Especialidad especialidad in oEspecialidad.TraerTodos())
-                {
-                    dtEspecialidad.Rows.Add(new object[] { especialidad.Descripcion, especialidad.ID });
-                }
-                cbbxEspecialidad.ValueMember = "ID";
-                cbbxEspecialidad.DisplayMember = "Descripción";
-                cbbxEspecialidad.DataSource = dtEspecialidad;
-            }
-            catch (Exception Ex)
-            {
-                Notificar(Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
         public override void GuardarCambios()
         {
             MapearADatos();
-            LogicaPlan logicaPlanActual = new LogicaPlan();
-            logicaPlanActual.Guardar(PlanActual);
+            LogicaEspecialidad logicaespecialidadActual = new LogicaEspecialidad();
+            logicaespecialidadActual.Guardar(especialidadActual);
         }
 
         public override bool Validar()
@@ -181,12 +158,7 @@ namespace UI.Escritorio
             this.Notificar(this.Text, mensaje, botones, icono);
         }
 
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (this.Modo != ModosFormulario.Baja)
             {
@@ -201,7 +173,6 @@ namespace UI.Escritorio
                 GuardarCambios();
                 this.Close();
             }
-
         }
     }
 }

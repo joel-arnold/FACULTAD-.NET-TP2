@@ -51,6 +51,12 @@
     <Compile Include="FormularioAplicacion.Designer.cs">
       <DependentUpon>FormularioAplicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioEspecialidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioEspecialidad.Designer.cs">
+      <DependentUpon>FormularioEspecialidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <EmbeddedResource Include="FormularioAplicacion.resx">
       <DependentUpon>FormularioAplicacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioEspecialidad.resx">
+      <DependentUpon>FormularioEspecialidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioMenu.resx">
       <DependentUpon>FormularioMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +118,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -140,6 +150,9 @@
       <Project>{424bb9be-88b4-44f9-b880-643daaa4d04d}</Project>
       <Name>Util</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\academia.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,9 +31,9 @@
             this.mnsPrincipal = new System.Windows.Forms.MenuStrip();
             this.mnuAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuABMCUsuarios = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuABMCPlanes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuABMCEspecialidad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuABMCPlanes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,12 +65,12 @@
             this.mnuABMCUsuarios.Text = "ABMC Usuarios";
             this.mnuABMCUsuarios.Click += new System.EventHandler(this.mnuABMCUsuarios_Click);
             // 
-            // mnuSalir
+            // mnuABMCEspecialidad
             // 
-            this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(176, 22);
-            this.mnuSalir.Text = "Salir";
-            this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
+            this.mnuABMCEspecialidad.Name = "mnuABMCEspecialidad";
+            this.mnuABMCEspecialidad.Size = new System.Drawing.Size(176, 22);
+            this.mnuABMCEspecialidad.Text = "ABMC Especialidad";
+            this.mnuABMCEspecialidad.Click += new System.EventHandler(this.mnuABMCEspecialidad_Click);
             // 
             // mnuABMCPlanes
             // 
@@ -79,17 +79,18 @@
             this.mnuABMCPlanes.Text = "ABMC Planes";
             this.mnuABMCPlanes.Click += new System.EventHandler(this.mnuABMCPlanes_Click);
             // 
-            // mnuABMCEspecialidad
+            // mnuSalir
             // 
-            this.mnuABMCEspecialidad.Name = "mnuABMCEspecialidad";
-            this.mnuABMCEspecialidad.Size = new System.Drawing.Size(176, 22);
-            this.mnuABMCEspecialidad.Text = "ABMC Especialidad";
-            this.mnuABMCEspecialidad.Click += new System.EventHandler(this.mnuABMCEspecialidad_Click);
+            this.mnuSalir.Name = "mnuSalir";
+            this.mnuSalir.Size = new System.Drawing.Size(176, 22);
+            this.mnuSalir.Text = "Salir";
+            this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
             // FormularioMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::UI.Escritorio.Properties.Resources.academia;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.mnsPrincipal);
             this.IsMdiContainer = true;

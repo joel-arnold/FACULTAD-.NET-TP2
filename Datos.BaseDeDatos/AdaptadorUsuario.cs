@@ -27,6 +27,7 @@ namespace Data.Database
                     usr.Nombre = (string)drUsuarios["nombre"];
                     usr.Apellido = (string)drUsuarios["apellido"];
                     usr.Email = (string)drUsuarios["email"];
+                    usr.Privilegio = (string)drUsuarios["privilegio"];
                                         
                     usuarios.Add(usr);
                 }
@@ -62,6 +63,7 @@ namespace Data.Database
                     usuario.Nombre = (string)drUsuarios["nombre"];
                     usuario.Apellido = (string)drUsuarios["apellido"];
                     usuario.Email = (string)drUsuarios["email"];
+                    usuario.Privilegio = (string)drUsuarios["privilegio"];
                 }
                 drUsuarios.Close();
             }
@@ -104,7 +106,7 @@ namespace Data.Database
                 this.AbrirConexion();
                 SqlCommand cmdActualizar = new SqlCommand(
                     "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, " +
-                    "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email " +
+                    "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email, privilegio = @privilegio" +
                     "WHERE id_usuario = @id", SqlCon);
 
                 cmdActualizar.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
@@ -114,14 +116,15 @@ namespace Data.Database
                 cmdActualizar.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdActualizar.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdActualizar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                cmdActualizar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
 
                 cmdActualizar.ExecuteNonQuery();
             }
-            catch (Exception Ex)
+            /*catch (Exception Ex)
             {
                 Exception ExcepcionManejada = new Exception("Error al modificar datos del usuario", Ex);
-                throw ExcepcionManejada;
-            }
+               throw ExcepcionManejada;
+            }*/
             finally
             {
                 this.CerrarConexion();
@@ -134,8 +137,8 @@ namespace Data.Database
             {
                 this.AbrirConexion();
                 SqlCommand cmdAgregar = new SqlCommand(
-                    "insert into usuarios(nombre_usuario, clave, habilitado, nombre, apellido, email) " +
-                    "values(@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email) " +
+                    "insert into usuarios(nombre_usuario, clave, habilitado, nombre, apellido, email, privilegio) " +
+                    "values(@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email, @privilegio) " +
                     "select @@identity", SqlCon);
                                 
                 cmdAgregar.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
@@ -144,6 +147,7 @@ namespace Data.Database
                 cmdAgregar.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdAgregar.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdAgregar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                cmdAgregar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
 
                 //Obtengo el ID que asignó la BD automáticamente
                 usuario.ID = Decimal.ToInt32((decimal)cmdAgregar.ExecuteScalar());

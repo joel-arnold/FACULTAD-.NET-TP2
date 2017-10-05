@@ -15,7 +15,7 @@ namespace UI.Escritorio
     public partial class General : Form
     {
 
-        public General(string Tipo)                                         //INCOMPLETO
+        public General(string Tipo)                                         //COMPLETO
         {
             InitializeComponent();
             dgvUsuarios.AutoGenerateColumns = false;
@@ -24,52 +24,81 @@ namespace UI.Escritorio
                 case "tUsuarios":
 
                     dgvUsuarios.Columns.Clear();
-                    DataGridViewTextBoxColumn colId = new DataGridViewTextBoxColumn();
-                    colId.Name = "Id";
-                    colId.HeaderText = "ID";
-                    colId.DataPropertyName = "ID";
-                    colId.DisplayIndex = 0;
-                    colId.Width = 30;
-                    dgvUsuarios.Columns.Add(colId);
-                    DataGridViewTextBoxColumn colNombre = new DataGridViewTextBoxColumn();
-                    colNombre.Name = "Nombre";
-                    colNombre.HeaderText = "Nombre";
-                    colNombre.DataPropertyName = "Nombre";
-                    colNombre.DisplayIndex = 1;
-                    dgvUsuarios.Columns.Add(colNombre);
-                    DataGridViewTextBoxColumn colApellido = new DataGridViewTextBoxColumn();
-                    colApellido.Name = "Apellido";
-                    colApellido.HeaderText = "Apellido";
-                    colApellido.DataPropertyName = "Apellido";
-                    colApellido.DisplayIndex = 2;
-                    dgvUsuarios.Columns.Add(colApellido);
-                    DataGridViewTextBoxColumn colUsuario = new DataGridViewTextBoxColumn();
-                    colUsuario.Name = "Usuario";
-                    colUsuario.HeaderText = "Usuario";
-                    colUsuario.DataPropertyName = "NombreUsuario";
-                    colUsuario.DisplayIndex = 3;
-                    dgvUsuarios.Columns.Add(colUsuario);
-                    DataGridViewTextBoxColumn colEmail = new DataGridViewTextBoxColumn();
-                    colEmail.Name = "Email";
-                    colEmail.HeaderText = "Email";
-                    colEmail.DataPropertyName = "Email";
-                    colEmail.DisplayIndex = 4;
-                    dgvUsuarios.Columns.Add(colEmail);
-                    DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
-                    colHabilitado.Name = "Habilitado";
-                    colHabilitado.HeaderText = "Habilitado";
-                    colHabilitado.DataPropertyName = "Habilitado";
-                    colHabilitado.DisplayIndex = 5;
-                    colHabilitado.Width = 60;
-                    dgvUsuarios.Columns.Add(colHabilitado);
+                    DataGridViewTextBoxColumn ucolId = new DataGridViewTextBoxColumn();
+                    ucolId.Name = "Id";
+                    ucolId.HeaderText = "ID";
+                    ucolId.DataPropertyName = "ID";
+                    ucolId.DisplayIndex = 0;
+                    ucolId.Width = 30;
+                    dgvUsuarios.Columns.Add(ucolId);
+                    DataGridViewTextBoxColumn ucolNombre = new DataGridViewTextBoxColumn();
+                    ucolNombre.Name = "Nombre";
+                    ucolNombre.HeaderText = "Nombre";
+                    ucolNombre.DataPropertyName = "Nombre";
+                    ucolNombre.DisplayIndex = 1;
+                    dgvUsuarios.Columns.Add(ucolNombre);
+                    DataGridViewTextBoxColumn ucolApellido = new DataGridViewTextBoxColumn();
+                    ucolApellido.Name = "Apellido";
+                    ucolApellido.HeaderText = "Apellido";
+                    ucolApellido.DataPropertyName = "Apellido";
+                    ucolApellido.DisplayIndex = 2;
+                    dgvUsuarios.Columns.Add(ucolApellido);
+                    DataGridViewTextBoxColumn ucolUsuario = new DataGridViewTextBoxColumn();
+                    ucolUsuario.Name = "Usuario";
+                    ucolUsuario.HeaderText = "Usuario";
+                    ucolUsuario.DataPropertyName = "NombreUsuario";
+                    ucolUsuario.DisplayIndex = 3;
+                    dgvUsuarios.Columns.Add(ucolUsuario);
+                    DataGridViewTextBoxColumn ucolEmail = new DataGridViewTextBoxColumn();
+                    ucolEmail.Name = "Email";
+                    ucolEmail.HeaderText = "Email";
+                    ucolEmail.DataPropertyName = "Email";
+                    ucolEmail.DisplayIndex = 4;
+                    dgvUsuarios.Columns.Add(ucolEmail);
+                    DataGridViewCheckBoxColumn ucolHabilitado = new DataGridViewCheckBoxColumn();
+                    ucolHabilitado.Name = "Habilitado";
+                    ucolHabilitado.HeaderText = "Habilitado";
+                    ucolHabilitado.DataPropertyName = "Habilitado";
+                    ucolHabilitado.DisplayIndex = 5;
+                    ucolHabilitado.Width = 60;
+                    dgvUsuarios.Columns.Add(ucolHabilitado);
+                    DataGridViewTextBoxColumn ucolPrivilegio = new DataGridViewTextBoxColumn();
+                    ucolPrivilegio.Name = "Privilegio";
+                    ucolPrivilegio.HeaderText = "Privilegio";
+                    ucolPrivilegio.DataPropertyName = "Privilegio";
+                    ucolPrivilegio.DisplayIndex = 6;
+                    ucolPrivilegio.Width = 80;
+                    dgvUsuarios.Columns.Add(ucolPrivilegio);
 
                     this.Text = "Usuarios";
                     Listar(Tipo);
                     break;
 
                 case "tPlanes":
-                    //falta desarrollo
 
+                    dgvUsuarios.Columns.Clear();
+                    DataGridViewTextBoxColumn pcolId = new DataGridViewTextBoxColumn();
+                    pcolId.Name = "Id";
+                    pcolId.HeaderText = "ID";
+                    pcolId.DataPropertyName = "ID";
+                    pcolId.DisplayIndex = 0;
+                    pcolId.Width = 30;
+                    dgvUsuarios.Columns.Add(pcolId);
+                    DataGridViewTextBoxColumn pcolDescripcion = new DataGridViewTextBoxColumn();
+                    pcolDescripcion.Name = "Descripcion";
+                    pcolDescripcion.HeaderText = "Descripción";
+                    pcolDescripcion.DataPropertyName = "Descripcion";
+                    pcolDescripcion.DisplayIndex = 1;
+                    pcolDescripcion.Width = 70;
+                    dgvUsuarios.Columns.Add(pcolDescripcion);
+                    DataGridViewTextBoxColumn pcolIdEspecialidad = new DataGridViewTextBoxColumn();     //id o nombre especialidad?
+                    pcolIdEspecialidad.Name = "IdEspecialidad";
+                    pcolIdEspecialidad.HeaderText = "ID Especialidad";
+                    pcolIdEspecialidad.DataPropertyName = "IdEspecialidad";
+                    pcolIdEspecialidad.DisplayIndex = 2;
+                    pcolIdEspecialidad.Width = 70;
+                    dgvUsuarios.Columns.Add(pcolIdEspecialidad);
+                    
                     this.Text = "Planes";
                     Listar(Tipo);
                     break;
@@ -77,20 +106,20 @@ namespace UI.Escritorio
                 case "tEspecialidades":
 
                     dgvUsuarios.Columns.Clear();
-                    DataGridViewTextBoxColumn colIdd = new DataGridViewTextBoxColumn();
-                    colIdd.Name = "Id";
-                    colIdd.HeaderText = "ID";
-                    colIdd.DataPropertyName = "ID";
-                    colIdd.DisplayIndex = 0;
-                    colIdd.Width = 30;
-                    dgvUsuarios.Columns.Add(colIdd);
-                    DataGridViewTextBoxColumn colDescripcion = new DataGridViewTextBoxColumn();
-                    colDescripcion.Name = "Descripcion";
-                    colDescripcion.HeaderText = "Descripción";
-                    colDescripcion.DataPropertyName = "Descripcion";
-                    colDescripcion.DisplayIndex = 1;
-                    colDescripcion.Width = 150;
-                    dgvUsuarios.Columns.Add(colDescripcion);
+                    DataGridViewTextBoxColumn ecolId = new DataGridViewTextBoxColumn();
+                    ecolId.Name = "Id";
+                    ecolId.HeaderText = "ID";
+                    ecolId.DataPropertyName = "ID";
+                    ecolId.DisplayIndex = 0;
+                    ecolId.Width = 30;
+                    dgvUsuarios.Columns.Add(ecolId);
+                    DataGridViewTextBoxColumn ecolDescripcion = new DataGridViewTextBoxColumn();
+                    ecolDescripcion.Name = "Descripcion";
+                    ecolDescripcion.HeaderText = "Descripción";
+                    ecolDescripcion.DataPropertyName = "Descripcion";
+                    ecolDescripcion.DisplayIndex = 1;
+                    ecolDescripcion.Width = 150;
+                    dgvUsuarios.Columns.Add(ecolDescripcion);
 
                     this.Text = "Especialidades";
                     Listar(Tipo);
@@ -103,7 +132,7 @@ namespace UI.Escritorio
             
         }
 
-        public void Listar(String Tipo)                                     //COMPLETO
+        public void Listar(String Tipo)                                     //INCOMPLETO (TRAER COLUMNA PRIVILEGIO DE USUARIOS)
         {
             switch (Tipo)
             {
@@ -152,7 +181,7 @@ namespace UI.Escritorio
         }
 
         // ESTO CREA UNA GRILLA PARA ALTAS (BOTONCITO +)
-        private void tsbNuevo_Click(object sender, EventArgs e)             //INCOMPLETO
+        private void tsbNuevo_Click(object sender, EventArgs e)             //COMPLETO
         {
             switch (this.Text)
             {
@@ -167,13 +196,14 @@ namespace UI.Escritorio
                     Listar("tPlanes");
                     break;
                 case "Especialidades":
-                    //falta desarrollo y crear formulario
+                    FormularioEspecialidad aBMespecialidad = new FormularioEspecialidad(FormularioAplicacion.ModosFormulario.Alta);
+                    aBMespecialidad.ShowDialog();
                     Listar("tEspecialidades");
                     break;
             }
         }
 
-        // ESTO CREA UNA GRILLA PARA MODIFICACIONES                         //INCOMPLETO
+        // ESTO CREA UNA GRILLA PARA MODIFICACIONES                         //COMPLETO
         private void tsbEditar_Click(object sender, EventArgs e)
         {
             if(this.dgvUsuarios.SelectedRows.Count != 0)
@@ -181,24 +211,28 @@ namespace UI.Escritorio
                 switch (this.Text)
                 {
                     case "Usuarios":
-                        int ID = ((Entidades.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                        FormularioUsuario formABM = new FormularioUsuario(ID, FormularioAplicacion.ModosFormulario.Modificacion);
-                        formABM.ShowDialog();
+                        int uID = ((Entidades.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioUsuario aBMusuario = new FormularioUsuario(uID, FormularioAplicacion.ModosFormulario.Modificacion);
+                        aBMusuario.ShowDialog();
                         Listar("tUsuarios");
                         break;
                     case "Planes":
-                        //falta desarrollo y crear formulario
+                        int pID = ((Entidades.Plan)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioPlan aBMplan = new FormularioPlan(pID, FormularioAplicacion.ModosFormulario.Modificacion);
+                        aBMplan.ShowDialog();
                         Listar("tPlanes");
                         break;
                     case "Especialidades":
-                        //falta desarrollo y crear formulario
+                        int eID = ((Entidades.Especialidad)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioEspecialidad aBMespecialidad = new FormularioEspecialidad(eID, FormularioAplicacion.ModosFormulario.Modificacion);
+                        aBMespecialidad.ShowDialog();
                         Listar("tEspecialidades");
                         break;
                 }
             }
         }
 
-        // ESTO CREA UNA GRILLA PARA BAJAS (BOTONCITO X)                    //INCOMPLETO
+        // ESTO CREA UNA GRILLA PARA BAJAS (BOTONCITO X)                    //COMPLETO
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
           if (this.dgvUsuarios.SelectedRows.Count != 0)
@@ -206,17 +240,21 @@ namespace UI.Escritorio
                 switch (this.Text)
                 {
                     case "Usuarios":
-                        int ID = ((Entidades.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                        FormularioUsuario formABM = new FormularioUsuario(ID, FormularioAplicacion.ModosFormulario.Baja);
-                        formABM.ShowDialog();
+                        int uID = ((Entidades.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioUsuario aABMusuario = new FormularioUsuario(uID, FormularioAplicacion.ModosFormulario.Baja);
+                        aABMusuario.ShowDialog();
                         Listar("tUsuarios");
                         break;
                     case "Planes":
-                        //falta desarrollo y crear formulario
+                        int pID = ((Entidades.Plan)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioPlan aBMplan = new FormularioPlan(pID, FormularioAplicacion.ModosFormulario.Baja);
+                        aBMplan.ShowDialog();
                         Listar("tPlanes");
                         break;
                     case "Especialidades":
-                        //falta desarrollo y crear formulario
+                        int eID = ((Entidades.Especialidad)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioEspecialidad aBMespecialidad = new FormularioEspecialidad(eID, FormularioAplicacion.ModosFormulario.Baja);
+                        aBMespecialidad.ShowDialog();
                         Listar("tEspecialidades");
                         break;
                 }

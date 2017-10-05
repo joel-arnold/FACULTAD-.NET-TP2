@@ -49,6 +49,7 @@ namespace UI.Escritorio
                 this.txtCorreoE.ReadOnly = true;
                 this.txtUsuario.ReadOnly = true;
                 this.chkHabilitado.Enabled = true;
+                this.txtPrivilegio.ReadOnly = true;
             }
         }
 
@@ -67,24 +68,7 @@ namespace UI.Escritorio
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            
-
-
-        }
-        
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
+        {         
 
         }
         
@@ -122,6 +106,7 @@ namespace UI.Escritorio
             UsuarioActual.Email = this.txtCorreoE.Text;
             UsuarioActual.NombreUsuario = this.txtUsuario.Text;
             UsuarioActual.Clave = this.txtClave.Text;
+            usuarioActual.Privilegio = this.txtPrivilegio.Text;
         }
 
         public override void MapearDeDatos()
@@ -134,6 +119,7 @@ namespace UI.Escritorio
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
             this.txtConfirmarClave.Text = this.UsuarioActual.Clave;
+            this.txtPrivilegio.Text = this.usuarioActual.Privilegio;
 
             //Acá configuro el texto del botón aceptar según sea el modo con el que se llamó al formulario
             switch (Modo)
@@ -163,7 +149,7 @@ namespace UI.Escritorio
             bool valida = false;
             string mensaje = "";
 
-            if (txtApellido.Text.Trim().Length == 0 || txtNombre.Text.Trim().Length == 0 || txtCorreoE.Text.Trim().Length == 0
+            if (txtApellido.Text.Trim().Length == 0 || txtNombre.Text.Trim().Length == 0 || txtCorreoE.Text.Trim().Length == 0 || txtPrivilegio.Text.Trim().Length == 0
                 || txtUsuario.Text.Trim().Length == 0 || txtClave.Text.Trim().Length == 0 || txtConfirmarClave.Text.Trim().Length == 0)
                 mensaje += "Debe completar todos los campos" + "\n";
             if (!Validacion.esClaveValida(txtClave.Text))
@@ -172,6 +158,8 @@ namespace UI.Escritorio
                 mensaje += "Las claves no coinciden" + "\n";
             if (!Validacion.esMailValido(txtCorreoE.Text))
                 mensaje += "El correo electrónico ingresado no es válido";
+            if (!Validacion.esPrivilegioValido(txtPrivilegio.Text))
+                mensaje += "El campo Privilegio solo puede contener ''admin'' o 'invitado'' ";
 
             if (!String.IsNullOrEmpty(mensaje))
             {
