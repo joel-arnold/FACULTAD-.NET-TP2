@@ -28,6 +28,7 @@ namespace Data.Database
                     usr.Apellido = (string)drUsuarios["apellido"];
                     usr.Email = (string)drUsuarios["email"];
                     usr.Privilegio = (string)drUsuarios["privilegio"];
+                    if (usr.Privilegio == null) usr.Privilegio = "invitado";
                                         
                     usuarios.Add(usr);
                 }
