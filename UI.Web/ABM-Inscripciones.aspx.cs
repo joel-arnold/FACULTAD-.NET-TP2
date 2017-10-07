@@ -13,12 +13,25 @@ namespace UI.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario usu = new Usuario();
-            LogicaUsuario lu = new LogicaUsuario();
-            ddlAlumnos.DataSource = lu.TraerTodos();
-            ddlAlumnos.DataTextField = "Apellido";
-            ddlAlumnos.DataValueField = "Legajo";
-            ddlAlumnos.DataBind();
+            if (Page.IsPostBack == false)
+            {
+                Usuario usu = new Usuario();
+                LogicaUsuario lu = new LogicaUsuario();
+                ddlAlumnos.DataSource = lu.TraerTodos();
+                ddlAlumnos.DataTextField = "Apellido";
+                ddlAlumnos.DataValueField = "ID";
+                ddlAlumnos.DataBind();
+            }
+        }
+
+        protected void ddlAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlAlumnos.SelectedIndex = 0;
+            if (ddlAlumnos.SelectedValue != "")
+            {
+                Label2.Text = new LogicaUsuario().TraerUno(ddlAlumnos.SelectedIndex).Nombre;
+                descripcionTextBox2.Text = new LogicaUsuario().TraerUno(ddlAlumnos.SelectedIndex).Nombre;
+            }
         }
     }
 }

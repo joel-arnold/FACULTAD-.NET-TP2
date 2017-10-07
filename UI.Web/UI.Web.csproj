@@ -59,7 +59,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABM-InscMaterias.aspx" />
     <Content Include="ABM-Inscripciones.aspx" />
+    <Content Include="ABM.aspx" />
     <Content Include="Ingreso.aspx" />
     <Content Include="noInicioSesion.aspx" />
     <Content Include="ABM-Planes.aspx" />
@@ -80,12 +82,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM-InscMaterias.aspx.cs">
+      <DependentUpon>ABM-InscMaterias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM-InscMaterias.aspx.designer.cs">
+      <DependentUpon>ABM-InscMaterias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ABM-Inscripciones.aspx.cs">
       <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ABM-Inscripciones.aspx.designer.cs">
       <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM.aspx.cs">
+      <DependentUpon>ABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM.aspx.designer.cs">
+      <DependentUpon>ABM.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

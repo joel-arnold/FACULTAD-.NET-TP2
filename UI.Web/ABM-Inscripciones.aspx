@@ -63,7 +63,7 @@
     <asp:Label ID="etiqAlumno" runat="server" Text="Alumno: " CssClass="etiquetas"></asp:Label>
             </td>
             <td class="auto-style9">
-                <asp:DropDownList ID="ddlAlumnos" runat="server" >
+                <asp:DropDownList ID="ddlAlumnos" runat="server" AutoPostBack="true" >
                 </asp:DropDownList>
             </td>
             <td>&nbsp;</td>
