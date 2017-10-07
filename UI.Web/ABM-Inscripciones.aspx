@@ -1,44 +1,45 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Inscripciones.aspx.cs" Inherits="UI.Web.ABM_Inscripciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Inscripciones.aspx.cs" Inherits="UI.Web.ABM_InscMaterias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" DataKeyNames="id_inscripcion" DataSourceID="SqlOrigenDatos" GridLines="Horizontal">
-        <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
-            <asp:BoundField DataField="id_inscripcion" HeaderText="id_inscripcion" InsertVisible="False" ReadOnly="True" SortExpression="id_inscripcion" />
-            <asp:BoundField DataField="id_alumno" HeaderText="id_alumno" SortExpression="id_alumno" />
-            <asp:BoundField DataField="id_curso" HeaderText="id_curso" SortExpression="id_curso" />
-            <asp:BoundField DataField="condicion" HeaderText="condicion" SortExpression="condicion" />
-            <asp:BoundField DataField="nota" HeaderText="nota" SortExpression="nota" />
-        </Columns>
-        <FooterStyle BackColor="White" ForeColor="#333333" />
-        <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="White" ForeColor="#333333" />
-        <SelectedRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
-        <SortedAscendingCellStyle BackColor="#F7F7F7" />
-        <SortedAscendingHeaderStyle BackColor="#487575" />
-        <SortedDescendingCellStyle BackColor="#E5E5E5" />
-        <SortedDescendingHeaderStyle BackColor="#275353" />
-    </asp:GridView>
-    <asp:SqlDataSource ID="SqlOrigenDatos" runat="server" ConnectionString="Data Source=localhost;Initial Catalog=tp2_net;Integrated Security=False;User ID=net;Password=net" DeleteCommand="DELETE FROM [alumnos_inscripciones] WHERE [id_inscripcion] = @id_inscripcion" InsertCommand="INSERT INTO [alumnos_inscripciones] ([id_alumno], [id_curso], [condicion], [nota]) VALUES (@id_alumno, @id_curso, @condicion, @nota)" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [alumnos_inscripciones]" UpdateCommand="UPDATE [alumnos_inscripciones] SET [id_alumno] = @id_alumno, [id_curso] = @id_curso, [condicion] = @condicion, [nota] = @nota WHERE [id_inscripcion] = @id_inscripcion">
-        <DeleteParameters>
-            <asp:Parameter Name="id_inscripcion" Type="Int32" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="id_alumno" Type="Int32" />
-            <asp:Parameter Name="id_curso" Type="Int32" />
-            <asp:Parameter Name="condicion" Type="String" />
-            <asp:Parameter Name="nota" Type="Int32" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="id_alumno" Type="Int32" />
-            <asp:Parameter Name="id_curso" Type="Int32" />
-            <asp:Parameter Name="condicion" Type="String" />
-            <asp:Parameter Name="nota" Type="Int32" />
-            <asp:Parameter Name="id_inscripcion" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
-    
+    <h1>Inscripción de alumno a materias</h1>
+    <div class="tablas">
+        <div class="tablas">
+            <asp:Panel ID="pnlMaterias" runat="server" CssClass="etiquetas">
+                Seleccione la materia a inscribir al alumno
+                <asp:Label ID="lblAlumno" runat="server"></asp:Label>
+                <asp:GridView ID="gvMaterias" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="El alumno no se puede inscribir a ninguna materia" CssClass="etiquetas" >
+                    <Columns>
+                        <asp:BoundField DataField="Descripcion" HeaderText="Materia" />
+                        <asp:BoundField DataField="HSSemanales" HeaderText="Horas Semanales">
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="HSTotales" HeaderText="Horas Totales">
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:CommandField ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
+            </asp:Panel>
+            <asp:Panel ID="pnlComision" runat="server" Width="400px" CssClass="etiquetas">
+                Seleccione la comisión a inscribirse de la materia
+                <asp:Label ID="lblMateria" runat="server" CssClass="etiquetas"></asp:Label>
+                &nbsp;<asp:GridView ID="gvComisiones" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="No hay comisiones disponibles" >
+                    <Columns>
+                        <asp:BoundField DataField="Descripcion" HeaderText="Comisión" />
+                        <asp:CommandField SelectText="Inscribir" ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
+                <asp:LinkButton ID="lbnCancelarComisiones" runat="server" CssClass="botones" >Volver</asp:LinkButton>
+            </asp:Panel>
+            <asp:Panel ID="pnlInscripcion" runat="server" Width="200px">
+                <asp:Label ID="lblInscripcion" runat="server" CssClass="etiquetas"></asp:Label>
+                <br />
+                <asp:LinkButton ID="lbnInscribirseAOtraMateria" runat="server" CssClass="botones" >Inscribirse a otra materia</asp:LinkButton>
+            </asp:Panel>
+        </div>
+        <asp:ValidationSummary ID="vsAlumno" runat="server" style="margin-top: 0px" ValidationGroup="validacion" CssClass="etiquetas" />
+        <asp:Label ID="lblMensaje" runat="server" CssClass="etiquetas"></asp:Label>
+    </div>
 </asp:Content>

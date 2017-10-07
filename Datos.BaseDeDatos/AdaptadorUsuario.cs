@@ -107,7 +107,7 @@ namespace Data.Database
                 this.AbrirConexion();
                 SqlCommand cmdActualizar = new SqlCommand(
                     "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, " +
-                    "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email, privilegio = @privilegio" +
+                    "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email, privilegio = @privilegio " +
                     "WHERE id_usuario = @id", SqlCon);
 
                 cmdActualizar.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
@@ -117,7 +117,14 @@ namespace Data.Database
                 cmdActualizar.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdActualizar.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdActualizar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
-                cmdActualizar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
+                if (usuario.Privilegio != null)
+                {
+                    cmdActualizar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
+                }
+                else
+                {
+                    cmdActualizar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = "invitado";
+                }
 
                 cmdActualizar.ExecuteNonQuery();
             }
@@ -148,17 +155,25 @@ namespace Data.Database
                 cmdAgregar.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdAgregar.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdAgregar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
-                cmdAgregar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
+                if(usuario.Privilegio != null)
+                {
+                    cmdAgregar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
+                }
+                else
+                {
+                    cmdAgregar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = "invitado";
+                }
+                
 
                 //Obtengo el ID que asignó la BD automáticamente
                 usuario.ID = Decimal.ToInt32((decimal)cmdAgregar.ExecuteScalar());
                 
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al crear el usuario", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al crear el usuario", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CerrarConexion();
@@ -192,11 +207,11 @@ namespace Data.Database
                 }
                 drUsuario.Close();
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("No se encontró un usuario con esos datos", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("No se encontró un usuario con esos datos", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CerrarConexion();

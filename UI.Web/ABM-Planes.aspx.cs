@@ -10,40 +10,13 @@ using System.Data;
 
 namespace UI.Web
 {
-    public partial class Planes : System.Web.UI.Page
+    public partial class Planes : ABM
     {
         LogicaPlan _LogicaPlan;
         private Plan Plan
         {
             get;
             set;
-        }
-
-        private int IDSeleccionado
-        {
-            get
-            {
-                if (this.ViewState["IDSeleccionado"] != null)
-                {
-                    return (int)this.ViewState["IDSeleccionado"];
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            set
-            {
-                this.ViewState["IDSeleccionado"] = value;
-            }
-        }
-
-        private bool HayPlanSeleccionado
-        {
-            get
-            {
-                return (this.IDSeleccionado != 0);
-            }
         }
 
         public enum ModosFormulario
@@ -91,21 +64,14 @@ namespace UI.Web
             gridViewPlanes.SelectedIndex = 0;
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void CargarPagina()
         {
-            if (Session["usuario"] != null)
+            CargarGrilla();
+            if ((string)Session["privilegio"] != "admin")
             {
-                CargarGrilla();
-                if ((string)Session["privilegio"] != "admin")
-                {
-                    this.nuevoLinkButton.Visible = false;
-                    this.eliminarLinkButton.Visible = false;
-                    this.editarLinkButton.Visible = false;
-                }
-            }
-            else
-            {
-                Response.Redirect("noInicioSesion.aspx");
+                this.nuevoLinkButton.Visible = false;
+                this.eliminarLinkButton.Visible = false;
+                this.editarLinkButton.Visible = false;
             }
         }
 
@@ -124,7 +90,7 @@ namespace UI.Web
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.HayPlanSeleccionado)
+            if (this.HayEntidadSeleccionada)
             {
                 this.HabilitarFormulario(true);
                 this.HabilitarBotones(true);
@@ -220,7 +186,7 @@ namespace UI.Web
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.HayPlanSeleccionado)
+            if (this.HayEntidadSeleccionada)
             {
                 this.formPanel.Visible = true;
                 this.ModoFormulario = ModosFormulario.Baja;

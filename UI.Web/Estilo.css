@@ -41,6 +41,63 @@ h5{
     text-align:center;
 }
 
+.noCorrespondeSeccion{
+    width: 900px;
+    font-weight:bolder;
+	margin: 0 auto;
+    background-color:yellow;
+	color: black;
+	margin-bottom: 100px;
+    text-align:center;
+}
+
+.tablas{
+    width: 900px;
+    font-weight:bolder;
+	margin: 0 auto;
+    background-color:lightblue;
+	color: black;
+	margin-bottom: 100px;
+    text-align:center;
+}
+
+#pnlMaterias{
+    text-align:center;
+    margin: 0 auto;
+}
+
+.error{
+    width: 900px;
+    font-weight:bolder;
+	margin: 0 auto;
+    background-color:darkgrey;
+	color: black;
+	margin-bottom: 100px;
+    text-align:center;
+}
+
 .usuarios{
     text-align:center;
+}
+
+.txtDerecha{
+    text-align: right;
+}
+
+.txtIzquierda{
+    text-align: left;
+}
+
+.botones{
+    font:status-bar;
+    font-weight:bold;
+}
+
+.etiquetas{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+gridView{
+    text-align: center;
+    margin: 0 auto;
 }

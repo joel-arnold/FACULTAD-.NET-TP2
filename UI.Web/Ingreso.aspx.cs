@@ -27,26 +27,26 @@ namespace UI.Web
         }
     }
     private bool IngresoCorrecto(string usuario, string clave)
+        {
+            LogicaUsuario lu = new LogicaUsuario();
+            Usuario usuarioActual = lu.existeUsuario(usuario, clave);
+            if (usuarioActual != null)
             {
-                LogicaUsuario lu = new LogicaUsuario();
-                Usuario usuarioActual = lu.existeUsuario(usuario, clave);
-                if (usuarioActual != null)
-                {
-                    Session["usuario"] = (string)usuarioActual.NombreUsuario;
-                    Session["nombre"] = (string)usuarioActual.Nombre;
-                    Session["apellido"] = (string)usuarioActual.Apellido;
-                    Session["privilegio"] = (string)usuarioActual.Privilegio;
-                    Session["id"] = (int)usuarioActual.ID;
-                    Session["habilitado"] = (bool)usuarioActual.Habilitado;
-                    Session["email"] = (string)usuarioActual.NombreUsuario;
+                Session["idUsuario"] = (int)usuarioActual.ID;
+                Session["usuario"] = (string)usuarioActual.NombreUsuario;
+                Session["nombre"] = (string)usuarioActual.Nombre;
+                Session["apellido"] = (string)usuarioActual.Apellido;
+                Session["email"] = (string)usuarioActual.NombreUsuario;
+                Session["idPersona"] = (int) new LogicaPersona().TraerUno(usuarioActual.ID).Tipo;
+                Session["privilegio"] = (string)usuarioActual.Privilegio;
 
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }    
+                return true;
             }
+            else
+            {
+                return false;
+            }    
+        }
 
     }
 }

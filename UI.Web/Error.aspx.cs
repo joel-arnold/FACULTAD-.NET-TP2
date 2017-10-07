@@ -7,14 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class ABM_InscMaterias : ABM
+    public partial class Error : ABM
     {
         protected override void CargarPagina()
         {
-            if (EsAdministrador)
-            {
-                
-            }
+            etiqError.Text = MensajeError;
+        }
+
+        protected void vuelveInicio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
         }
     }
 }
