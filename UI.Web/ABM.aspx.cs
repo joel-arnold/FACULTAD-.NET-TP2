@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using Entidades;
 
 namespace UI.Web
 {
@@ -71,16 +72,16 @@ namespace UI.Web
         {
             get
             {
-                if (Session["IDPersona"] != null)
+                if (Session["idPersona"] != null)
                 {
-                    return (int)Session["IDPersona"];
+                    return (int)Session["idPersona"];
                 }
                 else
                 {
                     return -1;
                 }
             }
-            set { Session["IDPersona"] = value; }
+            set { Session["idPersona"] = value; }
         }
 
         public bool UsuarioEstaLogueado
@@ -88,48 +89,74 @@ namespace UI.Web
             get { return IDUsuario != 0; }
         }
 
-        public bool EsAdministrador
+        public string MensajeError
         {
-            get { return IDPersona == 0; }
+            get
+            {
+                if (Session["MensajeError"] != null)
+                {
+                    return (string)Session["MensajeError"];
+                }
+                return null;
+            }
+            set { Session["MensajeError"] = value; }
         }
 
-        //public bool EsDocente
-        //{
-        //    get
-        //    {
-        //        if (!EsAdministrador)
-        //        {
-        //            try
-        //            {
-        //                return new LogicaPersona().TraerUno(IDPersona). == TiposPersonas.Tipos.Profesor;
-        //            }
-        //            catch (Exception Ex)
-        //            {
-        //                MensajeError = Ex.Message;
-        //                Response.Redirect("Error.aspx");
-        //            }
-        //        }
-        //        return false;
-        //    }
-        //}
+        public bool EsAdministrador
+        {
+            get
+            {
+                try
+                {
+                    return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Administrativo;
+                }
+                catch (Exception Ex)
+                {
+                    MensajeError = Ex.Message;
+                    Response.Redirect("Error.aspx");
+                }
+                return false;
+            }
+        }
 
-        //public bool EsAlumno
-        //{
-        //    get
-        //    {
-        //        if (!EsAdministrador)
-        //        {
-        //            try
-        //            {
-        //                return new PersonaLogic().GetOne(IDPersona).TipoPersona == TiposPersonas.Tipos.Alumno;
-        //            }
-        //            catch (Exception Ex)
-        //            {
-        //                Response.Redirect();
-        //            }
-        //        }
-        //        return false;
-        //    }
-        //}
+        public bool EsDocente
+        {
+            get
+            {
+                if (!EsAdministrador)
+                {
+                    try
+                    {
+                        return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Profesor;
+                    }
+                    catch (Exception Ex)
+                    {
+                        MensajeError = Ex.Message;
+                        Response.Redirect("Error.aspx");
+                    }
+                }
+                return false;
+            }
+        }
+
+        public bool EsAlumno
+        {
+            get
+            {
+                if (!EsAdministrador)
+                {
+                    try
+                    {
+                        return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Alumno;
+                    }
+                    catch (Exception Ex)
+                    {
+                        MensajeError = Ex.Message;
+                        Response.Redirect("Error.aspx");
+                    }
+                }
+                return false;
+            }
+        }
     }
 }

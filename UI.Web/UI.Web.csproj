@@ -59,7 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ABM-Inscipciones.aspx" />
+    <Content Include="ABM-Inscripciones.aspx" />
     <Content Include="ABM.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Ingreso.aspx" />
@@ -83,12 +83,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM-Inscipciones.aspx.cs">
-      <DependentUpon>ABM-Inscipciones.aspx</DependentUpon>
+    <Compile Include="ABM-Inscripciones.aspx.cs">
+      <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ABM-Inscipciones.aspx.designer.cs">
-      <DependentUpon>ABM-Inscipciones.aspx</DependentUpon>
+    <Compile Include="ABM-Inscripciones.aspx.designer.cs">
+      <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABM.aspx.cs">
       <DependentUpon>ABM.aspx</DependentUpon>

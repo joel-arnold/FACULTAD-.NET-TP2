@@ -1,16 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Inscipciones.aspx.cs" Inherits="UI.Web.ABM_InscMaterias" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Inscripciones.aspx.cs" Inherits="UI.Web.ABM_InscMaterias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="titulo2" style="width: 300px">
-        Inscripción de alumno a curso</div>
+    <h1>Inscripción de alumno a materias</h1>
     <div class="tablas">
-        <div class="tablas">
+        <div>
             <asp:Panel ID="pnlMaterias" runat="server">
                 Seleccione la materia a inscribir al alumno
                 <asp:Label ID="lblAlumno" runat="server"></asp:Label>
-                &nbsp;<asp:GridView ID="gvMaterias" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="El alumno no se puede inscribir a ninguna materia" >
+                <asp:GridView ID="gvMaterias" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="El alumno no se puede inscribir a ninguna materia" >
                     <Columns>
                         <asp:BoundField DataField="Descripcion" HeaderText="Materia" />
                         <asp:BoundField DataField="HSSemanales" HeaderText="Horas Semanales">
