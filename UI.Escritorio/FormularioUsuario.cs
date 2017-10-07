@@ -106,7 +106,8 @@ namespace UI.Escritorio
             UsuarioActual.Email = this.txtCorreoE.Text;
             UsuarioActual.NombreUsuario = this.txtUsuario.Text;
             UsuarioActual.Clave = this.txtClave.Text;
-            usuarioActual.Privilegio = this.txtPrivilegio.Text;
+            UsuarioActual.Privilegio = this.txtPrivilegio.Text;
+            UsuarioActual.IDPersona = Convert.ToInt32(cbbxPersona.SelectedValue);
         }
 
         public override void MapearDeDatos()
@@ -120,6 +121,7 @@ namespace UI.Escritorio
             this.txtClave.Text = this.UsuarioActual.Clave;
             this.txtConfirmarClave.Text = this.UsuarioActual.Clave;
             this.txtPrivilegio.Text = this.usuarioActual.Privilegio;
+            this.cbbxPersona.SelectedValue = this.usuarioActual.IDPersona;
 
             //Acá configuro el texto del botón aceptar según sea el modo con el que se llamó al formulario
             switch (Modo)
@@ -204,6 +206,13 @@ namespace UI.Escritorio
                 this.Close();
             }
                     
+        }
+
+        private void FormularioUsuario_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'tp2_netDataSet.personas' Puede moverla o quitarla según sea necesario.
+            this.personasTableAdapter.Fill(this.tp2_netDataSet.personas);
+
         }
     }
 }
