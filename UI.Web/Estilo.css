@@ -44,3 +44,20 @@ h5{
 .usuarios{
     text-align:center;
 }
+
+.txtDerecha{
+    text-align: right;
+}
+
+.txtIzquierda{
+    text-align: left;
+}
+
+.botones{
+    font:status-bar;
+    font-weight:bold;
+}
+
+.etiquetas{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

@@ -67,15 +67,6 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.LinkButton nuevoLinkButton;
         
         /// <summary>
-        /// Control formPanel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel formPanel;
-        
-        /// <summary>
         /// Control etiqIdInscripcion.
         /// </summary>
         /// <remarks>
@@ -94,49 +85,76 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox idTextBox;
         
         /// <summary>
-        /// Control nombre.
+        /// Control etiqAlumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nombre;
+        protected global::System.Web.UI.WebControls.Label etiqAlumno;
         
         /// <summary>
-        /// Control descripcionTextBox.
+        /// Control ddlAlumnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox descripcionTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAlumnos;
         
         /// <summary>
-        /// Control validadorDescripcion.
+        /// Control Label2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validadorDescripcion;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control etiqEspecialidad.
+        /// Control descripcionTextBox3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label etiqEspecialidad;
+        protected global::System.Web.UI.WebControls.TextBox descripcionTextBox3;
         
         /// <summary>
-        /// Control ddlEspecialidad.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// Control descripcionTextBox4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox descripcionTextBox4;
+        
+        /// <summary>
+        /// Control descripcionTextBox2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox descripcionTextBox2;
+        
+        /// <summary>
+        /// Control formPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel formPanel;
         
         /// <summary>
         /// Control formActionsPanel.
@@ -164,14 +182,5 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton cancelarLinkButton;
-        
-        /// <summary>
-        /// Control sumarioValidacione.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary sumarioValidacione;
     }
 }
