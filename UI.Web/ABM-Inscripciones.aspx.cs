@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class ABM_InscMaterias : System.Web.UI.Page
+    public partial class ABM_InscMaterias : ABM
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void CargarPagina()
         {
-
+            if (EsAdministrador)
+            {
+                
+            }
         }
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="Adaptador.cs" />
     <Compile Include="AdaptadorEspecialidad.cs" />
     <Compile Include="AdaptadorInscripcion.cs" />
+    <Compile Include="AdaptadorMateria.cs" />
     <Compile Include="AdaptadorPersona.cs" />
     <Compile Include="AdaptadorPlan.cs" />
     <Compile Include="AdaptadorUsuario.cs" />
