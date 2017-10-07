@@ -8,13 +8,13 @@ namespace Data.Database
 {
     public class Adaptador
     {
-        //private SqlConnection sqlConn = new SqlConnection("ConnectionString;");
 
         private SqlConnection sqlCon;
 
         //Clave por defecto a utlizar para la cadena de conexion
 
-        const string claveConexionPorDefecto = "ConnStringLocal";
+        //const string claveConexionPorDefecto = "ConnStringLocal";
+        const string claveConexionPorDefecto = "ConnStringExpress";
 
         public SqlConnection SqlCon
         {
