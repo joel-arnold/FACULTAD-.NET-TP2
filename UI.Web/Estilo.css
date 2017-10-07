@@ -41,6 +41,16 @@ h5{
     text-align:center;
 }
 
+.noCorrespondeSeccion{
+    width: 900px;
+    font-weight:bolder;
+	margin: 0 auto;
+    background-color:yellow;
+	color: black;
+	margin-bottom: 100px;
+    text-align:center;
+}
+
 .usuarios{
     text-align:center;
 }

@@ -12,6 +12,10 @@ namespace Entidades
         DateTime _FechaNacimiento;
         int _IDPlan, _Legajo;
 
+        public enum TipoPerona{
+
+        }
+
         public string Apellido { get { return _Apellido; } set { _Apellido = value; } }
         public string Direccion { get { return _Direccion; } set { _Direccion = value; } }
         public string Email { get { return _Email; } set { _Email = value; } }

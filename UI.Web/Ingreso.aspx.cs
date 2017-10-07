@@ -36,7 +36,7 @@ namespace UI.Web
                     Session["nombre"] = (string)usuarioActual.Nombre;
                     Session["apellido"] = (string)usuarioActual.Apellido;
                     Session["privilegio"] = (string)usuarioActual.Privilegio;
-                    Session["id"] = (int)usuarioActual.ID;
+                    Session["idUsuario"] = (int)usuarioActual.ID;
                     Session["habilitado"] = (bool)usuarioActual.Habilitado;
                     Session["email"] = (string)usuarioActual.NombreUsuario;
 

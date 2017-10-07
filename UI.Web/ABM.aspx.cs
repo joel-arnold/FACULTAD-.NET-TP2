@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace UI.Web
 {
@@ -24,47 +25,46 @@ namespace UI.Web
             }
         }
 
-        public EstadoFormulario.ModoForm FormMode
+        protected virtual void CargarPagina()
         {
-            get { return (EstadoFormulario.ModoForm)this.ViewState["FormMode"]; }
-            set { this.ViewState["FormMode"] = value; }
+            //Se implementa en cada página en particular con un override.
         }
 
-        protected int SelectedID
+        protected int IDSeleccionado
         {
             get
             {
-                if (ViewState["SelectedID"] != null)
+                if (ViewState["IDSeleccionado"] != null)
                 {
-                    return (int)ViewState["SelectedID"];
+                    return (int)ViewState["IDSeleccionado"];
                 }
                 else
                 {
                     return 0;
                 }
             }
-            set { ViewState["SelectedID"] = value; }
+            set { ViewState["IDSeleccionado"] = value; }
         }
 
-        protected bool IsEntitySelected
+        protected bool HayEntidadSeleccionada
         {
-            get { return SelectedID != 0; }
+            get { return IDSeleccionado != 0; }
         }
 
         protected int IDUsuario
         {
             get
             {
-                if (Session["IDUsuario"] != null)
+                if (Session["idUsuario"] != null)
                 {
-                    return (int)Session["IDUsuario"];
+                    return (int)Session["idUsuario"];
                 }
                 else
                 {
                     return 0;
                 }
             }
-            set { Session["IDUsuario"] = value; }
+            set { Session["idUsuario"] = value; }
         }
 
         protected int IDPersona
@@ -83,25 +83,9 @@ namespace UI.Web
             set { Session["IDPersona"] = value; }
         }
 
-        public bool EstaUsuarioLogueado
+        public bool UsuarioEstaLogueado
         {
             get { return IDUsuario != 0; }
-        }
-
-        public string NombreUsuario
-        {
-            get
-            {
-                if (Session["NombreUsuario"] != null)
-                {
-                    return Session["NombreUsuario"].ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-            set { Session["NombreUsuario"] = value; }
         }
 
         public bool EsAdministrador
@@ -109,70 +93,43 @@ namespace UI.Web
             get { return IDPersona == 0; }
         }
 
-        public bool EsDocente
-        {
-            get
-            {
-                if (!EsAdministrador)
-                {
-                    try
-                    {
-                        return new PersonaLogic().GetOne(IDPersona).TipoPersona == TiposPersonas.Tipos.Profesor;
-                    }
-                    catch (Exception Ex)
-                    {
-                        MensajeError = Ex.Message;
-                        Response.Redirect("Error.aspx");
-                    }
-                }
-                return false;
-            }
-        }
-
-        public bool EsAlumno
-        {
-            get
-            {
-                if (!EsAdministrador)
-                {
-                    try
-                    {
-                        return new PersonaLogic().GetOne(IDPersona).TipoPersona == TiposPersonas.Tipos.Alumno;
-                    }
-                    catch (Exception Ex)
-                    {
-                        MensajeError = Ex.Message;
-                        Response.Redirect("Error.aspx");
-                    }
-                }
-                return false;
-            }
-        }
-
-        public string MensajeError
-        {
-            get
-            {
-                if (Session["MensajeError"] != null)
-                {
-                    return (string)Session["MensajeError"];
-                }
-                return null;
-            }
-            set { Session["MensajeError"] = value; }
-        }
-
-        //public void Desloguear()
+        //public bool EsDocente
         //{
-        //    IDUsuario = 0;
-        //    IDPersona = -1;
-        //    NombreUsuario = null;
-        //    MensajeError = null;
+        //    get
+        //    {
+        //        if (!EsAdministrador)
+        //        {
+        //            try
+        //            {
+        //                return new LogicaPersona().TraerUno(IDPersona). == TiposPersonas.Tipos.Profesor;
+        //            }
+        //            catch (Exception Ex)
+        //            {
+        //                MensajeError = Ex.Message;
+        //                Response.Redirect("Error.aspx");
+        //            }
+        //        }
+        //        return false;
+        //    }
         //}
 
-        protected virtual void CargarPagina()
-        {
-
-        }
+        //public bool EsAlumno
+        //{
+        //    get
+        //    {
+        //        if (!EsAdministrador)
+        //        {
+        //            try
+        //            {
+        //                return new PersonaLogic().GetOne(IDPersona).TipoPersona == TiposPersonas.Tipos.Alumno;
+        //            }
+        //            catch (Exception Ex)
+        //            {
+        //                Response.Redirect();
+        //            }
+        //        }
+        //        return false;
+        //    }
+        //}
     }
 }

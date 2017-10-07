@@ -9,40 +9,22 @@ using Negocio;
 using Util;
 
 namespace UI.Web {
-    public partial class Usuarios : System.Web.UI.Page {
+    public partial class Usuarios : ABM {
+
+        protected override void CargarPagina()
+        {
+            CargarGrilla();
+            if ((string)Session["privilegio"] != "admin")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+        }
 
         LogicaUsuario _LogicaUsuario;
         private Usuario UsuarioActual
         {
             get;
             set;
-        }
-
-        private int IDSeleccionado
-        {
-            get
-            {
-                if (this.ViewState["IDSeleccionado"] != null)
-                {
-                    return (int)this.ViewState["IDSeleccionado"];
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            set
-            {
-                this.ViewState["IDSeleccionado"] = value;
-            }
-        }
-
-        private bool HayUsuarioSeleccionado
-        {
-            get
-            {
-                return (this.IDSeleccionado != 0);
-            }
         }
 
         public enum ModosFormulario
@@ -78,24 +60,6 @@ namespace UI.Web {
             this.gridView.SelectedIndex = 0;
         }
 
-        protected void Page_Load(object sender, EventArgs e) {
-            if (Session["usuario"] != null)
-            {
-                CargarGrilla();
-                if ((string)Session["privilegio"] != "admin")
-                {
-                    this.nuevoLinkButton.Visible = false;
-                    this.eliminarLinkButton.Visible = false;
-                    this.editarLinkButton.Visible = false;
-                }
-            }
-            else
-            {
-                Response.Redirect("noInicioSesion.aspx");
-            }
-            
-        }
-
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.IDSeleccionado = (int)this.gridView.SelectedValue;
@@ -113,7 +77,7 @@ namespace UI.Web {
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.HayUsuarioSeleccionado)
+            if (this.HayEntidadSeleccionada)
             {
                 this.HabilitarFormulario(true);
                 this.panelFormulario.Visible = true;
@@ -149,8 +113,6 @@ namespace UI.Web {
             this.repetirClaveTextBox.Visible = enable;
             this.repetirClaveLabel.Visible = enable;
         }
-
-
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
         {
@@ -205,7 +167,7 @@ namespace UI.Web {
 
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
-            if (this.HayUsuarioSeleccionado)
+            if (this.HayEntidadSeleccionada)
             {
                 this.panelFormulario.Visible = true;
                 this.ModoFormulario = ModosFormulario.Baja;

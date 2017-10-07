@@ -59,10 +59,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ABM-InscMaterias.aspx" />
-    <Content Include="ABM-Inscripciones.aspx" />
+    <Content Include="ABM-Inscipciones.aspx" />
     <Content Include="ABM.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Ingreso.aspx" />
+    <Content Include="noCorrespondeSeccion.aspx" />
     <Content Include="noInicioSesion.aspx" />
     <Content Include="ABM-Planes.aspx" />
     <Content Include="Site.Master" />
@@ -82,19 +83,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM-InscMaterias.aspx.cs">
-      <DependentUpon>ABM-InscMaterias.aspx</DependentUpon>
+    <Compile Include="ABM-Inscipciones.aspx.cs">
+      <DependentUpon>ABM-Inscipciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ABM-InscMaterias.aspx.designer.cs">
-      <DependentUpon>ABM-InscMaterias.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ABM-Inscripciones.aspx.cs">
-      <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ABM-Inscripciones.aspx.designer.cs">
-      <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
+    <Compile Include="ABM-Inscipciones.aspx.designer.cs">
+      <DependentUpon>ABM-Inscipciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABM.aspx.cs">
       <DependentUpon>ABM.aspx</DependentUpon>
@@ -110,6 +104,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -119,6 +120,13 @@
     </Compile>
     <Compile Include="Ingreso.aspx.designer.cs">
       <DependentUpon>Ingreso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="noCorrespondeSeccion.aspx.cs">
+      <DependentUpon>noCorrespondeSeccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="noCorrespondeSeccion.aspx.designer.cs">
+      <DependentUpon>noCorrespondeSeccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="noInicioSesion.aspx.cs">
       <DependentUpon>noInicioSesion.aspx</DependentUpon>

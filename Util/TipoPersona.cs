@@ -8,7 +8,8 @@ namespace Util
 {
     public static class TipoPersona
     {
-        public enum Tipo{
+        public enum Tipo
+        {
             Alumno,
             Docente,
             Administrador
