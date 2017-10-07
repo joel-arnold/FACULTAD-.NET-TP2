@@ -28,17 +28,18 @@ namespace Data.Database
                     usr.Apellido = (string)drUsuarios["apellido"];
                     usr.Email = (string)drUsuarios["email"];
                     usr.Privilegio = (string)drUsuarios["privilegio"];
+                    usr.IDPersona = (int)drUsuarios["id_persona"];
                     if (usr.Privilegio == null) usr.Privilegio = "invitado";
                                         
                     usuarios.Add(usr);
                 }
                 drUsuarios.Close();
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al recuperar lista de usuarios", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CerrarConexion();
@@ -64,6 +65,7 @@ namespace Data.Database
                     usuario.Nombre = (string)drUsuarios["nombre"];
                     usuario.Apellido = (string)drUsuarios["apellido"];
                     usuario.Email = (string)drUsuarios["email"];
+                    usuario.IDPersona = (int)drUsuarios["id_persona"];
                     usuario.Privilegio = (string)drUsuarios["privilegio"];
                 }
                 drUsuarios.Close();
@@ -106,7 +108,7 @@ namespace Data.Database
             {
                 this.AbrirConexion();
                 SqlCommand cmdActualizar = new SqlCommand(
-                    "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, " +
+                    "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, id_persona = @id_persona " +
                     "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email, privilegio = @privilegio " +
                     "WHERE id_usuario = @id", SqlCon);
 
@@ -116,6 +118,7 @@ namespace Data.Database
                 cmdActualizar.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdActualizar.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdActualizar.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
+                cmdActualizar.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.IDPersona;
                 cmdActualizar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
                 if (usuario.Privilegio != null)
                 {
@@ -145,8 +148,8 @@ namespace Data.Database
             {
                 this.AbrirConexion();
                 SqlCommand cmdAgregar = new SqlCommand(
-                    "insert into usuarios(nombre_usuario, clave, habilitado, nombre, apellido, email, privilegio) " +
-                    "values(@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email, @privilegio) " +
+                    "insert into usuarios(nombre_usuario, clave, habilitado, nombre, apellido, email, privilegio, id_persona) " +
+                    "values(@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email, @privilegio, @id_persona) " +
                     "select @@identity", SqlCon);
                                 
                 cmdAgregar.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
@@ -155,7 +158,8 @@ namespace Data.Database
                 cmdAgregar.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdAgregar.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdAgregar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
-                if(usuario.Privilegio != null)
+                cmdAgregar.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.IDPersona;
+                if (usuario.Privilegio != null)
                 {
                     cmdAgregar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = usuario.Privilegio;
                 }
@@ -199,6 +203,7 @@ namespace Data.Database
                     usuario.Nombre = (string)drUsuario["nombre"];
                     usuario.Apellido = (string)drUsuario["apellido"];
                     usuario.Email = (string)drUsuario["email"];
+                    usuario.IDPersona = (int)drUsuario["id_persona"];
                     usuario.Privilegio = (string)drUsuario["privilegio"];
                 }
                 else

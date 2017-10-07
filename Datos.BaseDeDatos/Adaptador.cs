@@ -13,8 +13,8 @@ namespace Data.Database
 
         //Clave por defecto a utlizar para la cadena de conexion
 
-        //const string claveConexionPorDefecto = "ConnStringLocal";
-        const string claveConexionPorDefecto = "ConnStringExpress";
+        const string claveConexionPorDefecto = "ConnStringLocal";
+        //const string claveConexionPorDefecto = "ConnStringExpress";
 
         public SqlConnection SqlCon
         {

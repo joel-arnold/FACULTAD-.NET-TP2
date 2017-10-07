@@ -52,6 +52,11 @@
     <asp:TextBox ID="nombreUsuarioTextBox" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="validadorUsuario" runat="server" ControlToValidate="nombreUsuarioTextBox" ErrorMessage="El nombre de usuario no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
+    <asp:Label ID="etiqPersona" runat="server" Text="Persona: "></asp:Label>
+    <asp:DropDownList ID="ddlPersonas" runat="server" DataSourceID="SqlDataSourcePersonas" DataTextField="apellido" DataValueField="id_persona">
+    </asp:DropDownList>
+    <asp:SqlDataSource ID="SqlDataSourcePersonas" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringLocal %>" SelectCommand="SELECT [id_persona], [apellido], [nombre] FROM [personas]"></asp:SqlDataSource>
+    <br />
     <asp:Label ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
     <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server" Width="157px"></asp:TextBox>
     <asp:CustomValidator ID="validadorTamanioClave" runat="server" ControlToValidate="claveTextBox" ErrorMessage="La clave debe contener al menos 8 caracteres" ForeColor="Red" OnServerValidate="validadorTamanioClave_ServerValidate" ValidationGroup="validaciones">*</asp:CustomValidator>

@@ -83,7 +83,6 @@ namespace UI.Web {
                 this.panelFormulario.Visible = true;
                 this.ModoFormulario = ModosFormulario.Modificacion;
                 this.CargarFormulario(this.IDSeleccionado);
-                Console.WriteLine(UsuarioActual.Apellido);
             }
         }
 
@@ -95,6 +94,7 @@ namespace UI.Web {
             usuario.NombreUsuario = this.nombreUsuarioTextBox.Text;
             usuario.Clave = this.claveTextBox.Text;
             usuario.Habilitado = this.habilitadoCheckBox.Checked;
+            usuario.IDPersona = Int32.Parse(ddlPersonas.SelectedValue);
         }
 
         private void Guardar(Usuario usuario)
