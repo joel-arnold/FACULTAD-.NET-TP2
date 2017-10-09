@@ -44,6 +44,11 @@ namespace Negocio
             return DatosMateria.TraerTodos();
         }
 
+        public List<Materia> TraerTodos(int idPlan)
+        {
+            return DatosMateria.TraerTodos(idPlan);
+        }
+
         public void Guardar(Materia materia)
         {
             if (materia.Estado == Entidad.Estados.Borrado)

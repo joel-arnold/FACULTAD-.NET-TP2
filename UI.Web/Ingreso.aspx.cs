@@ -29,6 +29,7 @@ namespace UI.Web
     private bool IngresoCorrecto(string usuario, string clave)
         {
             LogicaUsuario lu = new LogicaUsuario();
+            LogicaPersona lp = new LogicaPersona();
             Usuario usuarioActual = lu.existeUsuario(usuario, clave);
             if (usuarioActual != null)
             {
@@ -37,7 +38,7 @@ namespace UI.Web
                 Session["nombre"] = (string)usuarioActual.Nombre;
                 Session["apellido"] = (string)usuarioActual.Apellido;
                 Session["email"] = (string)usuarioActual.NombreUsuario;
-                Session["idPersona"] = (int) new LogicaPersona().TraerUno(usuarioActual.ID).Tipo;
+                Session["idPersona"] = (int)lp.TraerUno(usuarioActual.IDPersona).ID;
                 Session["privilegio"] = (string)usuarioActual.Privilegio;
 
                 return true;
