@@ -112,9 +112,7 @@ namespace UI.Web
         protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
             Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
-            List<Curso> cursos = new List<Curso>();
-            cursos = LogicaCurso.TraerTodosPorMateria(Materia.ID);
-            gvComisiones.DataSource = 
+            gvComisiones.DataSource = LogicaCurso.TraerComisiones(Materia.ID);
             gvComisiones.DataBind();
             pnlComision.Visible = true;
             lblMateria.Text = Materia.Descripcion;

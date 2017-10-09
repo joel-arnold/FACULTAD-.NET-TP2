@@ -39,9 +39,9 @@ namespace Negocio
             return DatosCurso.TraerTodos();
         }
 
-        public List<Curso> TraerTodosPorMateria(int idMateria)
+        public List<Comision> TraerComisiones(int idMateria)
         {
-            return DatosCurso.TraerTodos();
+            return DatosCurso.TraerComisiones(idMateria);
         }
 
         public void Guardar(Curso curso)

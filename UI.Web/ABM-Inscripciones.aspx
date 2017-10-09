@@ -23,8 +23,10 @@
                 </asp:GridView>
             </asp:Panel>
             <asp:Panel ID="pnlComision" runat="server" Width="400px" CssClass="etiquetas">
+                <br />
                 Seleccione la comisión a inscribirse de la materia
                 <asp:Label ID="lblMateria" runat="server" CssClass="etiquetas"></asp:Label>
+                <br />
                 &nbsp;<asp:GridView ID="gvComisiones" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="No hay comisiones disponibles" OnSelectedIndexChanged="gvComisiones_SelectedIndexChanged" >
                     <Columns>
                         <asp:BoundField DataField="Descripcion" HeaderText="Comisión" />

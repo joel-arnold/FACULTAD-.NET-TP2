@@ -42,27 +42,28 @@ namespace Data.Database
             return cursos;
         }
 
-        public List<Curso> TraerTodosPorMateria(int idMateria)
+        public List<Comision> TraerComisiones(int idMateria)
         {
-            List<Curso> cursos = new List<Curso>();
+            List<Comision> comisiones = new List<Comision>();
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdCursos = new SqlCommand("select * from cursos where id_materia = @id_materia", SqlCon);
-                cmdCursos.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
-                SqlDataReader drCursos = cmdCursos.ExecuteReader();
-                while (drCursos.Read())
+                SqlCommand cmdComisiones = new SqlCommand("SELECT co.id_comision, co.desc_comision " + 
+                                                        "FROM comisiones co " +
+                                                        "INNER JOIN cursos cu " +
+                                                        "ON co.id_comision = cu.id_comision " +
+                                                        "where cu.id_materia = @id_materia", SqlCon);
+                cmdComisiones.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
+                SqlDataReader drComisiones = cmdComisiones.ExecuteReader();
+                while (drComisiones.Read())
                 {
-                    Curso cu = new Curso();
-                    cu.ID = (int)drCursos["id_curso"];
-                    cu.IDMateria = (int)drCursos["id_materia"];
-                    cu.IDComision = (int)drCursos["id_comision"];
-                    cu.AnioCalendario = (int)drCursos["anio_calendario"];
-                    cu.Cupo = (int)drCursos["cupo"];
+                    Comision comision = new Comision();
+                    comision.ID = (int)drComisiones["id_comision"];
+                    comision.Descripcion = (string)drComisiones["desc_comision"];
 
-                    cursos.Add(cu);
+                    comisiones.Add(comision);
                 }
-                drCursos.Close();
+                drComisiones.Close();
             }
             catch (Exception Ex)
             {
@@ -73,7 +74,7 @@ namespace Data.Database
             {
                 this.CerrarConexion();
             }
-            return cursos;
+            return comisiones;
         }
 
         public Curso TraerUno(int ID)
