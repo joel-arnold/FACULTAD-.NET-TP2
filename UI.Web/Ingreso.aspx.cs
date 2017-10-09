@@ -23,12 +23,14 @@ namespace UI.Web
         Autenticado = IngresoCorrecto(Login1.UserName, Login1.Password);
         e.Authenticated = Autenticado; if (Autenticado)
         {
-            Response.Redirect("Default.aspx");
+                etiqNombre.Text = Session["idPersona"].ToString();
+                //Response.Redirect("Default.aspx");
         }
     }
     private bool IngresoCorrecto(string usuario, string clave)
         {
             LogicaUsuario lu = new LogicaUsuario();
+            LogicaPersona lp = new LogicaPersona();
             Usuario usuarioActual = lu.existeUsuario(usuario, clave);
             if (usuarioActual != null)
             {
@@ -37,7 +39,7 @@ namespace UI.Web
                 Session["nombre"] = (string)usuarioActual.Nombre;
                 Session["apellido"] = (string)usuarioActual.Apellido;
                 Session["email"] = (string)usuarioActual.NombreUsuario;
-                Session["idPersona"] = (int) new LogicaPersona().TraerUno(usuarioActual.ID).Tipo;
+                Session["idPersona"] = int.Parse(lp.TraerUno(usuarioActual.IDPersona).ID.ToString());
                 Session["privilegio"] = (string)usuarioActual.Privilegio;
 
                 return true;

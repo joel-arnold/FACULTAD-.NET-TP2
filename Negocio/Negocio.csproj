@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logica.cs" />
+    <Compile Include="LogicaAlumnoInscripciones.cs" />
+    <Compile Include="LogicaCurso.cs" />
     <Compile Include="LogicaEspecialidad.cs" />
     <Compile Include="LogicaMateria.cs" />
     <Compile Include="LogicaPersona.cs" />

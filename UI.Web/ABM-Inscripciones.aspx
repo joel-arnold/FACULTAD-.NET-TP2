@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Inscripciones.aspx.cs" Inherits="UI.Web.ABM_InscMaterias" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Inscripciones.aspx.cs" Inherits="UI.Web.ABM_Inscripciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
@@ -8,7 +8,7 @@
         <div class="tablas">
             <asp:Panel ID="pnlMaterias" runat="server" CssClass="etiquetas">
                 Seleccione la materia a inscribir al alumno
-                <asp:Label ID="lblAlumno" runat="server"></asp:Label>
+                <asp:Label ID="lblAlumno" runat="server" Text="alummno"></asp:Label>
                 <asp:GridView ID="gvMaterias" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="El alumno no se puede inscribir a ninguna materia" CssClass="etiquetas" >
                     <Columns>
                         <asp:BoundField DataField="Descripcion" HeaderText="Materia" />
@@ -21,6 +21,7 @@
                         <asp:CommandField ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
+                <asp:Label ID="etiqueta2" runat="server" Text="Persona aca"></asp:Label>
             </asp:Panel>
             <asp:Panel ID="pnlComision" runat="server" Width="400px" CssClass="etiquetas">
                 Seleccione la comisión a inscribirse de la materia

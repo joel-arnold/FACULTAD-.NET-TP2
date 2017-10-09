@@ -102,61 +102,61 @@ namespace UI.Web
             set { Session["MensajeError"] = value; }
         }
 
-        public bool EsAdministrador
-        {
-            get
-            {
-                try
-                {
-                    return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Administrativo;
-                }
-                catch (Exception Ex)
-                {
-                    MensajeError = Ex.Message;
-                    Response.Redirect("Error.aspx");
-                }
-                return false;
-            }
-        }
+        //public bool EsAdministrador
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Administrativo;
+        //        }
+        //        catch (Exception Ex)
+        //        {
+        //            MensajeError = Ex.Message;
+        //            Response.Redirect("Error.aspx");
+        //        }
+        //        return false;
+        //    }
+        //}
 
-        public bool EsDocente
-        {
-            get
-            {
-                if (!EsAdministrador)
-                {
-                    try
-                    {
-                        return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Profesor;
-                    }
-                    catch (Exception Ex)
-                    {
-                        MensajeError = Ex.Message;
-                        Response.Redirect("Error.aspx");
-                    }
-                }
-                return false;
-            }
-        }
+        //public bool EsDocente
+        //{
+        //    get
+        //    {
+        //        if (!EsAdministrador)
+        //        {
+        //            try
+        //            {
+        //                return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Profesor;
+        //            }
+        //            catch (Exception Ex)
+        //            {
+        //                MensajeError = Ex.Message;
+        //                Response.Redirect("Error.aspx");
+        //            }
+        //        }
+        //        return false;
+        //    }
+        //}
 
-        public bool EsAlumno
-        {
-            get
-            {
-                if (!EsAdministrador)
-                {
-                    try
-                    {
-                        return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Alumno;
-                    }
-                    catch (Exception Ex)
-                    {
-                        MensajeError = Ex.Message;
-                        Response.Redirect("Error.aspx");
-                    }
-                }
-                return false;
-            }
-        }
+        //public bool EsAlumno
+        //{
+        //    get
+        //    {
+        //        if (!EsAdministrador)
+        //        {
+        //            try
+        //            {
+        //                return new LogicaPersona().TraerUno(IDPersona).Tipo == Personas.TipoPersona.Alumno;
+        //            }
+        //            catch (Exception Ex)
+        //            {
+        //                MensajeError = Ex.Message;
+        //                Response.Redirect("Error.aspx");
+        //            }
+        //        }
+        //        return false;
+        //    }
+        //}
     }
 }

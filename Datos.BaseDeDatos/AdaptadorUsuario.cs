@@ -28,7 +28,14 @@ namespace Data.Database
                     usr.Apellido = (string)drUsuarios["apellido"];
                     usr.Email = (string)drUsuarios["email"];
                     usr.Privilegio = (string)drUsuarios["privilegio"];
-                    usr.IDPersona = (int)drUsuarios["id_persona"];
+                    if (drUsuarios["id_persona"] != DBNull.Value)
+                    {
+                        usr.IDPersona = (int)drUsuarios["id_persona"];
+                    }
+                    else
+                    {
+                        usr.IDPersona = 99;
+                    }
                     if (usr.Privilegio == null) usr.Privilegio = "invitado";
                                         
                     usuarios.Add(usr);
@@ -65,7 +72,14 @@ namespace Data.Database
                     usuario.Nombre = (string)drUsuarios["nombre"];
                     usuario.Apellido = (string)drUsuarios["apellido"];
                     usuario.Email = (string)drUsuarios["email"];
-                    usuario.IDPersona = (int)drUsuarios["id_persona"];
+                    if (drUsuarios["id_persona"] != DBNull.Value)
+                    {
+                        usuario.IDPersona = (int)drUsuarios["id_persona"];
+                    }
+                    else
+                    {
+                        usuario.IDPersona = 99;
+                    }
                     usuario.Privilegio = (string)drUsuarios["privilegio"];
                 }
                 drUsuarios.Close();
