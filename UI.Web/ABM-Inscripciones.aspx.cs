@@ -43,7 +43,7 @@ namespace UI.Web
         }
 
         private LogicaAlumnoInscripciones _LogicaInscripcion;
-        public LogicaAlumnoInscripciones InscripcionLogic
+        public LogicaAlumnoInscripciones LogicaInscripciones
         {
             get
             {
@@ -105,6 +105,7 @@ namespace UI.Web
             pnlComision.Visible = false;
             pnlMaterias.Visible = true;
             Alumno = LogicaAlumno.TraerUno((int)Session["idPersona"]);
+            GuardarAlumno();
             lblAlumno.Text = Alumno.Apellido + ", " + Alumno.Nombre;
             CargarGrillaMaterias();
         }
@@ -120,8 +121,14 @@ namespace UI.Web
 
         protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.pnlComision.Visible = true;
-            
+            Curso = LogicaCurso.TraerUno((int)gvComisiones.SelectedValue);
+            InscripcionAlumno = new AlumnoInscripciones();
+            InscripcionAlumno.Condicion = "Inscripto";
+            InscripcionAlumno.IDAlumno = IDSeleccionado;
+            InscripcionAlumno.IDCurso = Curso.ID;
+            LogicaInscripciones.Guardar(InscripcionAlumno);
+            pnlInscripcion.Visible = true;
+            lblInscripcion.Text = "Inscripción exitosa";
         }
 
         private void CargarGrillaMaterias()
@@ -129,6 +136,11 @@ namespace UI.Web
             this.gvMaterias.DataSource = this.LogicaMateria.TraerTodos(Alumno.IDPlan);
             this.gvMaterias.DataBind();
             this.gvMaterias.SelectedIndex = 0;
+        }
+
+        private void GuardarAlumno()
+        {
+            IDSeleccionado = Alumno.ID;
         }
     }
 }

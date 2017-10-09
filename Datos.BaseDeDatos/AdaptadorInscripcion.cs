@@ -141,7 +141,7 @@ namespace Data.Database
                 SqlCommand cmdInsertarInscripcion = new SqlCommand("INSERT INTO alumnos_inscripciones" +
                     "(id_alumno,id_curso, condicion) VALUES(@idAlumno, @idCurso, @condicion)", SqlCon);
                 cmdInsertarInscripcion.Parameters.Add("@idAlumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
-                cmdInsertarInscripcion.Parameters.Add("@idCurso", SqlDbType.VarChar, 50).Value = inscripcion.IDCurso;
+                cmdInsertarInscripcion.Parameters.Add("@idCurso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdInsertarInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
                 cmdInsertarInscripcion.ExecuteNonQuery();
                 SqlCommand cmdActualizarCupo = new SqlCommand("UPDATE cursos SET cupo = cupo - 1" +
@@ -149,19 +149,18 @@ namespace Data.Database
                 cmdActualizarCupo.Parameters.Add("@idCurso", SqlDbType.VarChar, 50).Value = inscripcion.IDCurso;
                 cmdActualizarCupo.ExecuteNonQuery();
             }
-
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al generar la inscripcion", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al generar la inscripcion", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 CerrarConexion();
             }
         }
 
-        public void Save(AlumnoInscripciones inscripcion)
+        public void Guardar(AlumnoInscripciones inscripcion)
         {
             switch (inscripcion.Estado)
             {
