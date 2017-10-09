@@ -104,6 +104,7 @@ namespace UI.Web
             }
             pnlComision.Visible = false;
             pnlMaterias.Visible = true;
+            pnlInscripcion.Visible = false;
             Alumno = LogicaAlumno.TraerUno((int)Session["idPersona"]);
             GuardarAlumno();
             lblAlumno.Text = Alumno.Apellido + ", " + Alumno.Nombre;
@@ -113,9 +114,10 @@ namespace UI.Web
         protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
             Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
-            gvComisiones.DataSource = LogicaCurso.TraerComisiones(Materia.ID);
+            gvComisiones.DataSource = LogicaCurso.TraerTodos(Materia.ID);
             gvComisiones.DataBind();
             pnlComision.Visible = true;
+            pnlInscripcion.Visible = false;
             lblMateria.Text = Materia.Descripcion;
         }
 
@@ -128,6 +130,8 @@ namespace UI.Web
             InscripcionAlumno.IDCurso = Curso.ID;
             LogicaInscripciones.Guardar(InscripcionAlumno);
             pnlInscripcion.Visible = true;
+            pnlComision.Visible = false;
+            pnlMaterias.Visible = false;
             lblInscripcion.Text = "Inscripción exitosa";
         }
 
@@ -141,6 +145,17 @@ namespace UI.Web
         private void GuardarAlumno()
         {
             IDSeleccionado = Alumno.ID;
+        }
+
+        protected void lbnInscribirseAOtraMateria_Click(object sender, EventArgs e)
+        {
+            pnlMaterias.Visible = true;
+            pnlInscripcion.Visible = false;
+        }
+
+        protected void lbnCancelarComisiones_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
         }
     }
 }

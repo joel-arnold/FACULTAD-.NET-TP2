@@ -29,16 +29,17 @@
                 <br />
                 &nbsp;<asp:GridView ID="gvComisiones" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="No hay comisiones disponibles" OnSelectedIndexChanged="gvComisiones_SelectedIndexChanged" >
                     <Columns>
-                        <asp:BoundField DataField="Descripcion" HeaderText="Comisión" />
+                        <asp:BoundField DataField="ID" HeaderText="Comisión" />
                         <asp:CommandField SelectText="Inscribir" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
-                <asp:LinkButton ID="lbnCancelarComisiones" runat="server" CssClass="botones" >Volver</asp:LinkButton>
             </asp:Panel>
             <asp:Panel ID="pnlInscripcion" runat="server" Width="200px">
                 <asp:Label ID="lblInscripcion" runat="server" CssClass="etiquetas"></asp:Label>
                 <br />
-                <asp:LinkButton ID="lbnInscribirseAOtraMateria" runat="server" CssClass="botones" >Inscribirse a otra materia</asp:LinkButton>
+                <asp:LinkButton ID="lbnInscribirseAOtraMateria" runat="server" CssClass="botones" OnClick="lbnInscribirseAOtraMateria_Click" >Inscribirse a otra materia</asp:LinkButton>
+                <br />
+                <asp:LinkButton ID="lbnCancelarComisiones" runat="server" CssClass="botones" OnClick="lbnCancelarComisiones_Click">Volver</asp:LinkButton>
             </asp:Panel>
         </div>
         <asp:ValidationSummary ID="vsAlumno" runat="server" style="margin-top: 0px" ValidationGroup="validacion" CssClass="etiquetas" />

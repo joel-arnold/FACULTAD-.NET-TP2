@@ -42,6 +42,40 @@ namespace Data.Database
             return cursos;
         }
 
+        public List<Curso> TraerTodos(int idMateria)
+        {
+            List<Curso> cursos = new List<Curso>();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdComisiones = new SqlCommand("SELECT * FROM cursos where id_materia = @id_materia", SqlCon);
+                cmdComisiones.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
+                SqlDataReader drCursos = cmdComisiones.ExecuteReader();
+                while (drCursos.Read())
+                {
+                    Curso curso = new Curso();
+                    curso.ID = (int)drCursos["id_curso"];
+                    curso.IDMateria = (int)drCursos["id_materia"];
+                    curso.IDComision = (int)drCursos["id_comision"];
+                    curso.AnioCalendario = (int)drCursos["anio_calendario"];
+                    curso.Cupo = (int)drCursos["cupo"];
+
+                    cursos.Add(curso);
+                }
+                drCursos.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar lista de cursos", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+            return cursos;
+        }
+
         public List<Comision> TraerComisiones(int idMateria)
         {
             List<Comision> comisiones = new List<Comision>();
