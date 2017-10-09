@@ -57,6 +57,12 @@
     <Compile Include="FormularioEspecialidad.Designer.cs">
       <DependentUpon>FormularioEspecialidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioInscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioInscripcion.Designer.cs">
+      <DependentUpon>FormularioInscripcion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +100,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>tp2_netDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="tp2_netDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tp2_netDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="tp2_netDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tp2_netDataSet2.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormularioAplicacion.resx">
       <DependentUpon>FormularioAplicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioEspecialidad.resx">
       <DependentUpon>FormularioEspecialidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioInscripcion.resx">
+      <DependentUpon>FormularioInscripcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioMenu.resx">
       <DependentUpon>FormularioMenu.cs</DependentUpon>
@@ -144,6 +163,28 @@
     </None>
     <None Include="tp2_netDataSet.xss">
       <DependentUpon>tp2_netDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="tp2_netDataSet1.xsc">
+      <DependentUpon>tp2_netDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="tp2_netDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>tp2_netDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="tp2_netDataSet1.xss">
+      <DependentUpon>tp2_netDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="tp2_netDataSet2.xsc">
+      <DependentUpon>tp2_netDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="tp2_netDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>tp2_netDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="tp2_netDataSet2.xss">
+      <DependentUpon>tp2_netDataSet2.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

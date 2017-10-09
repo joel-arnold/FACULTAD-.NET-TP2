@@ -33,6 +33,7 @@
             this.mnuABMCUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuABMCEspecialidad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuABMCPlanes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInscripcion = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +44,7 @@
             this.mnuAcciones});
             this.mnsPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnsPrincipal.Name = "mnsPrincipal";
-            this.mnsPrincipal.Size = new System.Drawing.Size(284, 24);
+            this.mnsPrincipal.Size = new System.Drawing.Size(1270, 24);
             this.mnsPrincipal.TabIndex = 1;
             this.mnsPrincipal.Text = "menuStrip1";
             // 
@@ -53,6 +54,7 @@
             this.mnuABMCUsuarios,
             this.mnuABMCEspecialidad,
             this.mnuABMCPlanes,
+            this.mnuInscripcion,
             this.mnuSalir});
             this.mnuAcciones.Name = "mnuAcciones";
             this.mnuAcciones.Size = new System.Drawing.Size(67, 20);
@@ -79,6 +81,13 @@
             this.mnuABMCPlanes.Text = "ABMC Planes";
             this.mnuABMCPlanes.Click += new System.EventHandler(this.mnuABMCPlanes_Click);
             // 
+            // mnuInscripcion
+            // 
+            this.mnuInscripcion.Name = "mnuInscripcion";
+            this.mnuInscripcion.Size = new System.Drawing.Size(176, 22);
+            this.mnuInscripcion.Text = "Inscripcion";
+            this.mnuInscripcion.Click += new System.EventHandler(this.mnuInscripcion_Click);
+            // 
             // mnuSalir
             // 
             this.mnuSalir.Name = "mnuSalir";
@@ -91,7 +100,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::UI.Escritorio.Properties.Resources.academia;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(1270, 461);
             this.Controls.Add(this.mnsPrincipal);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsPrincipal;
@@ -114,5 +123,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
         private System.Windows.Forms.ToolStripMenuItem mnuABMCEspecialidad;
         private System.Windows.Forms.ToolStripMenuItem mnuABMCPlanes;
+        private System.Windows.Forms.ToolStripMenuItem mnuInscripcion;
     }
 }

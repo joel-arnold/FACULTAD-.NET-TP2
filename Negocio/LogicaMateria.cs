@@ -10,33 +10,38 @@ namespace Negocio
 {
     public class LogicaMateria : Logica
     {
-        AdaptadorMateria _DatosEspecialidad;
+        AdaptadorMateria _DatosMateria;
 
-        public AdaptadorMateria DatosEspecialidad
+        public AdaptadorMateria DatosMateria
         {
             get
             {
-                return _DatosEspecialidad;
+                return _DatosMateria;
             }
             set
             {
-                _DatosEspecialidad = value;
+                _DatosMateria = value;
             }
         }
 
         public LogicaMateria()
         {
-            _DatosEspecialidad = new AdaptadorMateria();
+            _DatosMateria = new AdaptadorMateria();
         }
 
         public Materia TraerUno(int ID)
         {
-            return DatosEspecialidad.TraerUno(ID);
+            return DatosMateria.TraerUno(ID);
+        }
+
+        public List<Materia> TraerTodosPorIdPlan(int ID)
+        {
+            return DatosMateria.TraerTodosPorIdPlan(ID);
         }
 
         public List<Materia> TraerTodos()
         {
-            return DatosEspecialidad.TraerTodos();
+            return DatosMateria.TraerTodos();
         }
 
         public void Guardar(Materia materia)
@@ -57,17 +62,17 @@ namespace Negocio
 
         public void Borrar(int ID)
         {
-            DatosEspecialidad.Borrar(ID);
+            DatosMateria.Borrar(ID);
         }
 
         public void Agregar(Materia materia)
         {
-            DatosEspecialidad.Agregar(materia);
+            DatosMateria.Agregar(materia);
         }
 
         public void Actualizar(Materia materia)
         {
-            DatosEspecialidad.Actualizar(materia);
+            DatosMateria.Actualizar(materia);
         }
     }
 }

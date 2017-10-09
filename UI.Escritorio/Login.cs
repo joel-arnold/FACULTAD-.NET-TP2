@@ -14,6 +14,8 @@ namespace UI.Escritorio
 {
     public partial class FormularioLogin : Form
     {
+        public Usuario usr;
+
         public FormularioLogin()
         {
             InitializeComponent();
@@ -21,10 +23,10 @@ namespace UI.Escritorio
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario usr = existeUsuario(this.txtUsuario.Text, this.txtContraseña.Text);
+            usr = existeUsuario(this.txtUsuario.Text, this.txtContraseña.Text);
             if (usr != null)
             {
-                this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.OK;                
             }
             else
             {

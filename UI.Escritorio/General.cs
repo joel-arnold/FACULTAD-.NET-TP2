@@ -14,11 +14,13 @@ namespace UI.Escritorio
 {
     public partial class General : Form
     {
+        public Usuario usuarioActual;
 
-        public General(string Tipo)                                         //COMPLETO
+        public General(string Tipo, Usuario usuario)                                         
         {
             InitializeComponent();
             dgvUsuarios.AutoGenerateColumns = false;
+            this.usuarioActual = usuario;
             switch (Tipo)
             {
                 case "tUsuarios":
@@ -119,10 +121,54 @@ namespace UI.Escritorio
                     ecolDescripcion.DataPropertyName = "Descripcion";
                     ecolDescripcion.DisplayIndex = 1;
                     ecolDescripcion.Width = 150;
-                    dgvUsuarios.Columns.Add(ecolDescripcion);
+                    dgvUsuarios.Columns.Add(ecolDescripcion);                    
 
                     this.Text = "Especialidades";
                     Listar(Tipo);
+                    break;
+
+                case "tInscripciones":
+
+                    dgvUsuarios.Columns.Clear();
+                    DataGridViewTextBoxColumn icolId = new DataGridViewTextBoxColumn();
+                    icolId.Name = "Id";
+                    icolId.HeaderText = "ID";
+                    icolId.DataPropertyName = "ID";
+                    icolId.DisplayIndex = 0;
+                    icolId.Width = 30;
+                    dgvUsuarios.Columns.Add(icolId);
+                    DataGridViewTextBoxColumn icolIdAlumno = new DataGridViewTextBoxColumn();
+                    icolIdAlumno.Name = "IdAlumno";
+                    icolIdAlumno.HeaderText = "ID Alumno";
+                    icolIdAlumno.DataPropertyName = "IdAlumno";
+                    icolIdAlumno.DisplayIndex = 1;
+                    icolIdAlumno.Width = 70;
+                    dgvUsuarios.Columns.Add(icolIdAlumno);
+                    DataGridViewTextBoxColumn icolIdCurso = new DataGridViewTextBoxColumn();
+                    icolIdCurso.Name = "IdCurso";
+                    icolIdCurso.HeaderText = "ID Curso";
+                    icolIdCurso.DataPropertyName = "IdCurso";
+                    icolIdCurso.DisplayIndex = 2;
+                    icolIdCurso.Width = 70;
+                    dgvUsuarios.Columns.Add(icolIdCurso);
+                    //DataGridViewTextBoxColumn icolAnioCalendario = new DataGridViewTextBoxColumn();
+                    //icolAnioCalendario.Name = "AnioCalendario";
+                    //icolAnioCalendario.HeaderText = "Año Calendario";
+                    //icolAnioCalendario.DataPropertyName = "AnioCalendario";
+                    //icolAnioCalendario.DisplayIndex = 3;
+                    //icolAnioCalendario.Width = 70;
+                    //dgvUsuarios.Columns.Add(icolAnioCalendario);
+                    //DataGridViewTextBoxColumn icolCupo = new DataGridViewTextBoxColumn();
+                    //icolCupo.Name = "Cupo";
+                    //icolCupo.HeaderText = "Cupo";
+                    //icolCupo.DataPropertyName = "Cupo";
+                    //icolCupo.DisplayIndex = 4;
+                    //icolCupo.Width = 30;
+                    //dgvUsuarios.Columns.Add(icolCupo);
+
+                    this.Text = "Inscripciones";
+                    Listar(Tipo);
+                    this.usuarioActual = usuario;
                     break;
             }
         }
@@ -148,6 +194,10 @@ namespace UI.Escritorio
                     LogicaEspecialidad le = new LogicaEspecialidad();
                     dgvUsuarios.DataSource = le.TraerTodos();
                     break;
+                case "tInscripciones":
+                    LogicaInscripcion li = new LogicaInscripcion();
+                    dgvUsuarios.DataSource = li.TraerTodosPorIdPersona(this.usuarioActual.IDPersona);
+                    break;
             }
             /* LogicaUsuario ul = new LogicaUsuario();
              this.dgvUsuarios.DataSource = ul.TraerTodos();
@@ -171,6 +221,9 @@ namespace UI.Escritorio
                     break;
                 case "Especialidades":
                     Listar("tEspecialidades");
+                    break;
+                case "tInscripciones":
+                    Listar("tInscripciones");
                     break;
             }
         }
@@ -200,10 +253,15 @@ namespace UI.Escritorio
                     aBMespecialidad.ShowDialog();
                     Listar("tEspecialidades");
                     break;
+                case "Inscripciones":
+                    FormularioInscripcion aBMinscripcion = new FormularioInscripcion(FormularioAplicacion.ModosFormulario.Alta, this.usuarioActual);
+                    aBMinscripcion.ShowDialog();
+                    Listar("tInscripciones");
+                    break;
             }
         }
 
-        // ESTO CREA UNA GRILLA PARA MODIFICACIONES                         //COMPLETO
+        // ESTO CREA UNA GRILLA PARA MODIFICACIONES                         
         private void tsbEditar_Click(object sender, EventArgs e)
         {
             if(this.dgvUsuarios.SelectedRows.Count != 0)
@@ -228,11 +286,17 @@ namespace UI.Escritorio
                         aBMespecialidad.ShowDialog();
                         Listar("tEspecialidades");
                         break;
+                    case "Inscripciones":
+                        int iID = ((Entidades.AlumnoInscripciones)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioInscripcion aBMinscripcion = new FormularioInscripcion(FormularioAplicacion.ModosFormulario.Modificacion, this.usuarioActual);
+                        aBMinscripcion.ShowDialog();
+                        Listar("tInscripciones");
+                        break;
                 }
             }
         }
 
-        // ESTO CREA UNA GRILLA PARA BAJAS (BOTONCITO X)                    //COMPLETO
+        // ESTO CREA UNA GRILLA PARA BAJAS (BOTONCITO X)                    
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
           if (this.dgvUsuarios.SelectedRows.Count != 0)
@@ -256,6 +320,12 @@ namespace UI.Escritorio
                         FormularioEspecialidad aBMespecialidad = new FormularioEspecialidad(eID, FormularioAplicacion.ModosFormulario.Baja);
                         aBMespecialidad.ShowDialog();
                         Listar("tEspecialidades");
+                        break;
+                    case "Inscripciones":
+                        int iID = ((Entidades.AlumnoInscripciones)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        FormularioInscripcion aBMinscripcion = new FormularioInscripcion(FormularioAplicacion.ModosFormulario.Baja, this.usuarioActual);
+                        aBMinscripcion.ShowDialog();
+                        Listar("tInscripciones");
                         break;
                 }
 
