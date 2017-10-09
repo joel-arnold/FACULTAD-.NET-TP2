@@ -18,6 +18,12 @@ namespace UI.Web
             set;
         }
 
+        public Comision Comision
+        {
+            get;
+            set;
+        }
+
         public Materia Materia
         {
             get;
@@ -76,7 +82,7 @@ namespace UI.Web
         }
 
         private LogicaCurso _LogicaCurso;
-        public LogicaCurso CursoLogic
+        public LogicaCurso LogicaCurso
         {
             get
             {
@@ -98,12 +104,33 @@ namespace UI.Web
             }
             pnlComision.Visible = false;
             pnlMaterias.Visible = true;
-            Usuario usuario = new Usuario();
-            Personas persona = new Personas();
-            usuario = new LogicaUsuario().TraerUno(IDUsuario);
-            persona = LogicaAlumno.TraerUno(usuario.IDPersona);
-            lblAlumno.Text = IDPersona.ToString();
-            etiqueta2.Text = persona.Apellido;
+            Alumno = LogicaAlumno.TraerUno((int)Session["idPersona"]);
+            lblAlumno.Text = Alumno.Apellido + ", " + Alumno.Nombre;
+            CargarGrillaMaterias();
+        }
+
+        protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
+            List<Curso> cursos = new List<Curso>();
+            cursos = LogicaCurso.TraerTodosPorMateria(Materia.ID);
+            gvComisiones.DataSource = 
+            gvComisiones.DataBind();
+            pnlComision.Visible = true;
+            lblMateria.Text = Materia.Descripcion;
+        }
+
+        protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.pnlComision.Visible = true;
+            
+        }
+
+        private void CargarGrillaMaterias()
+        {
+            this.gvMaterias.DataSource = this.LogicaMateria.TraerTodos(Alumno.IDPlan);
+            this.gvMaterias.DataBind();
+            this.gvMaterias.SelectedIndex = 0;
         }
     }
 }

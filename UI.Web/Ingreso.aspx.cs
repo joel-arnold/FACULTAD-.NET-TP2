@@ -23,8 +23,7 @@ namespace UI.Web
         Autenticado = IngresoCorrecto(Login1.UserName, Login1.Password);
         e.Authenticated = Autenticado; if (Autenticado)
         {
-                etiqNombre.Text = Session["idPersona"].ToString();
-                //Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
     }
     private bool IngresoCorrecto(string usuario, string clave)
@@ -39,7 +38,7 @@ namespace UI.Web
                 Session["nombre"] = (string)usuarioActual.Nombre;
                 Session["apellido"] = (string)usuarioActual.Apellido;
                 Session["email"] = (string)usuarioActual.NombreUsuario;
-                Session["idPersona"] = int.Parse(lp.TraerUno(usuarioActual.IDPersona).ID.ToString());
+                Session["idPersona"] = (int)lp.TraerUno(usuarioActual.IDPersona).ID;
                 Session["privilegio"] = (string)usuarioActual.Privilegio;
 
                 return true;

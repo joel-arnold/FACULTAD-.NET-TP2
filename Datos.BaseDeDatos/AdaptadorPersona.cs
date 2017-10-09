@@ -65,34 +65,33 @@ namespace Data.Database
             Personas persona = new Personas();
             try
             {
-                Personas per = new Personas();
                 this.AbrirConexion();
                 SqlCommand cmdPersonas = new SqlCommand("select * from personas where id_persona = @id", SqlCon);
                 cmdPersonas.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
                 if (drPersonas.Read())
                 {
-                    per.ID = (int)drPersonas["id_persona"];
-                    per.Nombre = (string)drPersonas["nombre"];
-                    per.Apellido = (string)drPersonas["apellido"];
-                    per.Direccion = (string)drPersonas["direccion"];
-                    per.Email = (string)drPersonas["email"];
-                    per.Telefono = (string)drPersonas["telefono"];
-                    per.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
-                    per.Legajo = (int)drPersonas["legajo"];
+                    persona.ID = (int)drPersonas["id_persona"];
+                    persona.Nombre = (string)drPersonas["nombre"];
+                    persona.Apellido = (string)drPersonas["apellido"];
+                    persona.Direccion = (string)drPersonas["direccion"];
+                    persona.Email = (string)drPersonas["email"];
+                    persona.Telefono = (string)drPersonas["telefono"];
+                    persona.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
+                    persona.Legajo = (int)drPersonas["legajo"];
                     switch ((int)drPersonas["tipo_persona"])
                     {
                         case 1:
-                            per.Tipo = Personas.TipoPersona.Alumno;
+                            persona.Tipo = Personas.TipoPersona.Alumno;
                             break;
                         case 2:
-                            per.Tipo = Personas.TipoPersona.Profesor;
+                            persona.Tipo = Personas.TipoPersona.Profesor;
                             break;
                         case 3:
-                            per.Tipo = Personas.TipoPersona.Administrativo;
+                            persona.Tipo = Personas.TipoPersona.Administrativo;
                             break;
                     }
-                    per.IDPlan = (int)drPersonas["id_plan"];
+                    persona.IDPlan = (int)drPersonas["id_plan"];
                 }
                 drPersonas.Close();
             }
@@ -117,11 +116,11 @@ namespace Data.Database
                 cmdPersonas.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdPersonas.ExecuteNonQuery();
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al eliminar la persona", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al eliminar la persona", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CerrarConexion();
@@ -145,7 +144,14 @@ namespace Data.Database
                 cmdActualizar.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = persona.Direccion;
                 cmdActualizar.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = persona.Email;
                 cmdActualizar.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = persona.Telefono;
-                cmdActualizar.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = persona.FechaNacimiento;
+                if (persona.FechaNacimiento == null)
+                {
+                    cmdActualizar.Parameters.Add("@fecha_nac", SqlDbType.Date).Value = DateTime.Now;
+                }
+                else
+                {
+                    cmdActualizar.Parameters.Add("@fecha_nac", SqlDbType.Date).Value = persona.FechaNacimiento;
+                }
                 cmdActualizar.Parameters.Add("@legajo", SqlDbType.Int).Value = persona.Legajo;
                 int tipo = 0;
                 switch (persona.Tipo)
@@ -160,15 +166,16 @@ namespace Data.Database
                         tipo = 3;
                         break;
                 }
+                cmdActualizar.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = persona.Tipo;
                 cmdActualizar.Parameters.Add("@id_plan", SqlDbType.Int).Value = persona.IDPlan;
 
                 cmdActualizar.ExecuteNonQuery();
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al modificar datos de la persona", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al modificar datos de la persona", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CerrarConexion();

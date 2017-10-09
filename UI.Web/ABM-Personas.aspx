@@ -1,23 +1,21 @@
-﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Usuarios.aspx.cs" Inherits="UI.Web.Usuarios" %>
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABM-Personas.aspx.cs" Inherits="UI.Web.ABM_Personas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-    <asp:Panel ID="gridPanel" runat="server">
-        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="false"
+        <asp:Panel ID="gridPanel" runat="server">
+        <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False"
         SelectedRowStyle-BackColor="Green"
         SelectedRowStyle-ForeColor="White"
         DataKeyNames="ID" OnSelectedIndexChanged="gridView_SelectedIndexChanged">
         <Columns>
+            <asp:BoundField HeaderText="ID Persona" DataField="ID" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
             <asp:BoundField HeaderText="Email" DataField="Email" />
-            <%--<asp:BoundField HeaderText="ID Persona" DataField="IDPersona" />--%>
-            <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />
-            <asp:BoundField HeaderText="Habilitado" DataField="Habilitado" />
+            <asp:BoundField HeaderText="Tipo persona" DataField="Tipo" />
             <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
         </Columns>
+            <SelectedRowStyle BackColor="Green" ForeColor="White" />
     </asp:GridView>
     </asp:Panel>
     
@@ -46,26 +44,9 @@
     <asp:RegularExpressionValidator ID="validadorCorreoFormato" runat="server" ControlToValidate="emailTextBox" ErrorMessage="El correo electrónico ingresado es inválido." ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="validaciones">*</asp:RegularExpressionValidator>
     <asp:RequiredFieldValidator ID="validadorCorreoVacio" runat="server" ControlToValidate="emailTextBox" ErrorMessage="El correo eléctronico no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
     <br />
-    <asp:Label ID="habilitadoLabel" runat="server" Text="Habilitado: "></asp:Label>
-    <asp:CheckBox ID="habilitadoCheckBox" runat="server" />
+    <asp:Label ID="etiquetaDireccion" runat="server" Text="Dirección: "></asp:Label>
+    <asp:TextBox ID="direccionTextBox" runat="server"></asp:TextBox>
     <br />
-    <asp:Label ID="nombreUsuarioLabel" runat="server" Text="Usuario: "></asp:Label>
-    <asp:TextBox ID="nombreUsuarioTextBox" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="validadorUsuario" runat="server" ControlToValidate="nombreUsuarioTextBox" ErrorMessage="El nombre de usuario no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
-    <br />
-    <asp:Label ID="etiqPersona" runat="server" Text="Persona: "></asp:Label>
-    <asp:DropDownList ID="ddlPersonas" runat="server" DataSourceID="SqlDataSourcePersonas" DataTextField="apellido" DataValueField="id_persona">
-    </asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSourcePersonas" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringLocal %>" SelectCommand="SELECT [id_persona], [apellido], [nombre] FROM [personas]"></asp:SqlDataSource>
-    <br />
-    <asp:Label ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
-    <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server" Width="157px"></asp:TextBox>
-    <asp:CustomValidator ID="validadorTamanioClave" runat="server" ControlToValidate="claveTextBox" ErrorMessage="La clave debe contener al menos 8 caracteres" ForeColor="Red" OnServerValidate="validadorTamanioClave_ServerValidate" ValidationGroup="validaciones">*</asp:CustomValidator>
-    <asp:RequiredFieldValidator ID="validadorClaveVacia" runat="server" ControlToValidate="claveTextBox" ErrorMessage="La clave no puede estar en blanco." ForeColor="Red" ValidationGroup="validaciones">*</asp:RequiredFieldValidator>
-    <br />
-    <asp:Label ID="repetirClaveLabel" runat="server" Text="Repetir clave: "></asp:Label>
-    <asp:TextBox ID="repetirClaveTextBox" TextMode="Password" runat="server"></asp:TextBox>
-    <asp:CompareValidator ID="validadorClavesCoinciden" runat="server" ControlToCompare="repetirClaveTextBox" ControlToValidate="claveTextBox" ErrorMessage="Las claves ingresadas no coinciden." ForeColor="Red" ValidationGroup="validaciones">*</asp:CompareValidator>
     <br />
 <asp:Panel ID="formActionsPanel" runat="server">
     <asp:LinkButton ID="aceptarLinkButton" runat="server" ValidationGroup="validaciones" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>

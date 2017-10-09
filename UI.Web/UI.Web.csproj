@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ABM-Inscripciones.aspx" />
+    <Content Include="ABM-Personas.aspx" />
     <Content Include="ABM.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Ingreso.aspx" />
@@ -89,6 +90,13 @@
     </Compile>
     <Compile Include="ABM-Inscripciones.aspx.designer.cs">
       <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM-Personas.aspx.cs">
+      <DependentUpon>ABM-Personas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM-Personas.aspx.designer.cs">
+      <DependentUpon>ABM-Personas.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABM.aspx.cs">
       <DependentUpon>ABM.aspx</DependentUpon>

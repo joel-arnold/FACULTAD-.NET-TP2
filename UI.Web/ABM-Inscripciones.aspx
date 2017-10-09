@@ -9,7 +9,7 @@
             <asp:Panel ID="pnlMaterias" runat="server" CssClass="etiquetas">
                 Seleccione la materia a inscribir al alumno
                 <asp:Label ID="lblAlumno" runat="server" Text="alummno"></asp:Label>
-                <asp:GridView ID="gvMaterias" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="El alumno no se puede inscribir a ninguna materia" CssClass="etiquetas" >
+                <asp:GridView ID="gvMaterias" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="El alumno no se puede inscribir a ninguna materia" CssClass="etiquetas" OnSelectedIndexChanged="gvMaterias_SelectedIndexChanged" >
                     <Columns>
                         <asp:BoundField DataField="Descripcion" HeaderText="Materia" />
                         <asp:BoundField DataField="HSSemanales" HeaderText="Horas Semanales">
@@ -21,12 +21,11 @@
                         <asp:CommandField ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
-                <asp:Label ID="etiqueta2" runat="server" Text="Persona aca"></asp:Label>
             </asp:Panel>
             <asp:Panel ID="pnlComision" runat="server" Width="400px" CssClass="etiquetas">
                 Seleccione la comisión a inscribirse de la materia
                 <asp:Label ID="lblMateria" runat="server" CssClass="etiquetas"></asp:Label>
-                &nbsp;<asp:GridView ID="gvComisiones" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="No hay comisiones disponibles" >
+                &nbsp;<asp:GridView ID="gvComisiones" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="No hay comisiones disponibles" OnSelectedIndexChanged="gvComisiones_SelectedIndexChanged" >
                     <Columns>
                         <asp:BoundField DataField="Descripcion" HeaderText="Comisión" />
                         <asp:CommandField SelectText="Inscribir" ShowSelectButton="True" />

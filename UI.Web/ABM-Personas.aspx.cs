@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Entidades;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Entidades;
-using Negocio;
-using Util;
 
-namespace UI.Web {
-    public partial class Usuarios : ABM {
-
+namespace UI.Web
+{
+    public partial class ABM_Personas : ABM
+    {
         protected override void CargarPagina()
         {
             CargarGrilla();
@@ -20,8 +20,9 @@ namespace UI.Web {
             }
         }
 
-        LogicaUsuario _LogicaUsuario;
-        private Usuario UsuarioActual
+        LogicaPersona _LogicaPersona;
+        Personas personita = new Personas();
+        private Personas PersonaActual
         {
             get;
             set;
@@ -37,25 +38,25 @@ namespace UI.Web {
         public ModosFormulario ModoFormulario
         {
             get { return (ModosFormulario)this.ViewState["FormMode"]; }
-            set { this.ViewState["FormMode"]=value; }
+            set { this.ViewState["FormMode"] = value; }
         }
 
-        public LogicaUsuario LogicaUsuario
+        public LogicaPersona LogicaPersona
         {
             get
             {
-                if (_LogicaUsuario == null)
+                if (_LogicaPersona == null)
                 {
-                    _LogicaUsuario = new LogicaUsuario();
+                    _LogicaPersona = new LogicaPersona();
                 }
-                return _LogicaUsuario;
+                return _LogicaPersona;
             }
         }
 
 
         private void CargarGrilla()
         {
-            this.gridView.DataSource = this.LogicaUsuario.TraerTodos();
+            this.gridView.DataSource = this.LogicaPersona.TraerTodos();
             this.gridView.DataBind();
             this.gridView.SelectedIndex = 0;
         }
@@ -67,12 +68,11 @@ namespace UI.Web {
 
         private void CargarFormulario(int id)
         {
-            this.UsuarioActual = this.LogicaUsuario.TraerUno(id);
-            this.nombreTextBox.Text = this.UsuarioActual.Nombre;
-            this.apellidoTextBox.Text = this.UsuarioActual.Apellido;
-            this.emailTextBox.Text = this.UsuarioActual.Email;
-            this.habilitadoCheckBox.Checked = this.UsuarioActual.Habilitado;
-            this.nombreUsuarioTextBox.Text = this.UsuarioActual.NombreUsuario;
+            this.personita = this.LogicaPersona.TraerUno(id);
+            this.nombreTextBox.Text = this.personita.Nombre;
+            this.apellidoTextBox.Text = this.personita.Apellido;
+            this.emailTextBox.Text = this.personita.Email;
+            this.direccionTextBox.Text = this.personita.Direccion;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -86,20 +86,17 @@ namespace UI.Web {
             }
         }
 
-        private void MapearAUsuario(Usuario usuario)
+        private void MapearAPersona(Personas persona)
         {
-            usuario.Nombre = this.nombreTextBox.Text;
-            usuario.Apellido = this.apellidoTextBox.Text;
-            usuario.Email = this.emailTextBox.Text;
-            usuario.NombreUsuario = this.nombreUsuarioTextBox.Text;
-            usuario.Clave = this.claveTextBox.Text;
-            usuario.Habilitado = this.habilitadoCheckBox.Checked;
-            usuario.IDPersona = Int32.Parse(ddlPersonas.SelectedValue);
+            persona.Nombre = this.nombreTextBox.Text;
+            persona.Apellido = this.apellidoTextBox.Text;
+            persona.Email = this.emailTextBox.Text;
+            persona.Direccion = this.direccionTextBox.Text;
         }
 
-        private void Guardar(Usuario usuario)
+        private void Guardar(Personas persona)
         {
-            this.LogicaUsuario.Guardar(usuario);
+            this.LogicaPersona.Guardar(persona);
         }
 
         private void HabilitarFormulario(bool enable)
@@ -107,11 +104,7 @@ namespace UI.Web {
             this.nombreTextBox.Enabled = enable;
             this.apellidoTextBox.Enabled = enable;
             this.emailTextBox.Enabled = enable;
-            this.nombreUsuarioTextBox.Enabled = enable;
-            this.claveTextBox.Visible = enable;
-            this.claveLabel.Visible = enable;
-            this.repetirClaveTextBox.Visible = enable;
-            this.repetirClaveLabel.Visible = enable;
+            this.direccionTextBox.Enabled = enable;
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
@@ -130,11 +123,11 @@ namespace UI.Web {
                     {
                         if (Page.IsValid)
                         {
-                            this.UsuarioActual = new Usuario();
-                            this.UsuarioActual.ID = this.IDSeleccionado;
-                            this.UsuarioActual.Estado = Entidad.Estados.Modificado;
-                            this.MapearAUsuario(this.UsuarioActual);
-                            this.Guardar(this.UsuarioActual);
+                            this.PersonaActual = new Personas();
+                            this.PersonaActual.ID = this.IDSeleccionado;
+                            this.PersonaActual.Estado = Entidad.Estados.Modificado;
+                            this.MapearAPersona(this.PersonaActual);
+                            this.Guardar(this.PersonaActual);
                             this.CargarGrilla();
                             this.panelFormulario.Visible = false;
                             break;
@@ -143,15 +136,15 @@ namespace UI.Web {
                         {
                             break;
                         }
-                        
+
                     }
                 case ModosFormulario.Alta:
                     {
                         if (Page.IsValid)
                         {
-                            this.UsuarioActual = new Usuario();
-                            this.MapearAUsuario(this.UsuarioActual);
-                            this.Guardar(this.UsuarioActual);
+                            this.PersonaActual = new Personas();
+                            this.MapearAPersona(this.PersonaActual);
+                            this.Guardar(this.PersonaActual);
                             this.CargarGrilla();
                             this.panelFormulario.Visible = false;
                             break;
@@ -178,7 +171,7 @@ namespace UI.Web {
 
         private void BorrarUsuario(int id)
         {
-            this.LogicaUsuario.Borrar(id);
+            this.LogicaPersona.Borrar(id);
         }
 
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
@@ -194,8 +187,7 @@ namespace UI.Web {
             this.nombreTextBox.Text = string.Empty;
             this.apellidoTextBox.Text = string.Empty;
             this.emailTextBox.Text = string.Empty;
-            this.habilitadoCheckBox.Checked = false;
-            this.nombreUsuarioTextBox.Text = string.Empty;
+            this.direccionTextBox.Text = string.Empty;
         }
 
         protected void cancelarLinkButton_Click(object sender, EventArgs e)
@@ -203,12 +195,6 @@ namespace UI.Web {
             this.LimpiarFormulario();
             this.panelFormulario.Visible = false;
             this.CargarGrilla();
-        }
-
-        protected void validadorTamanioClave_ServerValidate(object source, ServerValidateEventArgs args) {
-            if (claveTextBox.Text.Trim().Length < 8) {
-                args.IsValid = false;
-            }
         }
     }
 }
