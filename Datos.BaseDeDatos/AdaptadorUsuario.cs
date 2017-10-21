@@ -143,7 +143,7 @@ namespace Data.Database
                     cmdActualizar.Parameters.Add("@privilegio", SqlDbType.VarChar, 20).Value = "invitado";
                 }
 
-                cmdActualizar.ExecuteNonQuery();
+               cmdActualizar.ExecuteNonQuery();
             }
             /*catch (Exception Ex)
             {

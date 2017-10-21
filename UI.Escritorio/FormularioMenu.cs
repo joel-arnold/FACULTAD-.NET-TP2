@@ -8,12 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
+using Negocio;
 
 namespace UI.Escritorio
 {
     public partial class FormularioMenu : Form
     {
         Usuario usuarioActual;
+        Personas personaActual;
+
+        //public Personas PersonaActual { get => personaActual; set => personaActual = value; }
 
         public FormularioMenu()
         {
@@ -34,9 +38,22 @@ namespace UI.Escritorio
             }
             else
             {
-                this.usuarioActual = appLogin.usr;
-                MessageBox.Show("Bienvenido usuario " + usuarioActual.NombreUsuario, "UTN FRRO",
-       MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                usuarioActual = appLogin.usr;
+                LogicaPersona lp = new LogicaPersona();
+                personaActual = lp.TraerUno(appLogin.usr.IDPersona);
+                MessageBox.Show("Bienvenido " + personaActual.Nombre + " " + personaActual.Apellido, "UTN FRRO",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                switch (personaActual.Tipo)
+                {
+                case Personas.TipoPersona.Administrativo:
+                    mnuInscripcion.Enabled = false;
+                    break;
+                case Personas.TipoPersona.Alumno:
+                    mnuABMCEspecialidad.Enabled = false;
+                    mnuABMCPlanes.Enabled = false;
+                    mnuABMCUsuarios.Enabled = false;
+                    break;
+                }
             }
 
         }

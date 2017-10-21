@@ -1,0 +1,2 @@
+validar que al ingresar si es usuario solo habilite Inscripciones en el menu
+corregir el modificar en usuarios, escritorio
