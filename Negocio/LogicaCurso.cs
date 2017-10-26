@@ -44,11 +44,6 @@ namespace Negocio
             return DatosCurso.TraerTodos(idMateria);
         }
 
-        public List<Comision> TraerComisiones(int idMateria)
-        {
-            return DatosCurso.TraerComisiones(idMateria);
-        }
-
         public void Guardar(Curso curso)
         {
             if (curso.Estado == Entidad.Estados.Borrado)

@@ -44,6 +44,11 @@ namespace Negocio
             return DatosComision.TraerTodos();
         }
 
+        public List<Comision> TraerComisiones(int idMateria, int anio)
+        {
+            return DatosComision.TraerComisiones(idMateria, anio);
+        }
+
         public void Guardar(Comision comision)
         {
             if (comision.Estado == Entidad.Estados.Borrado)

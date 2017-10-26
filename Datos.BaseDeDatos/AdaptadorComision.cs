@@ -77,23 +77,29 @@ namespace Data.Database
             return comisiones;
         }
 
-        public List<Comision> TraerTodosPorMateria(List<Curso> cursos)
+        public List<Comision> TraerComisiones(int idMateria, int anio)
         {
-            List<Comision> comision = new List<Comision>();
+            List<Comision> comisiones = new List<Comision>();
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdComision = new SqlCommand("select * from comisiones", SqlCon);
-                SqlDataReader drComisiones = cmdComision.ExecuteReader();
+                SqlCommand cmdComisiones = new SqlCommand("SELECT co.id_comision, co.desc_comision, co.anio_especialidad, co.id_plan " +
+                                                        "FROM comisiones co " +
+                                                        "INNER JOIN cursos cu " +
+                                                        "ON co.id_comision = cu.id_comision " +
+                                                        "where cu.id_materia = @id_materia and cu.anio_calendario=@anio", SqlCon);
+                cmdComisiones.Parameters.Add("@id_materia", SqlDbType.Int).Value = idMateria;
+                cmdComisiones.Parameters.Add("@anio", SqlDbType.Int).Value = anio;
+                SqlDataReader drComisiones = cmdComisiones.ExecuteReader();
                 while (drComisiones.Read())
                 {
-                    Comision com = new Comision();
-                    com.ID = (int)drComisiones["id_comision"];
-                    com.Descripcion = (string)drComisiones["desc_comision"];
-                    com.AnioEspecialidad = (int)drComisiones["anio_especialidad"];
-                    com.IDPlan = (int)drComisiones["id_plan"];
+                    Comision comision = new Comision();
+                    comision.ID = (int)drComisiones["id_comision"];
+                    comision.Descripcion = (string)drComisiones["desc_comision"];
+                    comision.AnioEspecialidad = (int)drComisiones["anio_especialidad"];
+                    comision.IDPlan = (int)drComisiones["id_plan"];
 
-                    comision.Add(com);
+                    comisiones.Add(comision);
                 }
                 drComisiones.Close();
             }
@@ -106,7 +112,7 @@ namespace Data.Database
             {
                 this.CerrarConexion();
             }
-            return comision;
+            return comisiones;
         }
 
         public Comision TraerUno(int ID)

@@ -94,6 +94,19 @@ namespace UI.Web
             }
         }
 
+        private LogicaComision _LogicaComision;
+        public LogicaComision LogicaComision
+        {
+            get
+            {
+                if (_LogicaComision == null)
+                {
+                    _LogicaComision = new LogicaComision();
+                }
+                return _LogicaComision;
+            }
+        }
+
         #endregion
 
         protected override void CargarPagina()
@@ -114,7 +127,7 @@ namespace UI.Web
         protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
             Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
-            gvComisiones.DataSource = LogicaCurso.TraerTodos(Materia.ID);
+            gvComisiones.DataSource = LogicaComision.TraerComisiones(Materia.ID, DateTime.Now.Year);
             gvComisiones.DataBind();
             pnlComision.Visible = true;
             pnlInscripcion.Visible = false;

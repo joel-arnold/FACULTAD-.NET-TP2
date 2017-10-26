@@ -29,7 +29,7 @@
                 <br />
                 &nbsp;<asp:GridView ID="gvComisiones" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="No hay comisiones disponibles" OnSelectedIndexChanged="gvComisiones_SelectedIndexChanged" >
                     <Columns>
-                        <asp:BoundField DataField="ID" HeaderText="Comisión" />
+                        <asp:BoundField DataField="Descripcion" HeaderText="Comisión" />
                         <asp:CommandField SelectText="Inscribir" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
