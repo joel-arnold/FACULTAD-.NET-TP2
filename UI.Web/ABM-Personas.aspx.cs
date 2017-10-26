@@ -69,10 +69,10 @@ namespace UI.Web
         private void CargarFormulario(int id)
         {
             this.personita = this.LogicaPersona.TraerUno(id);
-            this.nombreTextBox.Text = this.personita.Nombre;
-            this.apellidoTextBox.Text = this.personita.Apellido;
-            this.emailTextBox.Text = this.personita.Email;
-            this.direccionTextBox.Text = this.personita.Direccion;
+            this.txtNombre.Text = this.personita.Nombre;
+            this.txtApellido.Text = this.personita.Apellido;
+            this.txtCorreoE.Text = this.personita.Email;
+            this.txtDireccion.Text = this.personita.Direccion;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -88,10 +88,26 @@ namespace UI.Web
 
         private void MapearAPersona(Personas persona)
         {
-            persona.Nombre = this.nombreTextBox.Text;
-            persona.Apellido = this.apellidoTextBox.Text;
-            persona.Email = this.emailTextBox.Text;
-            persona.Direccion = this.direccionTextBox.Text;
+            persona.Nombre = this.txtNombre.Text;
+            persona.Apellido = this.txtApellido.Text;
+            persona.Email = this.txtCorreoE.Text;
+            persona.Direccion = this.txtDireccion.Text;
+            persona.Telefono = this.txtTelefono.Text;
+            persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+            persona.Legajo = Int32.Parse(txtLegajo.Text);
+            if(Convert.ToInt32(ddlTipoPersona.SelectedValue) == 1)
+            {
+                persona.Tipo = Personas.TipoPersona.Alumno;
+            }
+            else if(Convert.ToInt32(ddlTipoPersona.SelectedValue) == 2)
+            {
+                persona.Tipo = Personas.TipoPersona.Profesor;
+            }
+            else if (Convert.ToInt32(ddlTipoPersona.SelectedValue) == 3)
+            {
+                persona.Tipo = Personas.TipoPersona.Administrativo;
+            }
+            persona.IDPlan = Convert.ToInt32(ddlPlan.SelectedValue);
         }
 
         private void Guardar(Personas persona)
@@ -101,10 +117,15 @@ namespace UI.Web
 
         private void HabilitarFormulario(bool enable)
         {
-            this.nombreTextBox.Enabled = enable;
-            this.apellidoTextBox.Enabled = enable;
-            this.emailTextBox.Enabled = enable;
-            this.direccionTextBox.Enabled = enable;
+            this.txtNombre.Enabled = enable;
+            this.txtApellido.Enabled = enable;
+            this.txtCorreoE.Enabled = enable;
+            this.txtDireccion.Enabled = enable;
+            LogicaPlan lp = new LogicaPlan();
+            ddlPlan.DataSource = lp.TraerTodos();
+            ddlPlan.DataTextField = "Descripcion";
+            ddlPlan.DataValueField = "ID";
+            ddlPlan.DataBind();
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
@@ -184,10 +205,10 @@ namespace UI.Web
 
         private void LimpiarFormulario()
         {
-            this.nombreTextBox.Text = string.Empty;
-            this.apellidoTextBox.Text = string.Empty;
-            this.emailTextBox.Text = string.Empty;
-            this.direccionTextBox.Text = string.Empty;
+            this.txtNombre.Text = string.Empty;
+            this.txtApellido.Text = string.Empty;
+            this.txtCorreoE.Text = string.Empty;
+            this.txtDireccion.Text = string.Empty;
         }
 
         protected void cancelarLinkButton_Click(object sender, EventArgs e)

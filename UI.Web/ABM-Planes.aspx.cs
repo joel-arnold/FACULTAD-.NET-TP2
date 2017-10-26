@@ -78,6 +78,7 @@ namespace UI.Web
         protected void gridViewPlanes_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.IDSeleccionado = (int)this.gridViewPlanes.SelectedValue;
+            formPanel.Visible = false;
         }
 
         private void CargarFormulario(int id)

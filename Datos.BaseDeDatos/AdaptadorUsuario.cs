@@ -122,7 +122,7 @@ namespace Data.Database
             {
                 this.AbrirConexion();
                 SqlCommand cmdActualizar = new SqlCommand(
-                    "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, id_persona = @id_persona " +
+                    "update usuarios set nombre_usuario = @nombre_usuario, clave = @clave, id_persona = @id_persona, " +
                     "habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email, privilegio = @privilegio " +
                     "WHERE id_usuario = @id", SqlCon);
 

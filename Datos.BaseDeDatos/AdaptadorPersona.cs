@@ -212,17 +212,18 @@ namespace Data.Database
                         tipo = 3;
                         break;
                 }
+                cmdAgregar.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = tipo;
                 cmdAgregar.Parameters.Add("@id_plan", SqlDbType.Int).Value = persona.IDPlan;
 
                 //Obtengo el ID que asignó la BD automáticamente
                 persona.ID = Decimal.ToInt32((decimal)cmdAgregar.ExecuteScalar());
 
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al crear la persona", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al crear la persona", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 this.CerrarConexion();

@@ -63,6 +63,7 @@ namespace UI.Web {
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.IDSeleccionado = (int)this.gridView.SelectedValue;
+            panelFormulario.Visible = false;
         }
 
         private void CargarFormulario(int id)
