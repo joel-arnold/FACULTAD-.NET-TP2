@@ -135,7 +135,7 @@ namespace UI.Escritorio
                     icolId.HeaderText = "ID";
                     icolId.DataPropertyName = "ID";
                     icolId.DisplayIndex = 0;
-                    icolId.Width = 30;
+                    icolId.Width = 50;
                     dgvUsuarios.Columns.Add(icolId);
                     DataGridViewTextBoxColumn icolIdAlumno = new DataGridViewTextBoxColumn();
                     icolIdAlumno.Name = "IdAlumno";
@@ -169,6 +169,7 @@ namespace UI.Escritorio
                     this.Text = "Inscripciones";
                     Listar(Tipo);
                     this.usuarioActual = usuario;
+                    tsbEditar.Enabled = false;
                     break;
             }
         }
@@ -199,14 +200,6 @@ namespace UI.Escritorio
                     dgvUsuarios.DataSource = li.TraerTodosPorIdPersona(this.usuarioActual.IDPersona);
                     break;
             }
-            /* LogicaUsuario ul = new LogicaUsuario();
-             this.dgvUsuarios.DataSource = ul.TraerTodos();
-             this.dgvUsuarios.ReadOnly = true;
-             //dgvUsuarios.Columns["Estado"].Visible = false;
-             //dgvUsuarios.Columns["Privilegio"].Visible = false;
-             this.dgvUsuarios.AutoGenerateColumns = false;
-             this.dgvUsuarios.AllowUserToAddRows = false;
-             this.dgvUsuarios.AllowUserToDeleteRows = false;*/
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)        //COMPLETO
@@ -288,7 +281,7 @@ namespace UI.Escritorio
                         break;
                     case "Inscripciones":
                         int iID = ((Entidades.AlumnoInscripciones)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                        FormularioInscripcion aBMinscripcion = new FormularioInscripcion(FormularioAplicacion.ModosFormulario.Modificacion, this.usuarioActual);
+                        FormularioInscripcion aBMinscripcion = new FormularioInscripcion(iID, FormularioAplicacion.ModosFormulario.Modificacion, this.usuarioActual);
                         aBMinscripcion.ShowDialog();
                         Listar("tInscripciones");
                         break;
@@ -323,7 +316,7 @@ namespace UI.Escritorio
                         break;
                     case "Inscripciones":
                         int iID = ((Entidades.AlumnoInscripciones)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                        FormularioInscripcion aBMinscripcion = new FormularioInscripcion(FormularioAplicacion.ModosFormulario.Baja, this.usuarioActual);
+                        FormularioInscripcion aBMinscripcion = new FormularioInscripcion(iID, FormularioAplicacion.ModosFormulario.Baja, this.usuarioActual);
                         aBMinscripcion.ShowDialog();
                         Listar("tInscripciones");
                         break;
