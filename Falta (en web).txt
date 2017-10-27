@@ -1,8 +1,7 @@
 FALTA (Web):
 ***********
--Ver el tema de la eliminación de personas-usuarios (en ambas direcciones)
--Mejorar pagina de inscripciones (¿agregar inscripciones ya realizadas?).
--Validación de usuarios sin usar la columna "Privilegio" sino el tipo de usuario de la tabla "Modulo_usuarios".
 -Cargar notas (acceso exclusivo docentes)
 -Resto de los ABM's.
 -Reportes
+-Mejorar pagina de inscripciones (¿agregar inscripciones ya realizadas?).
+-Validación de usuarios sin usar la columna "Privilegio" sino el tipo de usuario de la tabla "Modulo_usuarios".

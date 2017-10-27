@@ -112,7 +112,10 @@ namespace Data.Database
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdPersonas = new SqlCommand("delete personas where id_persona = @id", SqlCon);
+                SqlCommand cmdPersonas = new SqlCommand("" +
+                    "delete alumnos_inscripciones where id_alumno = @id; " +
+                    "delete usuarios where id_persona = @id; " +
+                    "delete personas where id_persona = @id;", SqlCon);
                 cmdPersonas.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdPersonas.ExecuteNonQuery();
             }
