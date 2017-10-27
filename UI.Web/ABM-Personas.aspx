@@ -19,8 +19,12 @@
             <asp:BoundField HeaderText="ID Persona" DataField="ID" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-            <asp:BoundField HeaderText="Email" DataField="Email" />
-            <asp:BoundField HeaderText="Tipo persona" DataField="Tipo" />
+            <asp:BoundField HeaderText="Dirección" DataField="Direccion" />
+            <asp:BoundField HeaderText="Correo electrónico" DataField="Email" />
+            <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
+            <asp:BoundField HeaderText="Fecha de nacimiento" DataField="FechaNacimiento" DataFormatString="{0:d}" />
+            <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
+            <asp:BoundField HeaderText="Tipo de persona" DataField="Tipo" />
             <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
         </Columns>
             <SelectedRowStyle BackColor="Green" ForeColor="White" />
@@ -88,7 +92,7 @@
                 <asp:Label ID="etiqFechaNac" runat="server" Text="Fecha de Nacimiento:"></asp:Label>
             </td>
             <td class="auto-style9" style="text-align: left">
-                <asp:TextBox ID="txtFechaNacimiento" runat="server" TextMode="DateTimeLocal"></asp:TextBox>
+                <asp:TextBox ID="txtFechaNacimiento" runat="server" TextMode="Date" ></asp:TextBox>
             </td>
         </tr>
         <tr>

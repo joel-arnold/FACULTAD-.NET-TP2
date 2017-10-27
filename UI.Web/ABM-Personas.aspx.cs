@@ -195,7 +195,7 @@ namespace UI.Web
             this.txtCorreoE.Text = this.personita.Email;
             this.txtDireccion.Text = this.personita.Direccion;
             this.txtTelefono.Text = this.personita.Telefono;
-            this.txtFechaNacimiento.Text = this.personita.FechaNacimiento.ToString();
+            this.txtFechaNacimiento.Text = this.personita.FechaNacimiento.ToString("dd/MM/yyyy");
             this.txtLegajo.Text = this.personita.Legajo.ToString();
             switch (personita.Tipo)
             {
@@ -211,19 +211,24 @@ namespace UI.Web
                 default: this.ddlTipoPersona.SelectedIndex = 0;
                     break;
             }
-            this.ddlPlan.SelectedValue = LogicaPlan.TraerUno(personita.IDPlan).Descripcion;
+            this.ddlPlan.SelectedValue = Convert.ToString(LogicaPlan.TraerUno(personita.IDPlan).ID);
         }
 
         private void HabilitarFormulario(bool enable)
         {
-            this.txtNombre.Enabled = enable;
-            this.txtApellido.Enabled = enable;
-            this.txtCorreoE.Enabled = enable;
-            this.txtDireccion.Enabled = enable;
+            txtNombre.Enabled = enable;
+            txtApellido.Enabled = enable;
+            txtCorreoE.Enabled = enable;
+            txtDireccion.Enabled = enable;
+            txtTelefono.Enabled = enable;
+            txtFechaNacimiento.Enabled = enable;
+            txtLegajo.Enabled = enable;
+            ddlPlan.Enabled = enable;
+            ddlTipoPersona.Enabled = enable;
             LogicaPlan lp = new LogicaPlan();
             ddlPlan.DataSource = lp.TraerTodos();
             ddlPlan.DataTextField = "Descripcion";
-            ddlPlan.DataValueField = "Descripcion";
+            ddlPlan.DataValueField = "ID";
             ddlPlan.DataBind();
             ddlPlan.SelectedIndex = 0;
             ddlTipoPersona.SelectedIndex = 0;
@@ -238,7 +243,7 @@ namespace UI.Web
             this.txtTelefono.Text = string.Empty;
             this.txtFechaNacimiento.Text = string.Empty;
             this.txtLegajo.Text = string.Empty;
-            this.ddlTipoPersona.SelectedIndex = 0;
+            this.ddlTipoPersona.SelectedIndex = -1;
         }
 
         private void CargarGrilla()
