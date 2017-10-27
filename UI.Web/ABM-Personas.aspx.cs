@@ -20,7 +20,8 @@ namespace UI.Web
             }
         }
 
-        LogicaPersona _LogicaPersona;
+        #region Atributos y Propiedades
+
         Personas personita = new Personas();
         private Personas PersonaActual
         {
@@ -41,6 +42,7 @@ namespace UI.Web
             set { this.ViewState["FormMode"] = value; }
         }
 
+        LogicaPersona _LogicaPersona;
         public LogicaPersona LogicaPersona
         {
             get
@@ -53,26 +55,24 @@ namespace UI.Web
             }
         }
 
-
-        private void CargarGrilla()
+        LogicaPlan _LogicaPlan;
+        public LogicaPlan LogicaPlan
         {
-            this.gridView.DataSource = this.LogicaPersona.TraerTodos();
-            this.gridView.DataBind();
-            this.gridView.SelectedIndex = 0;
+            get
+            {
+                if (_LogicaPlan == null)
+                {
+                    _LogicaPlan = new LogicaPlan();
+                }
+                return _LogicaPlan;
+            }
         }
+        #endregion
 
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.IDSeleccionado = (int)this.gridView.SelectedValue;
-        }
-
-        private void CargarFormulario(int id)
-        {
-            this.personita = this.LogicaPersona.TraerUno(id);
-            this.txtNombre.Text = this.personita.Nombre;
-            this.txtApellido.Text = this.personita.Apellido;
-            this.txtCorreoE.Text = this.personita.Email;
-            this.txtDireccion.Text = this.personita.Direccion;
+            panelFormulario.Visible = false;
         }
 
         protected void editarLinkButton_Click(object sender, EventArgs e)
@@ -84,48 +84,6 @@ namespace UI.Web
                 this.ModoFormulario = ModosFormulario.Modificacion;
                 this.CargarFormulario(this.IDSeleccionado);
             }
-        }
-
-        private void MapearAPersona(Personas persona)
-        {
-            persona.Nombre = this.txtNombre.Text;
-            persona.Apellido = this.txtApellido.Text;
-            persona.Email = this.txtCorreoE.Text;
-            persona.Direccion = this.txtDireccion.Text;
-            persona.Telefono = this.txtTelefono.Text;
-            persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-            persona.Legajo = Int32.Parse(txtLegajo.Text);
-            if(Convert.ToInt32(ddlTipoPersona.SelectedValue) == 1)
-            {
-                persona.Tipo = Personas.TipoPersona.Alumno;
-            }
-            else if(Convert.ToInt32(ddlTipoPersona.SelectedValue) == 2)
-            {
-                persona.Tipo = Personas.TipoPersona.Profesor;
-            }
-            else if (Convert.ToInt32(ddlTipoPersona.SelectedValue) == 3)
-            {
-                persona.Tipo = Personas.TipoPersona.Administrativo;
-            }
-            persona.IDPlan = Convert.ToInt32(ddlPlan.SelectedValue);
-        }
-
-        private void Guardar(Personas persona)
-        {
-            this.LogicaPersona.Guardar(persona);
-        }
-
-        private void HabilitarFormulario(bool enable)
-        {
-            this.txtNombre.Enabled = enable;
-            this.txtApellido.Enabled = enable;
-            this.txtCorreoE.Enabled = enable;
-            this.txtDireccion.Enabled = enable;
-            LogicaPlan lp = new LogicaPlan();
-            ddlPlan.DataSource = lp.TraerTodos();
-            ddlPlan.DataTextField = "Descripcion";
-            ddlPlan.DataValueField = "ID";
-            ddlPlan.DataBind();
         }
 
         protected void aceptarLinkButton_Click(object sender, EventArgs e)
@@ -179,6 +137,13 @@ namespace UI.Web
             }
         }
 
+        protected void cancelarLinkButton_Click(object sender, EventArgs e)
+        {
+            this.LimpiarFormulario();
+            this.panelFormulario.Visible = false;
+            this.CargarGrilla();
+        }
+
         protected void eliminarLinkButton_Click(object sender, EventArgs e)
         {
             if (this.HayEntidadSeleccionada)
@@ -190,11 +155,6 @@ namespace UI.Web
             }
         }
 
-        private void BorrarUsuario(int id)
-        {
-            this.LogicaPersona.Borrar(id);
-        }
-
         protected void nuevoLinkButton_Click(object sender, EventArgs e)
         {
             this.panelFormulario.Visible = true;
@@ -203,19 +163,99 @@ namespace UI.Web
             this.HabilitarFormulario(true);
         }
 
+        private void MapearAPersona(Personas persona)
+        {
+            persona.Nombre = this.txtNombre.Text;
+            persona.Apellido = this.txtApellido.Text;
+            persona.Email = this.txtCorreoE.Text;
+            persona.Direccion = this.txtDireccion.Text;
+            persona.Telefono = this.txtTelefono.Text;
+            persona.FechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+            persona.Legajo = Int32.Parse(txtLegajo.Text);
+            if (Convert.ToInt32(ddlTipoPersona.SelectedValue) == 1)
+            {
+                persona.Tipo = Personas.TipoPersona.Alumno;
+            }
+            else if (Convert.ToInt32(ddlTipoPersona.SelectedValue) == 2)
+            {
+                persona.Tipo = Personas.TipoPersona.Profesor;
+            }
+            else if (Convert.ToInt32(ddlTipoPersona.SelectedValue) == 3)
+            {
+                persona.Tipo = Personas.TipoPersona.Administrativo;
+            }
+            persona.IDPlan = Convert.ToInt32(ddlPlan.SelectedValue);
+        }
+
+        private void CargarFormulario(int id)
+        {
+            this.personita = this.LogicaPersona.TraerUno(id);
+            this.txtNombre.Text = this.personita.Nombre;
+            this.txtApellido.Text = this.personita.Apellido;
+            this.txtCorreoE.Text = this.personita.Email;
+            this.txtDireccion.Text = this.personita.Direccion;
+            this.txtTelefono.Text = this.personita.Telefono;
+            this.txtFechaNacimiento.Text = this.personita.FechaNacimiento.ToString();
+            this.txtLegajo.Text = this.personita.Legajo.ToString();
+            switch (personita.Tipo)
+            {
+                case Personas.TipoPersona.Alumno:
+                    this.ddlTipoPersona.SelectedIndex = 0;
+                    break;
+                case Personas.TipoPersona.Profesor:
+                    this.ddlTipoPersona.SelectedIndex = 1;
+                    break;
+                case Personas.TipoPersona.Administrativo:
+                    this.ddlTipoPersona.SelectedIndex = 2;
+                    break;
+                default: this.ddlTipoPersona.SelectedIndex = 0;
+                    break;
+            }
+            this.ddlPlan.SelectedValue = LogicaPlan.TraerUno(personita.IDPlan).Descripcion;
+        }
+
+        private void HabilitarFormulario(bool enable)
+        {
+            this.txtNombre.Enabled = enable;
+            this.txtApellido.Enabled = enable;
+            this.txtCorreoE.Enabled = enable;
+            this.txtDireccion.Enabled = enable;
+            LogicaPlan lp = new LogicaPlan();
+            ddlPlan.DataSource = lp.TraerTodos();
+            ddlPlan.DataTextField = "Descripcion";
+            ddlPlan.DataValueField = "Descripcion";
+            ddlPlan.DataBind();
+            ddlPlan.SelectedIndex = 0;
+            ddlTipoPersona.SelectedIndex = 0;
+        }
+
         private void LimpiarFormulario()
         {
             this.txtNombre.Text = string.Empty;
             this.txtApellido.Text = string.Empty;
             this.txtCorreoE.Text = string.Empty;
             this.txtDireccion.Text = string.Empty;
+            this.txtTelefono.Text = string.Empty;
+            this.txtFechaNacimiento.Text = string.Empty;
+            this.txtLegajo.Text = string.Empty;
+            this.ddlTipoPersona.SelectedIndex = 0;
         }
 
-        protected void cancelarLinkButton_Click(object sender, EventArgs e)
+        private void CargarGrilla()
         {
-            this.LimpiarFormulario();
-            this.panelFormulario.Visible = false;
-            this.CargarGrilla();
+            this.gridView.DataSource = this.LogicaPersona.TraerTodos();
+            this.gridView.DataBind();
+            this.gridView.SelectedIndex = 0;
+        }
+
+        private void Guardar(Personas persona)
+        {
+            this.LogicaPersona.Guardar(persona);
+        }
+
+        private void BorrarUsuario(int id)
+        {
+            this.LogicaPersona.Borrar(id);
         }
     }
 }

@@ -25,9 +25,8 @@
         </Columns>
             <SelectedRowStyle BackColor="Green" ForeColor="White" />
     </asp:GridView>
-    </asp:Panel>
-    
-    
+    </asp:Panel>   
+     
     <br />
 
 <asp:Panel ID="gridActionsPanel" runat="server">

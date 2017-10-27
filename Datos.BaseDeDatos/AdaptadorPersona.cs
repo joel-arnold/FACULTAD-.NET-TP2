@@ -166,7 +166,7 @@ namespace Data.Database
                         tipo = 3;
                         break;
                 }
-                cmdActualizar.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = persona.Tipo;
+                cmdActualizar.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = tipo;
                 cmdActualizar.Parameters.Add("@id_plan", SqlDbType.Int).Value = persona.IDPlan;
 
                 cmdActualizar.ExecuteNonQuery();

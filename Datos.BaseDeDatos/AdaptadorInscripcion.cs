@@ -201,7 +201,7 @@ namespace Data.Database
                     "nota=@nota WHERE id_alumno=@idAlumno AND id_curso=@idCurso", SqlCon);
                 cmdAlumnoInscripcion.Parameters.Add("@idAlumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
                 cmdAlumnoInscripcion.Parameters.Add("@idCurso", SqlDbType.Int).Value = inscripcion.IDCurso;
-                if (inscripcion.Nota != null)
+                if (inscripcion.Nota <= 0)
                 {
                     cmdAlumnoInscripcion.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 }
