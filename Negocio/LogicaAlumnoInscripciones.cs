@@ -46,6 +46,18 @@ namespace Negocio
             }
         }
 
+        public List<AlumnoInscripciones> TraerTodosPorIDPersona(int idPersona)
+        {
+            try
+            {
+                return AdaptadorInscripcion.TraerTodosPorIdPersona(idPersona);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
         public void Guardar(AlumnoInscripciones inscripcion)
         {
             AdaptadorInscripcion.Guardar(inscripcion);

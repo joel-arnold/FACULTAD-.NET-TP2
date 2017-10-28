@@ -78,6 +78,19 @@ namespace UI.Web
             }
         }
 
+        private LogicaInscripcion _LogicaInscripcion;
+        public LogicaInscripcion LogicaInscripcion
+        {
+            get
+            {
+                if (_LogicaInscripcion == null)
+                {
+                    _LogicaInscripcion = new LogicaInscripcion();
+                }
+                return _LogicaInscripcion;
+            }
+        }
+
         LogicaCurso _LogicaCurso;
         public LogicaCurso LogicaCurso
         {
