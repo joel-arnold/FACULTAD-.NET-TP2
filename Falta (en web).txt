@@ -1,9 +1,12 @@
 FALTA (Web):
 ***********
 -Resto de los ABM's.
+	*CONSULTA Y MODIFICACION DE DATOS PERSONALES (Docentes y alumnos)
+	*ABM ESPECIALIDADES
+	*ABM MATERIAS
+	*ABM COMISIONES
 -Reportes
 -Aplicación correcta de los privilegios en cada ABM
--Mejorar pagina de inscripciones (¿agregar inscripciones ya realizadas?).
 -Validación de usuarios sin usar la columna "Privilegio" sino el tipo de usuario de la tabla "Modulo_usuarios".
 
 *Estilo:

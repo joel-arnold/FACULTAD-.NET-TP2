@@ -2,10 +2,11 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode url="" title="Menu"  description="">
       <siteMapNode url="Default.aspx" title="Inicio"  description="" />
-      <siteMapNode url="ABM-Usuarios.aspx" title="ABM de Usuarios"  description="" />
-      <siteMapNode url="ABM-Planes.aspx" title="ABM de Planes"  description="" />
-      <siteMapNode url="ABM-Inscripciones.aspx" title="ABM de Inscripciones"  description="" />
-      <siteMapNode url="ABM-Personas.aspx" title="ABM de Personas"  description="" />
-      <siteMapNode url="ABM-NotasAlumnos.aspx" title="ABM de Notas de los alumnos"  description="" />
+      <siteMapNode url="ABM-Usuarios.aspx" title="Usuarios"  description="" />
+      <siteMapNode url="ABM-Planes.aspx" title="Planes"  description="" />
+      <siteMapNode url="ABM-Inscripciones.aspx" title="Inscripción a cursado"  description="" />
+      <siteMapNode url="EstadoAcademico.aspx" title="Estado académico"  description="" />
+      <siteMapNode url="ABM-Personas.aspx" title="Personas"  description="" />
+      <siteMapNode url="ABM-NotasAlumnos.aspx" title="Situación y notas de alumnos"  description="" />
     </siteMapNode>
 </siteMap>

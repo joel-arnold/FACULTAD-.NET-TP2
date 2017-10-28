@@ -39,6 +39,7 @@
         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
         <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
         <asp:BoundField DataField="Alumno" HeaderText="Alumno" />
+        <asp:BoundField DataField="Condicion" HeaderText="Condición" />
         <asp:BoundField DataField="Nota" HeaderText="Nota" />
         <asp:CommandField SelectText="Poner nota" ShowSelectButton="True" />
       </Columns>

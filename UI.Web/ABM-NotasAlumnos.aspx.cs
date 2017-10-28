@@ -26,7 +26,6 @@ namespace UI.Web
         {
             panelNota.Visible = true;
             panelAlumnos.Visible = true;
-            txtNota.Text = Convert.ToString(gvAlumnos.SelectedValue);
         }
 
         protected void btnConfirmarNota_Click(object sender, EventArgs e)
@@ -58,6 +57,7 @@ namespace UI.Web
             dtAlumnos.Columns.Add("ID", typeof(int));
             dtAlumnos.Columns.Add("Comision", typeof(string));
             dtAlumnos.Columns.Add("Materia", typeof(string));
+            
             foreach (DocenteCurso ldc in LogicaDocenteCurso.TraerTodos(idDocente))
             {
                 foreach (Curso curso in LogicaCurso.TraerTodos())
@@ -84,12 +84,14 @@ namespace UI.Web
             dtCursos.Columns.Add("Legajo", typeof(int));
             dtCursos.Columns.Add("Alumno", typeof(string));
             dtCursos.Columns.Add("Nota", typeof(int));
+            dtCursos.Columns.Add("Condicion", typeof(string));
             foreach (AlumnoInscripciones alumno in LogicaInscripcion.TraerTodosPorIdCurso(idCurso))
             {
                 DataRow fila = dtCursos.NewRow();
                 fila["ID"] = alumno.ID;
                 fila["Legajo"] = LogicaPersona.TraerUno(alumno.IDAlumno).Legajo;
                 fila["Alumno"] = LogicaPersona.TraerUno(alumno.IDAlumno).Apellido + ", " + LogicaPersona.TraerUno(alumno.IDAlumno).Nombre;
+                fila["Condicion"] = alumno.Condicion;
                 fila["Nota"] = alumno.Nota;
                 dtCursos.Rows.Add(fila);
             }

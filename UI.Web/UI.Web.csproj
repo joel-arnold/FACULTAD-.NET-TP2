@@ -64,6 +64,7 @@
     <Content Include="ABM-Personas.aspx" />
     <Content Include="ABM.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="EstadoAcademico.aspx" />
     <Content Include="Ingreso.aspx" />
     <Content Include="noCorrespondeSeccion.aspx" />
     <Content Include="noInicioSesion.aspx" />
@@ -126,6 +127,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EstadoAcademico.aspx.cs">
+      <DependentUpon>EstadoAcademico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstadoAcademico.aspx.designer.cs">
+      <DependentUpon>EstadoAcademico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
