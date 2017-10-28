@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,48 +12,99 @@ namespace UI.Web
 {
     public partial class ABM_NotasAlumnos : ABM
     {
+        #region Acciones de formulario
+        protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Curso = LogicaCurso.TraerUno((int)gvCursos.SelectedValue);
+            CargarGrillaAlumnos(Curso.ID);
+            panelAlumnos.Visible = true;
+            etiqComision.Text = LogicaComision.TraerUno(Curso.IDComision).Descripcion;
+            etiqMateria.Text = LogicaMateria.TraerUno(Curso.IDMateria).Descripcion;
+        }
+
+        protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelNota.Visible = true;
+            panelAlumnos.Visible = true;
+            txtNota.Text = Convert.ToString(gvAlumnos.SelectedValue);
+        }
+
+        protected void btnConfirmarNota_Click(object sender, EventArgs e)
+        {
+            ModificarNota(Convert.ToInt32(txtNota.Text.Trim()), LogicaInscripcion.TraerUno((int)gvAlumnos.SelectedValue));
+            panelNota.Visible = false;
+            panelAlumnos.Visible = true;
+            CargarGrillaAlumnos((int)gvCursos.SelectedValue);
+        }
+
+        protected void linkVolverAlInicio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+        #endregion
+
+        #region Métodos
         protected override void CargarPagina()
         {
             CargarGrillaCursos();
-            CargarGrillaAlumnos(7);
+            panelAlumnos.Visible = false;
+            panelNota.Visible = false;
         }
 
         private void CargarGrillaCursos()
         {
+            int idDocente = (int)Session["idPersona"];
             DataTable dtAlumnos = new DataTable();
             dtAlumnos.Columns.Add("ID", typeof(int));
             dtAlumnos.Columns.Add("Comision", typeof(string));
             dtAlumnos.Columns.Add("Materia", typeof(string));
-            foreach (Curso curso in LogicaCurso.TraerTodos())
+            foreach (DocenteCurso ldc in LogicaDocenteCurso.TraerTodos(idDocente))
             {
-                DataRow fila = dtAlumnos.NewRow();
-                fila["ID"] = curso.ID;
-                fila["Comision"] = LogicaComision.TraerUno(curso.IDComision).Descripcion;
-                fila["Materia"] = LogicaMateria.TraerUno(curso.IDMateria).Descripcion;
-                dtAlumnos.Rows.Add(fila);
+                foreach (Curso curso in LogicaCurso.TraerTodos())
+                {
+                    if(curso.ID == ldc.IDCurso)
+                    {
+                        DataRow fila = dtAlumnos.NewRow();
+                        fila["ID"] = curso.ID;
+                        fila["Comision"] = LogicaComision.TraerUno(curso.IDComision).Descripcion;
+                        fila["Materia"] = LogicaMateria.TraerUno(curso.IDMateria).Descripcion;
+                        dtAlumnos.Rows.Add(fila);
+                    }
+                }
             }
             dtAlumnos.DefaultView.Sort = "ID,Comision,Materia";
             gvCursos.DataSource = dtAlumnos;
             gvCursos.DataBind();
-            gvCursos.SelectedIndex = 0;
         }
 
         private void CargarGrillaAlumnos(int idCurso)
         {
             DataTable dtCursos = new DataTable();
+            dtCursos.Columns.Add("ID", typeof(int));
             dtCursos.Columns.Add("Legajo", typeof(int));
             dtCursos.Columns.Add("Alumno", typeof(string));
-            foreach (AlumnoInscripciones alumno in LogicaInscripcion.TraerTodos(idCurso))
+            dtCursos.Columns.Add("Nota", typeof(int));
+            foreach (AlumnoInscripciones alumno in LogicaInscripcion.TraerTodosPorIdCurso(idCurso))
             {
                 DataRow fila = dtCursos.NewRow();
+                fila["ID"] = alumno.ID;
                 fila["Legajo"] = LogicaPersona.TraerUno(alumno.IDAlumno).Legajo;
                 fila["Alumno"] = LogicaPersona.TraerUno(alumno.IDAlumno).Apellido + ", " + LogicaPersona.TraerUno(alumno.IDAlumno).Nombre;
+                fila["Nota"] = alumno.Nota;
                 dtCursos.Rows.Add(fila);
             }
-            dtCursos.DefaultView.Sort = "Alumno, Legajo";
-            gvCursos.DataSource = dtCursos;
-            gvCursos.DataBind();
-            gvCursos.SelectedIndex = 0;
+            dtCursos.DefaultView.Sort = "Alumno, Legajo, Nota, ID";
+            gvAlumnos.DataSource = dtCursos;
+            gvAlumnos.DataBind();
+            gvAlumnos.SelectedIndex = 0;
         }
+
+        protected void ModificarNota(int nota, AlumnoInscripciones alumno)
+        {
+            alumno.Nota = nota;
+            alumno.Condicion = "Aprobado";
+            LogicaInscripcion.Actualizar(alumno);
+        }
+        #endregion
     }
 }

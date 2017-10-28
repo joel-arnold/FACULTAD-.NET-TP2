@@ -11,65 +11,40 @@ namespace UI.Web
 {
     public partial class ABM_Inscripciones : ABM
     {
-        #region Propiedades y campos
-        public Personas Alumno
+        #region Acciones de formulario
+
+        protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            get;
-            set;
+            Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
+            gvComisiones.DataSource = LogicaComision.TraerComisiones(Materia.ID, DateTime.Now.Year);
+            gvComisiones.DataBind();
+            pnlComision.Visible = true;
+            pnlInscripcion.Visible = false;
+            lblMateria.Text = Materia.Descripcion;
         }
 
-        public Comision Comision
+        protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            get;
-            set;
+            Inscribir();
+            pnlInscripcion.Visible = true;
+            pnlComision.Visible = false;
+            pnlMaterias.Visible = false;
+            lblInscripcion.Text = "Inscripción exitosa";
         }
 
-        public Materia Materia
+        protected void lbnInscribirseAOtraMateria_Click(object sender, EventArgs e)
         {
-            get;
-            set;
+            pnlMaterias.Visible = true;
+            pnlInscripcion.Visible = false;
         }
 
-        public Curso Curso
+        protected void lbnCancelarComisiones_Click(object sender, EventArgs e)
         {
-            get;
-            set;
+            Response.Redirect("Default.aspx");
         }
-
-        public AlumnoInscripciones InscripcionAlumno
-        {
-            get;
-            set;
-        }
-
-        private LogicaAlumnoInscripciones _LogicaInscripcion;
-        public LogicaAlumnoInscripciones LogicaInscripciones
-        {
-            get
-            {
-                if (_LogicaInscripcion == null)
-                {
-                    _LogicaInscripcion = new LogicaAlumnoInscripciones();
-                }
-                return _LogicaInscripcion;
-            }
-        }
-
-        private LogicaPersona _LogicaAlumno;
-        public LogicaPersona LogicaAlumno
-        {
-            get
-            {
-                if (_LogicaAlumno == null)
-                {
-                    _LogicaAlumno = new LogicaPersona();
-                }
-                return _LogicaAlumno;
-            }
-        }
-
         #endregion
 
+        #region Métodos
         protected override void CargarPagina()
         {
             if ((string)Session["privilegio"] != "alumno")
@@ -85,30 +60,6 @@ namespace UI.Web
             CargarGrillaMaterias();
         }
 
-        protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
-            gvComisiones.DataSource = LogicaComision.TraerComisiones(Materia.ID, DateTime.Now.Year);
-            gvComisiones.DataBind();
-            pnlComision.Visible = true;
-            pnlInscripcion.Visible = false;
-            lblMateria.Text = Materia.Descripcion;
-        }
-
-        protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Curso = LogicaCurso.TraerUno((int)gvComisiones.SelectedValue);
-            InscripcionAlumno = new AlumnoInscripciones();
-            InscripcionAlumno.Condicion = "Inscripto";
-            InscripcionAlumno.IDAlumno = IDSeleccionado;
-            InscripcionAlumno.IDCurso = Curso.ID;
-            LogicaInscripciones.Guardar(InscripcionAlumno);
-            pnlInscripcion.Visible = true;
-            pnlComision.Visible = false;
-            pnlMaterias.Visible = false;
-            lblInscripcion.Text = "Inscripción exitosa";
-        }
-
         private void CargarGrillaMaterias()
         {
             this.gvMaterias.DataSource = this.LogicaMateria.TraerTodos(Alumno.IDPlan);
@@ -121,15 +72,15 @@ namespace UI.Web
             IDSeleccionado = Alumno.ID;
         }
 
-        protected void lbnInscribirseAOtraMateria_Click(object sender, EventArgs e)
+        protected void Inscribir()
         {
-            pnlMaterias.Visible = true;
-            pnlInscripcion.Visible = false;
+            Curso = LogicaCurso.TraerUno((int)gvComisiones.SelectedValue);
+            InscripcionAlumno = new AlumnoInscripciones();
+            InscripcionAlumno.Condicion = "Inscripto";
+            InscripcionAlumno.IDAlumno = IDSeleccionado;
+            InscripcionAlumno.IDCurso = Curso.ID;
+            LogicaInscripcion.Guardar(InscripcionAlumno);
         }
-
-        protected void lbnCancelarComisiones_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
-        }
+        #endregion
     }
 }

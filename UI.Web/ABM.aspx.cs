@@ -13,22 +13,119 @@ namespace UI.Web
     {
         protected virtual void Page_Load(object sender, EventArgs e)
         {
-            if (UsuarioEstaLogueado)
-            {
-                if (!IsPostBack)
-                {
+            //if (UsuarioEstaLogueado)
+            //{
+            //    if (!IsPostBack)
+            //    {
                     CargarPagina();
-                }
-            }
-            else
+            //    }
+            //}
+            //else
+            //{
+            //    Response.Redirect("noInicioSesion.aspx");
+            //}
+        }
+
+        #region Atributos y Propiedades
+        public Personas Alumno
+        {
+            get;
+            set;
+        }
+
+        public Comision Comision
+        {
+            get;
+            set;
+        }
+
+        public Materia Materia
+        {
+            get;
+            set;
+        }
+
+        public Curso Curso
+        {
+            get;
+            set;
+        }
+
+        public AlumnoInscripciones InscripcionAlumno
+        {
+            get;
+            set;
+        }
+
+        public Personas persona = new Personas();
+        protected Personas PersonaActual
+        {
+            get;
+            set;
+        }
+
+        protected Plan Plan
+        {
+            get;
+            set;
+        }
+
+        public enum ModosFormulario
+        {
+            Alta,
+            Baja,
+            Modificacion
+        }
+
+        public ModosFormulario ModoFormulario
+        {
+            get { return (ModosFormulario)this.ViewState["FormMode"]; }
+            set { this.ViewState["FormMode"] = value; }
+        }
+
+        LogicaUsuario _LogicaUsuario;
+        protected Usuario UsuarioActual
+        {
+            get;
+            set;
+        }
+
+        public LogicaUsuario LogicaUsuario
+        {
+            get
             {
-                Response.Redirect("noInicioSesion.aspx");
+                if (_LogicaUsuario == null)
+                {
+                    _LogicaUsuario = new LogicaUsuario();
+                }
+                return _LogicaUsuario;
             }
         }
 
-        protected virtual void CargarPagina()
+        LogicaPlan _LogicaPlan;
+        public LogicaPlan LogicaPlan
         {
-            //Se implementa en cada página en particular con un override.
+            get
+            {
+                if (_LogicaPlan == null)
+                {
+                    _LogicaPlan = new LogicaPlan();
+                }
+                return _LogicaPlan;
+            }
+        }
+
+        private LogicaPersona _LogicaAlumno;
+        public LogicaPersona LogicaAlumno
+        {
+            get
+            {
+                if (_LogicaAlumno == null)
+                {
+                    _LogicaAlumno = new LogicaPersona();
+                }
+                return _LogicaAlumno;
+            }
         }
 
         protected int IDSeleccionado
@@ -104,6 +201,19 @@ namespace UI.Web
             }
         }
 
+        LogicaDocenteCurso _LogicaDocenteCurso;
+        public LogicaDocenteCurso LogicaDocenteCurso
+        {
+            get
+            {
+                if (_LogicaDocenteCurso == null)
+                {
+                    _LogicaDocenteCurso = new LogicaDocenteCurso();
+                }
+                return _LogicaDocenteCurso;
+            }
+        }
+
         private LogicaMateria _LogicaMateria;
 
         public LogicaMateria LogicaMateria
@@ -150,11 +260,6 @@ namespace UI.Web
             set { Session["idPersona"] = value; }
         }
 
-        public bool UsuarioEstaLogueado
-        {
-            get { return IDUsuario != 0; }
-        }
-
         public string MensajeError
         {
             get
@@ -166,6 +271,18 @@ namespace UI.Web
                 return null;
             }
             set { Session["MensajeError"] = value; }
+        }
+        #endregion
+
+        #region Métodos
+        protected virtual void CargarPagina()
+        {
+            //Se implementa en cada página en particular con un override.
+        }
+
+        public bool UsuarioEstaLogueado
+        {
+            get { return IDUsuario != 0; }
         }
 
         //public bool EsAdministrador
@@ -224,5 +341,6 @@ namespace UI.Web
         //        return false;
         //    }
         //}
+        #endregion
     }
 }

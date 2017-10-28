@@ -2,15 +2,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
+<asp:Panel ID="panelCursos" runat="server" CssClass="etiquetas">
+                Seleccione el curso
     <asp:GridView ID="gvCursos" runat="server" DataKeyNames="ID" AutoGenerateColumns="False"
                     EmptyDataText="No hay cursos registrados"
-                    CellPadding="4" ForeColor="#333333" GridLines="None" >
+                    CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="gvCursos_SelectedIndexChanged" >
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ID" HeaderText="ID" />
             <asp:BoundField DataField="Comision" HeaderText="Comisión" />
             <asp:BoundField DataField="Materia" HeaderText="Materia" />
+            <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -24,11 +26,44 @@
         <SortedDescendingCellStyle BackColor="#D4DFE1" />
         <SortedDescendingHeaderStyle BackColor="#15524A" />
     </asp:GridView>
+</asp:Panel>
     <br />
-    <asp:GridView ID="gvAlumnos" runat="server">
+<asp:Panel runat="server" ID="panelAlumnos" CssClass="etiquetas">
+    Alumnos que cursan
+    <asp:Label ID="etiqMateria" runat="server" Text="Materia" Font-Bold="true"></asp:Label>
+    &nbsp; en la comisión &nbsp;
+    <asp:Label ID="etiqComision" runat="server" Text="Comisión" Font-Bold="True"></asp:Label>
+    <br />
+    <asp:GridView ID="gvAlumnos" DataKeyNames="ID" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged">
+      <Columns>
+        <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
+        <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
+        <asp:BoundField DataField="Alumno" HeaderText="Alumno" />
+        <asp:BoundField DataField="Nota" HeaderText="Nota" />
+        <asp:CommandField SelectText="Poner nota" ShowSelectButton="True" />
+      </Columns>
+        <AlternatingRowStyle BackColor="White" />
+        <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+        <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+        <SortedAscendingCellStyle BackColor="#FDF5AC" />
+        <SortedAscendingHeaderStyle BackColor="#4D0000" />
+        <SortedDescendingCellStyle BackColor="#FCF6C0" />
+        <SortedDescendingHeaderStyle BackColor="#820000" />
     </asp:GridView>
-    <br />
-    <asp:TextBox ID="TextBox1" runat="server" Width="42px"></asp:TextBox>
+</asp:Panel>
 
-</div>
+    <br />
+<asp:Panel runat="server" ID="panelNota">
+        <asp:Label ID="etiqNota" runat="server" Text="Nota"></asp:Label>
+        &nbsp;
+        <asp:TextBox ID="txtNota" runat="server" Width="42px"></asp:TextBox>
+        &nbsp;
+        <asp:LinkButton runat="server" ID="btnConfirmarNota" Text="Confirmar nota" OnClick="btnConfirmarNota_Click"></asp:LinkButton>
+</asp:Panel>
+    <br />
+    <asp:LinkButton ID="linkVolverAlInicio" runat="server" CssClass="etiquetas" OnClick="linkVolverAlInicio_Click">Volver al inicio</asp:LinkButton>
+
 </asp:Content>

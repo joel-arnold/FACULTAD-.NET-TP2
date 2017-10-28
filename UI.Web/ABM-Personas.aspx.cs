@@ -11,64 +11,7 @@ namespace UI.Web
 {
     public partial class ABM_Personas : ABM
     {
-        protected override void CargarPagina()
-        {
-            CargarGrilla();
-            if ((string)Session["privilegio"] != "admin")
-            {
-                Response.Redirect("noCorrespondeSeccion.aspx");
-            }
-        }
-
-        #region Atributos y Propiedades
-
-        Personas personita = new Personas();
-        private Personas PersonaActual
-        {
-            get;
-            set;
-        }
-
-        public enum ModosFormulario
-        {
-            Alta,
-            Baja,
-            Modificacion
-        }
-
-        public ModosFormulario ModoFormulario
-        {
-            get { return (ModosFormulario)this.ViewState["FormMode"]; }
-            set { this.ViewState["FormMode"] = value; }
-        }
-
-        //LogicaPersona _LogicaPersona;
-        //public LogicaPersona LogicaPersona
-        //{
-        //    get
-        //    {
-        //        if (_LogicaPersona == null)
-        //        {
-        //            _LogicaPersona = new LogicaPersona();
-        //        }
-        //        return _LogicaPersona;
-        //    }
-        //}
-
-        LogicaPlan _LogicaPlan;
-        public LogicaPlan LogicaPlan
-        {
-            get
-            {
-                if (_LogicaPlan == null)
-                {
-                    _LogicaPlan = new LogicaPlan();
-                }
-                return _LogicaPlan;
-            }
-        }
-        #endregion
-
+        #region Acciones de formulario
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.IDSeleccionado = (int)this.gridView.SelectedValue;
@@ -162,6 +105,17 @@ namespace UI.Web
             this.LimpiarFormulario();
             this.HabilitarFormulario(true);
         }
+        #endregion
+
+        #region Métodos
+        protected override void CargarPagina()
+        {
+            CargarGrilla();
+            if ((string)Session["privilegio"] != "admin")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+        }
 
         private void MapearAPersona(Personas persona)
         {
@@ -189,15 +143,15 @@ namespace UI.Web
 
         private void CargarFormulario(int id)
         {
-            this.personita = this.LogicaPersona.TraerUno(id);
-            this.txtNombre.Text = this.personita.Nombre;
-            this.txtApellido.Text = this.personita.Apellido;
-            this.txtCorreoE.Text = this.personita.Email;
-            this.txtDireccion.Text = this.personita.Direccion;
-            this.txtTelefono.Text = this.personita.Telefono;
-            this.txtFechaNacimiento.Text = this.personita.FechaNacimiento.ToString("dd/MM/yyyy");
-            this.txtLegajo.Text = this.personita.Legajo.ToString();
-            switch (personita.Tipo)
+            this.persona = this.LogicaPersona.TraerUno(id);
+            this.txtNombre.Text = this.persona.Nombre;
+            this.txtApellido.Text = this.persona.Apellido;
+            this.txtCorreoE.Text = this.persona.Email;
+            this.txtDireccion.Text = this.persona.Direccion;
+            this.txtTelefono.Text = this.persona.Telefono;
+            this.txtFechaNacimiento.Text = this.persona.FechaNacimiento.ToString("dd/MM/yyyy");
+            this.txtLegajo.Text = this.persona.Legajo.ToString();
+            switch (persona.Tipo)
             {
                 case Personas.TipoPersona.Alumno:
                     this.ddlTipoPersona.SelectedIndex = 0;
@@ -208,10 +162,11 @@ namespace UI.Web
                 case Personas.TipoPersona.Administrativo:
                     this.ddlTipoPersona.SelectedIndex = 2;
                     break;
-                default: this.ddlTipoPersona.SelectedIndex = 0;
+                default:
+                    this.ddlTipoPersona.SelectedIndex = 0;
                     break;
             }
-            this.ddlPlan.SelectedValue = Convert.ToString(LogicaPlan.TraerUno(personita.IDPlan).ID);
+            this.ddlPlan.SelectedValue = Convert.ToString(LogicaPlan.TraerUno(persona.IDPlan).ID);
         }
 
         private void HabilitarFormulario(bool enable)
@@ -262,5 +217,6 @@ namespace UI.Web
         {
             this.LogicaPersona.Borrar(id);
         }
+        #endregion
     }
 }

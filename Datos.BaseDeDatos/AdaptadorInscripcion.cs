@@ -11,7 +11,7 @@ namespace Data.Database
 {
     public class AdaptadorInscripcion : Adaptador
     {
-        public List<AlumnoInscripciones> TraerTodos(int IDCurso)
+        public List<AlumnoInscripciones> TraerTodos()
         {
             List<AlumnoInscripciones> alumnoInscripciones = new List<AlumnoInscripciones>();
             try
@@ -53,6 +53,42 @@ namespace Data.Database
                 AbrirConexion();
                 SqlCommand cmdAlumnoInscripcion = new SqlCommand("select * from alumnos_inscripciones where id_alumno = @id_alumno", SqlCon);
                 cmdAlumnoInscripcion.Parameters.Add("@id_alumno", SqlDbType.Int).Value = IdPersona;
+                SqlDataReader drAlumnoInscripcion = cmdAlumnoInscripcion.ExecuteReader();
+                while (drAlumnoInscripcion.Read())
+                {
+                    AlumnoInscripciones alumnoInscripcion = new AlumnoInscripciones();
+                    alumnoInscripcion.ID = (int)drAlumnoInscripcion["id_inscripcion"];
+                    alumnoInscripcion.IDAlumno = (int)drAlumnoInscripcion["id_alumno"];
+                    alumnoInscripcion.IDCurso = (int)drAlumnoInscripcion["id_curso"];
+                    if (drAlumnoInscripcion["nota"] != DBNull.Value)
+                    {
+                        alumnoInscripcion.Nota = (int)drAlumnoInscripcion["nota"];
+                    }
+                    alumnoInscripcion.Condicion = (string)drAlumnoInscripcion["condicion"];
+                    alumnoInscripciones.Add(alumnoInscripcion);
+                }
+                drAlumnoInscripcion.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExcepcionManejada = new Exception("Error al recuperar las inscripciones", Ex);
+                throw ExcepcionManejada;
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+            return alumnoInscripciones;
+        }
+
+        public List<AlumnoInscripciones> TraerTodosPorIdCurso(int IdCurso)
+        {
+            List<AlumnoInscripciones> alumnoInscripciones = new List<AlumnoInscripciones>();
+            try
+            {
+                AbrirConexion();
+                SqlCommand cmdAlumnoInscripcion = new SqlCommand("select * from alumnos_inscripciones where id_curso = @id_curso", SqlCon);
+                cmdAlumnoInscripcion.Parameters.Add("@id_curso", SqlDbType.Int).Value = IdCurso;
                 SqlDataReader drAlumnoInscripcion = cmdAlumnoInscripcion.ExecuteReader();
                 while (drAlumnoInscripcion.Read())
                 {
@@ -202,10 +238,9 @@ namespace Data.Database
             {
                 AbrirConexion();
                 SqlCommand cmdAlumnoInscripcion = new SqlCommand("UPDATE alumnos_inscripciones SET condicion=@condicion, " +
-                    "nota=@nota WHERE id_alumno=@idAlumno AND id_curso=@idCurso", SqlCon);
-                cmdAlumnoInscripcion.Parameters.Add("@idAlumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
-                cmdAlumnoInscripcion.Parameters.Add("@idCurso", SqlDbType.Int).Value = inscripcion.IDCurso;
-                if (inscripcion.Nota <= 0)
+                    "nota=@nota WHERE id_inscripcion = @idInscripcion", SqlCon);
+                cmdAlumnoInscripcion.Parameters.Add("@idInscripcion", SqlDbType.Int).Value = inscripcion.ID;
+                if (inscripcion.Nota >= 0)
                 {
                     cmdAlumnoInscripcion.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 }
@@ -216,11 +251,11 @@ namespace Data.Database
                 cmdAlumnoInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
                 cmdAlumnoInscripcion.ExecuteNonQuery();
             }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al actualizar la inscripcion", Ex);
-                throw ExcepcionManejada;
-            }
+            //catch (Exception Ex)
+            //{
+            //    Exception ExcepcionManejada = new Exception("Error al actualizar la inscripcion", Ex);
+            //    throw ExcepcionManejada;
+            //}
             finally
             {
                 CerrarConexion();
@@ -269,7 +304,5 @@ namespace Data.Database
                     break;
             }
         }
-
-
     }
 }

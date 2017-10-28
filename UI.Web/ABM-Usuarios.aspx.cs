@@ -11,49 +11,6 @@ using Util;
 namespace UI.Web {
     public partial class Usuarios : ABM {
 
-        #region Atributos y Propiedades
-        protected override void CargarPagina()
-        {
-            CargarGrilla();
-            if ((string)Session["privilegio"] != "admin")
-            {
-                Response.Redirect("noCorrespondeSeccion.aspx");
-            }
-        }
-
-        LogicaUsuario _LogicaUsuario;
-        private Usuario UsuarioActual
-        {
-            get;
-            set;
-        }
-
-        public enum ModosFormulario
-        {
-            Alta,
-            Baja,
-            Modificacion
-        }
-
-        public ModosFormulario ModoFormulario
-        {
-            get { return (ModosFormulario)this.ViewState["FormMode"]; }
-            set { this.ViewState["FormMode"]=value; }
-        }
-
-        public LogicaUsuario LogicaUsuario
-        {
-            get
-            {
-                if (_LogicaUsuario == null)
-                {
-                    _LogicaUsuario = new LogicaUsuario();
-                }
-                return _LogicaUsuario;
-            }
-        }
-        #endregion
-
         #region Acciones de formulario
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -164,6 +121,15 @@ namespace UI.Web {
         #endregion
 
         #region Métodos
+        protected override void CargarPagina()
+        {
+            CargarGrilla();
+            if ((string)Session["privilegio"] != "admin")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+        }
+
         private void CargarFormulario(int id)
         {
             this.UsuarioActual = this.LogicaUsuario.TraerUno(id);

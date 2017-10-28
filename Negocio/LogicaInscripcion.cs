@@ -10,8 +10,12 @@ namespace Negocio
 {
     public class LogicaInscripcion
     {
-        AdaptadorInscripcion _DatosInscripcion;
+        public LogicaInscripcion()
+        {
+            _DatosInscripcion = new AdaptadorInscripcion();
+        }
 
+        AdaptadorInscripcion _DatosInscripcion;
         public AdaptadorInscripcion DatosInscripcion
         {
             get
@@ -24,20 +28,37 @@ namespace Negocio
             }
         }
 
-        public LogicaInscripcion()
-        {
-            _DatosInscripcion = new AdaptadorInscripcion();
-        }
-
         public AlumnoInscripciones TraerUno(int ID)
         {
             return DatosInscripcion.TraerUno(ID);
         }
 
-        //public List<AlumnoInscripciones> TraerTodos()
-        //{
-        //    return DatosInscripcion.TraerTodos();
-        //}
+        public List<AlumnoInscripciones> TraerTodos()
+        {
+            return DatosInscripcion.TraerTodos();
+        }
+
+        public List<AlumnoInscripciones> TraerTodosPorIdPersona(int IdPersona)
+        {
+            return DatosInscripcion.TraerTodosPorIdPersona(IdPersona);
+        }
+
+        public List<AlumnoInscripciones> TraerTodosPorIdCurso(int IdCurso)
+        {
+            return DatosInscripcion.TraerTodosPorIdCurso(IdCurso);
+        }
+
+        public AlumnoInscripciones TraerUno(int idAlumno, int idCurso)
+        {
+            try
+            {
+                return DatosInscripcion.TraerUno(idAlumno, idCurso);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
 
         public void Guardar(AlumnoInscripciones ai)
         {
@@ -68,11 +89,6 @@ namespace Negocio
         public void Actualizar(AlumnoInscripciones ai)
         {
             DatosInscripcion.Actualizar(ai);
-        }
-
-        public List<AlumnoInscripciones> TraerTodosPorIdPersona(int ID)
-        {
-            return DatosInscripcion.TraerTodosPorIdPersona(ID);
         }
     }
 }

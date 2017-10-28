@@ -1,6 +1,5 @@
 FALTA (Web):
 ***********
--Cargar notas (acceso exclusivo docentes)
 -Resto de los ABM's.
 -Reportes
 -Aplicación correcta de los privilegios en cada ABM

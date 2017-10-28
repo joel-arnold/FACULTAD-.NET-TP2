@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Adaptador.cs" />
     <Compile Include="AdaptadorComision.cs" />
+    <Compile Include="AdaptadorDocenteCurso.cs" />
     <Compile Include="AdaptadorEspecialidad.cs" />
     <Compile Include="AdaptadorInscripcion.cs" />
     <Compile Include="AdaptadorCurso.cs" />
