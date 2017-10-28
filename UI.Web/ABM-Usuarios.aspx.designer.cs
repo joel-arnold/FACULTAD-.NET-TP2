@@ -238,6 +238,24 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourcePersonas;
         
         /// <summary>
+        /// Control etiqPrivilegio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label etiqPrivilegio;
+        
+        /// <summary>
+        /// Control ddlPrivilegio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrivilegio;
+        
+        /// <summary>
         /// Control claveLabel.
         /// </summary>
         /// <remarks>

@@ -180,6 +180,10 @@ namespace Data.Database
                 cmdAlumnoInscripcion.Parameters.Add("@idAlumno", SqlDbType.Int).Value = IDAlumno;
                 cmdAlumnoInscripcion.Parameters.Add("@idCurso", SqlDbType.Int).Value = IDCurso;
                 cmdAlumnoInscripcion.ExecuteNonQuery();
+                SqlCommand cmdActualizarCupo = new SqlCommand("UPDATE cursos SET cupo = cupo + 1" +
+                " WHERE id_curso=@idCurso", SqlCon);
+                cmdActualizarCupo.Parameters.Add("@idCurso", SqlDbType.VarChar, 50).Value = IDCurso;
+                cmdActualizarCupo.ExecuteNonQuery();
             }
             catch (Exception Ex)
             {

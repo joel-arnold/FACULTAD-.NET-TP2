@@ -24,7 +24,7 @@ namespace UI.Escritorio {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class tp2_netDataSet1 : global::System.Data.DataSet {
         
-        private materiasDataTable tablematerias;
+        private _materias__________________________ tablematerias;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -55,7 +55,7 @@ namespace UI.Escritorio {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
                 if ((ds.Tables["materias"] != null)) {
-                    base.Tables.Add(new materiasDataTable(ds.Tables["materias"]));
+                    base.Tables.Add(new _materias__________________________(ds.Tables["materias"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,7 +79,7 @@ namespace UI.Escritorio {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public materiasDataTable materias {
+        public _materias__________________________ materias {
             get {
                 return this.tablematerias;
             }
@@ -153,7 +153,7 @@ namespace UI.Escritorio {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
                 if ((ds.Tables["materias"] != null)) {
-                    base.Tables.Add(new materiasDataTable(ds.Tables["materias"]));
+                    base.Tables.Add(new _materias__________________________(ds.Tables["materias"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,7 +188,7 @@ namespace UI.Escritorio {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablematerias = ((materiasDataTable)(base.Tables["materias"]));
+            this.tablematerias = ((_materias__________________________)(base.Tables["materias"]));
             if ((initTable == true)) {
                 if ((this.tablematerias != null)) {
                     this.tablematerias.InitVars();
@@ -204,7 +204,7 @@ namespace UI.Escritorio {
             this.Namespace = "http://tempuri.org/tp2_netDataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablematerias = new materiasDataTable();
+            this.tablematerias = new _materias__________________________();
             base.Tables.Add(this.tablematerias);
         }
         
@@ -277,7 +277,7 @@ namespace UI.Escritorio {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class materiasDataTable : global::System.Data.TypedTableBase<materiasRow> {
+        public partial class _materias__________________________ : global::System.Data.TypedTableBase<materiasRow> {
             
             private global::System.Data.DataColumn columnid_materia;
             
@@ -287,7 +287,7 @@ namespace UI.Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public materiasDataTable() {
+            public _materias__________________________() {
                 this.TableName = "materias";
                 this.BeginInit();
                 this.InitClass();
@@ -296,7 +296,7 @@ namespace UI.Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal materiasDataTable(global::System.Data.DataTable table) {
+            internal _materias__________________________(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -313,7 +313,7 @@ namespace UI.Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected materiasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected _materias__________________________(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -400,7 +400,7 @@ namespace UI.Escritorio {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                materiasDataTable cln = ((materiasDataTable)(base.Clone()));
+                _materias__________________________ cln = ((_materias__________________________)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -408,7 +408,7 @@ namespace UI.Escritorio {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new materiasDataTable();
+                return new _materias__________________________();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -439,6 +439,8 @@ namespace UI.Escritorio {
                 this.columndesc_materia.AllowDBNull = false;
                 this.columndesc_materia.MaxLength = 50;
                 this.columnid_plan.AllowDBNull = false;
+                this.ExtendedProperties.Add("Generator_TableClassName", "_materias__________________________");
+                this.ExtendedProperties.Add("Generator_UserTableName", "materias");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -524,7 +526,7 @@ namespace UI.Escritorio {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "materiasDataTable";
+                attribute2.FixedValue = "_materias__________________________";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -570,13 +572,13 @@ namespace UI.Escritorio {
         ///</summary>
         public partial class materiasRow : global::System.Data.DataRow {
             
-            private materiasDataTable tablematerias;
+            private _materias__________________________ tablematerias;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal materiasRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablematerias = ((materiasDataTable)(this.Table));
+                this.tablematerias = ((_materias__________________________)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -818,7 +820,7 @@ SELECT id_materia, desc_materia, id_plan FROM materias WHERE (id_materia = @id_m
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(tp2_netDataSet1.materiasDataTable dataTable) {
+        public virtual int Fill(tp2_netDataSet1._materias__________________________ dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -831,9 +833,9 @@ SELECT id_materia, desc_materia, id_plan FROM materias WHERE (id_materia = @id_m
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual tp2_netDataSet1.materiasDataTable GetData() {
+        public virtual tp2_netDataSet1._materias__________________________ GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            tp2_netDataSet1.materiasDataTable dataTable = new tp2_netDataSet1.materiasDataTable();
+            tp2_netDataSet1._materias__________________________ dataTable = new tp2_netDataSet1._materias__________________________();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -841,7 +843,7 @@ SELECT id_materia, desc_materia, id_plan FROM materias WHERE (id_materia = @id_m
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(tp2_netDataSet1.materiasDataTable dataTable) {
+        public virtual int Update(tp2_netDataSet1._materias__________________________ dataTable) {
             return this.Adapter.Update(dataTable);
         }
         

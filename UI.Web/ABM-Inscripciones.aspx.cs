@@ -55,19 +55,6 @@ namespace UI.Web
             }
         }
 
-        private LogicaMateria _LogicaMateria;
-        public LogicaMateria LogicaMateria
-        {
-            get
-            {
-                if (_LogicaMateria == null)
-                {
-                    _LogicaMateria = new LogicaMateria();
-                }
-                return _LogicaMateria;
-            }
-        }
-
         private LogicaPersona _LogicaAlumno;
         public LogicaPersona LogicaAlumno
         {
@@ -78,32 +65,6 @@ namespace UI.Web
                     _LogicaAlumno = new LogicaPersona();
                 }
                 return _LogicaAlumno;
-            }
-        }
-
-        private LogicaCurso _LogicaCurso;
-        public LogicaCurso LogicaCurso
-        {
-            get
-            {
-                if (_LogicaCurso == null)
-                {
-                    _LogicaCurso = new LogicaCurso();
-                }
-                return _LogicaCurso;
-            }
-        }
-
-        private LogicaComision _LogicaComision;
-        public LogicaComision LogicaComision
-        {
-            get
-            {
-                if (_LogicaComision == null)
-                {
-                    _LogicaComision = new LogicaComision();
-                }
-                return _LogicaComision;
             }
         }
 

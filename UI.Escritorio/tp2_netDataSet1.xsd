@@ -57,7 +57,10 @@ SELECT id_materia, desc_materia, id_plan FROM materias WHERE (id_materia = @id_m
   <xs:element name="tp2_netDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="tp2_netDataSet1" msprop:Generator_UserDSName="tp2_netDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="materias" msprop:Generator_TableClassName="materiasDataTable" msprop:Generator_TableVarName="tablematerias" msprop:Generator_TablePropName="materias" msprop:Generator_RowDeletingName="materiasRowDeleting" msprop:Generator_RowChangingName="materiasRowChanging" msprop:Generator_RowEvHandlerName="materiasRowChangeEventHandler" msprop:Generator_RowDeletedName="materiasRowDeleted" msprop:Generator_UserTableName="materias" msprop:Generator_RowChangedName="materiasRowChanged" msprop:Generator_RowEvArgName="materiasRowChangeEvent" msprop:Generator_RowClassName="materiasRow">
+        <xs:element name="materias" msprop:Generator_TableClassName="materias
+                    
+
+" msprop:Generator_TableVarName="tablematerias" msprop:Generator_TablePropName="materias" msprop:Generator_RowDeletingName="materiasRowDeleting" msprop:Generator_RowChangingName="materiasRowChanging" msprop:Generator_RowEvHandlerName="materiasRowChangeEventHandler" msprop:Generator_RowDeletedName="materiasRowDeleted" msprop:Generator_UserTableName="materias" msprop:Generator_RowChangedName="materiasRowChanged" msprop:Generator_RowEvArgName="materiasRowChangeEvent" msprop:Generator_RowClassName="materiasRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_materia" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_materia" msprop:Generator_ColumnPropNameInRow="id_materia" msprop:Generator_ColumnPropNameInTable="id_materiaColumn" msprop:Generator_UserColumnName="id_materia" type="xs:int" />

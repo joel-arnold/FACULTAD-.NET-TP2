@@ -6,5 +6,6 @@
       <siteMapNode url="ABM-Planes.aspx" title="ABM de Planes"  description="" />
       <siteMapNode url="ABM-Inscripciones.aspx" title="ABM de Inscripciones"  description="" />
       <siteMapNode url="ABM-Personas.aspx" title="ABM de Personas"  description="" />
+      <siteMapNode url="ABM-NotasAlumnos.aspx" title="ABM de Notas de los alumnos"  description="" />
     </siteMapNode>
 </siteMap>

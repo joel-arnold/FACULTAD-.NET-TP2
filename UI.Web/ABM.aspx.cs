@@ -52,6 +52,59 @@ namespace UI.Web
             get { return IDSeleccionado != 0; }
         }
 
+        LogicaPersona _LogicaPersona;
+        public LogicaPersona LogicaPersona
+        {
+            get
+            {
+                if (_LogicaPersona == null)
+                {
+                    _LogicaPersona = new LogicaPersona();
+                }
+                return _LogicaPersona;
+            }
+        }
+
+        private LogicaComision _LogicaComision;
+        public LogicaComision LogicaComision
+        {
+            get
+            {
+                if (_LogicaComision == null)
+                {
+                    _LogicaComision = new LogicaComision();
+                }
+                return _LogicaComision;
+            }
+        }
+
+        LogicaCurso _LogicaCurso;
+        public LogicaCurso LogicaCurso
+        {
+            get
+            {
+                if (_LogicaCurso == null)
+                {
+                    _LogicaCurso = new LogicaCurso();
+                }
+                return _LogicaCurso;
+            }
+        }
+
+        private LogicaMateria _LogicaMateria;
+
+        public LogicaMateria LogicaMateria
+        {
+            get
+            {
+                if (_LogicaMateria == null)
+                {
+                    _LogicaMateria = new LogicaMateria();
+                }
+                return _LogicaMateria;
+            }
+        }
+
         protected int IDUsuario
         {
             get

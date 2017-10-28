@@ -13,7 +13,6 @@
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
             <asp:BoundField HeaderText="Email" DataField="Email" />
-            <%--<asp:BoundField HeaderText="ID Persona" DataField="IDPersona" />--%>
             <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />
             <asp:BoundField HeaderText="Habilitado" DataField="Habilitado" />
             <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
@@ -57,6 +56,14 @@
     <asp:DropDownList ID="ddlPersonas" runat="server" DataSourceID="SqlDataSourcePersonas" DataTextField="apellido" DataValueField="id_persona">
     </asp:DropDownList>
     <asp:SqlDataSource ID="SqlDataSourcePersonas" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringLocal %>" SelectCommand="SELECT [id_persona], [apellido], [nombre] FROM [personas]"></asp:SqlDataSource>
+    <br />
+    <asp:Label ID="etiqPrivilegio" runat="server" Text="Privilegio"></asp:Label>
+    <asp:DropDownList ID="ddlPrivilegio" runat="server">
+        <asp:ListItem Value="alumno">Alumno</asp:ListItem>
+        <asp:ListItem Value="profesor">Profesor</asp:ListItem>
+        <asp:ListItem Value="admin">Administrativo</asp:ListItem>
+        <asp:ListItem>Seleccionar</asp:ListItem>
+    </asp:DropDownList>
     <br />
     <asp:Label ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
     <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server" Width="157px"></asp:TextBox>

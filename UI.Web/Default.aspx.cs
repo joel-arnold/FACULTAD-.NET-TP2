@@ -15,7 +15,7 @@ namespace UI.Web {
             Session["apellido"] = "Supremo";
             Session["idPersona"] = 6;
             Session["privilegio"] = "admin";
-            CON ESTOS DATOS INICIA LOGUEADO EL ADMINISTRADOR*/
+            //CON ESTOS DATOS INICIA LOGUEADO EL ADMINISTRADOR*/
 
             if (Session["usuario"] != null)
             {

@@ -42,18 +42,18 @@ namespace UI.Web
             set { this.ViewState["FormMode"] = value; }
         }
 
-        LogicaPersona _LogicaPersona;
-        public LogicaPersona LogicaPersona
-        {
-            get
-            {
-                if (_LogicaPersona == null)
-                {
-                    _LogicaPersona = new LogicaPersona();
-                }
-                return _LogicaPersona;
-            }
-        }
+        //LogicaPersona _LogicaPersona;
+        //public LogicaPersona LogicaPersona
+        //{
+        //    get
+        //    {
+        //        if (_LogicaPersona == null)
+        //        {
+        //            _LogicaPersona = new LogicaPersona();
+        //        }
+        //        return _LogicaPersona;
+        //    }
+        //}
 
         LogicaPlan _LogicaPlan;
         public LogicaPlan LogicaPlan

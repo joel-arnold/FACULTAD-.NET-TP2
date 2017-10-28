@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ABM-Inscripciones.aspx" />
+    <Content Include="ABM-NotasAlumnos.aspx" />
     <Content Include="ABM-Personas.aspx" />
     <Content Include="ABM.aspx" />
     <Content Include="Error.aspx" />
@@ -90,6 +91,13 @@
     </Compile>
     <Compile Include="ABM-Inscripciones.aspx.designer.cs">
       <DependentUpon>ABM-Inscripciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM-NotasAlumnos.aspx.cs">
+      <DependentUpon>ABM-NotasAlumnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM-NotasAlumnos.aspx.designer.cs">
+      <DependentUpon>ABM-NotasAlumnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABM-Personas.aspx.cs">
       <DependentUpon>ABM-Personas.aspx</DependentUpon>
