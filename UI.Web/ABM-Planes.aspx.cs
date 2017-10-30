@@ -115,12 +115,13 @@ namespace UI.Web
         #region Métodos
         protected override void CargarPagina()
         {
-            CargarGrilla();
             if ((string)Session["privilegio"] != "admin")
             {
-                this.nuevoLinkButton.Visible = false;
-                this.eliminarLinkButton.Visible = false;
-                this.editarLinkButton.Visible = false;
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+            else
+            {
+                CargarGrilla();
             }
         }
 

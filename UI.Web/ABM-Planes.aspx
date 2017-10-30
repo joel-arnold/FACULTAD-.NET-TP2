@@ -2,12 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="gridPanelPlanes" runat="server">
-        <asp:GridView ID="gridViewPlanes" runat="server" AutoGenerateColumns="False" 
+<div >
+<asp:Panel ID="gridPanelPlanes" runat="server" >
+        <asp:GridView ID="gridViewPlanes" runat="server" AutoGenerateColumns ="False" class="tablas"
                     onselectedindexchanged="gridViewPlanes_SelectedIndexChanged" DataKeyNames="ID" 
                     EmptyDataText="No hay planes registrados"
                     SelectedRowStyle-BackColor="Green"
-                    SelectedRowStyle-ForeColor="White">
+                    SelectedRowStyle-ForeColor="White" CssClass="tablas">
                     <Columns>
                         <asp:BoundField DataField="ID" HeaderText="ID Plan"></asp:BoundField>
                         <asp:BoundField DataField="Especialidad" HeaderText="Especialidad"></asp:BoundField>
@@ -16,19 +17,15 @@
                     </Columns>
                 </asp:GridView>
 </asp:Panel>
-    
-    
-    <br />
 
-<asp:Panel ID="gridActionsPanelPlanes" runat="server">
+    <br />
+<asp:Panel ID="gridActionsPanelPlanes" runat="server" >
     <asp:LinkButton ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click">Editar</asp:LinkButton>
     <asp:LinkButton ID="eliminarLinkButton" runat="server" OnClick="eliminarLinkButton_Click">Eliminar</asp:LinkButton>
     <asp:LinkButton ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click">Nuevo</asp:LinkButton>
 </asp:Panel>
-    
     <br />
-
-<asp:Panel ID="formPanel" Visible="false" runat="server">
+<asp:Panel ID="formPanel" Visible="false" runat="server" >
     <asp:Label ID="etiqIdPlan" runat="server" Text="ID Plan: "></asp:Label>
     <asp:TextBox ID="idTextBox" runat="server"></asp:TextBox>
     <br />
@@ -46,6 +43,9 @@
     <br />
     </asp:Panel>
 </asp:Panel>
+    
+    
     <br />
     <asp:ValidationSummary ID="sumarioValidacione" runat="server" BorderStyle="Dotted" ForeColor="Red" ValidationGroup="validaciones" />
+</div>
 </asp:Content>

@@ -51,13 +51,22 @@ h5{
     text-align:center;
 }
 
+.divABMs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .tablas{
     width: 900px;
     font-weight:bolder;
-	margin: 0 auto;
-    background-color:lightblue;
+	background-color:lightblue;
 	color: black;
-	margin-bottom: 100px;
+	margin-right: 0 auto;
+    margin-left: 0 auto;
+    padding-right: 10%;
+    padding-right: 10%;
     text-align:center;
 }
 
@@ -95,9 +104,4 @@ h5{
 
 .etiquetas{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-gridView{
-    text-align: center;
-    margin: 0 auto;
 }

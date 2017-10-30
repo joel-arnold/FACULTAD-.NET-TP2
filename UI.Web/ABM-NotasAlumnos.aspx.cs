@@ -45,9 +45,16 @@ namespace UI.Web
         #region Métodos
         protected override void CargarPagina()
         {
-            CargarGrillaCursos();
-            panelAlumnos.Visible = false;
-            panelNota.Visible = false;
+            if ((string)Session["privilegio"] != "profesor")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+            else
+            {
+                CargarGrillaCursos();
+                panelAlumnos.Visible = false;
+                panelNota.Visible = false;
+            }
         }
 
         private void CargarGrillaCursos()

@@ -51,13 +51,16 @@ namespace UI.Web
             {
                 Response.Redirect("noCorrespondeSeccion.aspx");
             }
-            pnlComision.Visible = false;
-            pnlMaterias.Visible = true;
-            pnlInscripcion.Visible = false;
-            Alumno = LogicaAlumno.TraerUno((int)Session["idPersona"]);
-            GuardarAlumno();
-            lblAlumno.Text = Alumno.Apellido + ", " + Alumno.Nombre;
-            CargarGrillaMaterias();
+            else
+            {
+                pnlComision.Visible = false;
+                pnlMaterias.Visible = true;
+                pnlInscripcion.Visible = false;
+                Alumno = LogicaAlumno.TraerUno((int)Session["idPersona"]);
+                GuardarAlumno();
+                lblAlumno.Text = Alumno.Apellido + ", " + Alumno.Nombre;
+                CargarGrillaMaterias();
+            }
         }
 
         private void CargarGrillaMaterias()

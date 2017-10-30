@@ -19,7 +19,7 @@
         .auto-style5 {
             width: 135px;
         }
-    </style>
+        </style>
 </head>
 <body>
     <form id="bodyForm" runat="server">
@@ -42,13 +42,9 @@
         </table>
             <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server"/>
         <br />
-        <br />
-        <br />
-
-    <div class="principal">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">     
-        </asp:ContentPlaceHolder>
-    </div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>                        
+    
     </form>
 </body>
 </html>

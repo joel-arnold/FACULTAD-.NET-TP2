@@ -11,7 +11,10 @@ namespace UI.Web
     {
         protected override void CargarPagina()
         {
-            //Completar
+            if ((string)Session["privilegio"] != "admin")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
         }
     }
 }

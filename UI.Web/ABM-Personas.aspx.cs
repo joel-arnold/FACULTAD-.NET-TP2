@@ -110,10 +110,13 @@ namespace UI.Web
         #region Métodos
         protected override void CargarPagina()
         {
-            CargarGrilla();
             if ((string)Session["privilegio"] != "admin")
             {
                 Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+            else
+            {
+                CargarGrilla();
             }
         }
 

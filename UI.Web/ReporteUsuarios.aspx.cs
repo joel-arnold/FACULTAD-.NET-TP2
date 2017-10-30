@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class ReporteUsuarios1 : System.Web.UI.Page
+    public partial class ReporteUsuarios1 : ABM
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void CargarPagina()
         {
-
+            if ((string)Session["privilegio"] != "admin")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
         }
     }
 }

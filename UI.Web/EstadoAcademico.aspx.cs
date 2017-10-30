@@ -18,7 +18,18 @@ namespace UI.Web
         #region Métodos
         protected override void CargarPagina()
         {
-            CargarEstadoAcademico();
+            if ((string)Session["privilegio"] != "alumno")
+            {
+                Response.Redirect("noCorrespondeSeccion.aspx");
+            }
+            else
+            {
+                CargarEstadoAcademico();
+                int idAlumno = (int)Session["idPersona"];
+                string etiqueta = LogicaPersona.TraerUno(idAlumno).Nombre + " " + LogicaPersona.TraerUno(idAlumno).Apellido;
+                etiqAlumno.Text = etiqueta;
+                etiqFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
         }
 
         private void CargarEstadoAcademico()

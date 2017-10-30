@@ -13,17 +13,17 @@ namespace UI.Web
     {
         protected virtual void Page_Load(object sender, EventArgs e)
         {
-            //if (UsuarioEstaLogueado)
-            //{
-            //    if (!IsPostBack)
-            //    {
+            if (UsuarioEstaLogueado)
+            {
+                if (!IsPostBack)
+                {
                     CargarPagina();
-            //    }
-            //}
-            //else
-            //{
-            //    Response.Redirect("noInicioSesion.aspx");
-            //}
+                }
+            }
+            else
+            {
+                Response.Redirect("noInicioSesion.aspx");
+            }
         }
 
         #region Atributos y Propiedades

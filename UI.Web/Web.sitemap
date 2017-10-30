@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-    <siteMapNode url="" title="Menu"  description="">
+    <siteMapNode url="" title="Menú"  description="">
       <siteMapNode url="Default.aspx" title="Inicio"  description="" />
       <siteMapNode title="Usuarios" >
         <siteMapNode url="ABM-Usuarios.aspx" title="ABM"  description="" />
