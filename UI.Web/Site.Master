@@ -4,38 +4,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <%--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>--%>
     <title> Academia </title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link rel="stylesheet" type="text/css" href="Estilo.css" media="screen" />
-    <style type="text/css">
-        .auto-style3 {
-            width: 100%;
-        }
-        .auto-style4 {
-            width: 534px;
-        }
-        .auto-style5 {
-            width: 135px;
-        }
-        </style>
+
 </head>
 <body>
     <form id="bodyForm" runat="server">
-        <table class="auto-style3">
+        <table >
             <tr>
-                <td class="auto-style5">
+                <td>
         <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource">
             </asp:Menu>
                 </td>
-                <td class="auto-style4" dir="rtl">
+                <td >
                     <asp:Button ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" Text="Cerrar Sesión" />
                 </td>
-                <td aria-atomic="False" aria-autocomplete="none" aria-expanded="undefined" dir="rtl">
+                <td>
                     <asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Usuario ingresado"></asp:Label>
                 </td>
-                <td aria-pressed="mixed" dir="auto">
+                <td>
                     <asp:Label ID="lblUsuarioIngre" runat="server" Text="Sesión no iniciada"></asp:Label>
                 </td>
             </tr>
@@ -46,5 +42,10 @@
     </asp:ContentPlaceHolder>                        
     
     </form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
 </body>
 </html>

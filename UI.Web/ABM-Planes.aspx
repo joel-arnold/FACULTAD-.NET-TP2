@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div >
+<div class="container">
 <asp:Panel ID="gridPanelPlanes" runat="server" >
         <asp:GridView ID="gridViewPlanes" runat="server" AutoGenerateColumns ="False" class="tablas"
                     onselectedindexchanged="gridViewPlanes_SelectedIndexChanged" DataKeyNames="ID" 

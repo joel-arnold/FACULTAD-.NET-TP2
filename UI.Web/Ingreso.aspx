@@ -2,6 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Login ID="Login1" runat="server" onauthenticate="IngresoAutenticacion" LoginButtonText="Ingresar" PasswordLabelText="Contraseña:" RememberMeText="Recordarme la proxima vez." TitleText=""
-    UserNameLabelText="Usuario:"> </asp:Login>
+
+    <div class="container" >
+        <h2 class="form-signin-heading">
+            <asp:Login ID="Login1" runat="server" onauthenticate="IngresoAutenticacion" LoginButtonText="Ingresar" PasswordLabelText="Contraseña:" RememberMeText="Recordarme la proxima vez." TitleText=""
+            UserNameLabelText="Usuario:"> </asp:Login>
+        </h2>
+    </div>
+
 </asp:Content>
