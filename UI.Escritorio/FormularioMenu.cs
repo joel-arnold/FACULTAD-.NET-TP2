@@ -17,8 +17,6 @@ namespace UI.Escritorio
         Usuario usuarioActual;
         Personas personaActual;
 
-        //public Personas PersonaActual { get => personaActual; set => personaActual = value; }
-
         public FormularioMenu()
         {
             InitializeComponent();
@@ -47,11 +45,20 @@ namespace UI.Escritorio
                 {
                 case Personas.TipoPersona.Administrativo:
                     mnuInscripcion.Enabled = false;
+                    mnuNotas.Enabled = false;
                     break;
                 case Personas.TipoPersona.Alumno:
                     mnuABMCEspecialidad.Enabled = false;
                     mnuABMCPlanes.Enabled = false;
                     mnuABMCUsuarios.Enabled = false;
+                    mnuNotas.Enabled = false;
+                    mnuReportes.Enabled = false;
+                    break;
+                case Personas.TipoPersona.Profesor:
+                    mnuABMCEspecialidad.Enabled = false;
+                    mnuABMCPlanes.Enabled = false;
+                    mnuABMCUsuarios.Enabled = false;
+                    mnuInscripcion.Enabled = false;
                     break;
                 }
             }
@@ -87,6 +94,17 @@ namespace UI.Escritorio
         {
             General gral = new General(Tipo, this.usuarioActual);
             gral.Show();
+        }
+
+        private void cargarNotasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormularioNotasCursos fnc = new FormularioNotasCursos(this.personaActual);
+            fnc.Show();
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //desarrolar
         }
     }
 }

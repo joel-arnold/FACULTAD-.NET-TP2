@@ -21,7 +21,7 @@ namespace UI.Escritorio
         {
             InitializeComponent();
         }
-
+        
         private AlumnoInscripciones inscripcionActual = new AlumnoInscripciones();
         private Personas personaActual = new Personas();
 
@@ -198,6 +198,11 @@ namespace UI.Escritorio
         {
             GuardarCambios();
             this.Close();
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

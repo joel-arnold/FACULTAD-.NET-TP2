@@ -46,6 +46,7 @@
     <Compile Include="DocenteCurso.cs" />
     <Compile Include="Entidad.cs" />
     <Compile Include="Especialidad.cs" />
+    <Compile Include="InscripcionesEditado.cs" />
     <Compile Include="Materia.cs" />
     <Compile Include="Modulo.cs" />
     <Compile Include="ModuloUsuario.cs" />
