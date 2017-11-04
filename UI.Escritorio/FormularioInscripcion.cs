@@ -61,7 +61,7 @@ namespace UI.Escritorio
             this.lblLoguinTexto.Text = usuarioActual.Nombre + " " + usuarioActual.Apellido;
             this.Modo = modo;
             this.txtID.ReadOnly = true;
-            cargarMateriasYComisiones();
+            cargarMaterias();
         }
 
         //CONSTRUCTOR PARA MODIFICACION, BAJA Y CONSULTA
@@ -76,50 +76,23 @@ namespace UI.Escritorio
             this.txtID.ReadOnly = true;
         }
 
-        private void cargarMateriasYComisiones()
+        private void cargarMaterias()
         {
             LogicaPersona lp = new LogicaPersona();
             PersonaActual = lp.TraerUno(usuarioActual.IDPersona);
             LogicaMateria lm = new LogicaMateria();
-            LogicaComision lc = new LogicaComision();
 
-            try
+            DataTable dtMateria = new DataTable();
+            dtMateria.Columns.Add("Descripción", typeof(string));
+            dtMateria.Columns.Add("ID", typeof(int));
+            foreach (Materia materia in lm.TraerTodosPorIdPlan(PersonaActual.IDPlan))
             {
-                DataTable dtMateria = new DataTable();
-                dtMateria.Columns.Add("Descripción", typeof(string));
-                dtMateria.Columns.Add("ID", typeof(int));
-                foreach (Materia materia in lm.TraerTodosPorIdPlan(PersonaActual.IDPlan))
-                {
-                    dtMateria.Rows.Add(new object[] { materia.Descripcion, materia.ID });
-                }
-                cbbxMateria.DataSource = dtMateria;
-                cbbxMateria.ValueMember = "ID";
-                cbbxMateria.DisplayMember = "Descripción";
-
+            dtMateria.Rows.Add(new object[] { materia.Descripcion, materia.ID });
             }
-            catch (Exception Ex)
-            {
-                Notificar(Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            try
-            {
-                DataTable dtComision = new DataTable();
-                dtComision.Columns.Add("Descripción", typeof(string));
-                dtComision.Columns.Add("ID", typeof(int));
-                foreach (Comision comision in lc.TraerTodosPorIdPlan(PersonaActual.IDPlan))
-                {
-                    dtComision.Rows.Add(new object[] { comision.Descripcion, comision.ID });
-                }
-                cbbxComision.DataSource = dtComision;
-                cbbxComision.ValueMember = "ID";
-                cbbxComision.DisplayMember = "Descripción";
-
-            }
-            catch (Exception Ex)
-            {
-                Notificar(Ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cbbxMateria.DataSource = dtMateria;
+            cbbxMateria.ValueMember = "ID";
+            cbbxMateria.DisplayMember = "Descripción";
+            cbbxMateria.SelectedIndex = -1;
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
@@ -133,7 +106,7 @@ namespace UI.Escritorio
             Curso cu = new Curso();
             LogicaCurso lcu = new LogicaCurso();
             cu = lcu.TraerUno(this.InscripcionActual.IDCurso);
-            cargarMateriasYComisiones();
+            cargarMaterias();
             this.cbbxComision.SelectedValue = cu.IDComision;
             this.cbbxMateria.SelectedValue = cu.IDMateria;
             switch (Modo)
@@ -190,8 +163,33 @@ namespace UI.Escritorio
         public override void GuardarCambios()
         {
             MapearADatos();
+
             LogicaInscripcion li = new LogicaInscripcion();
-            li.Guardar(InscripcionActual);
+            if (btnAceptar.Text == "Guardar") { 
+                if (cbbxMateria.SelectedItem == null) { MessageBox.Show("Usted no ha seleccionado ningun curso"); }
+                else { 
+                    bool yaInscripto = false;
+                    List<AlumnoInscripciones> inscripcionesPropias = new List<AlumnoInscripciones>();
+                    inscripcionesPropias = li.TraerTodosPorIdPersona(PersonaActual.ID);
+                    LogicaCurso lc = new LogicaCurso();
+                    foreach (AlumnoInscripciones ip in inscripcionesPropias)
+                    {
+                        Curso curso = new Curso();
+                        curso = lc.TraerUno(ip.IDCurso);
+                        if (curso.IDMateria == Convert.ToInt32(cbbxMateria.SelectedValue) && curso.IDComision == Convert.ToInt32(cbbxComision.SelectedValue))
+                        {
+                            yaInscripto = true;
+                        }
+                    }
+                    if (yaInscripto)
+                    {
+                        MessageBox.Show("Usted ya esta Inscpripto a este curso");
+                    }
+                    else
+                    li.Guardar(InscripcionActual);
+                }
+            }
+            else li.Guardar(InscripcionActual);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -200,9 +198,24 @@ namespace UI.Escritorio
             this.Close();
         }
 
-        private void txtID_TextChanged(object sender, EventArgs e)
+        private void cbbxMateria_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
+            LogicaComision lco = new LogicaComision();
+            LogicaCurso lcu = new LogicaCurso();
+            //List<Curso> cursosPorMateria = new List<Curso>();
+            DataTable dtComision = new DataTable();
+            dtComision.Columns.Add("Descripción", typeof(string));
+            dtComision.Columns.Add("ID", typeof(int));
+            //cursosPorMateria = lcu.TraerTodos(Convert.ToInt32(cbbxMateria.SelectedValue));
+            foreach (Curso curso in lcu.TraerTodos(Convert.ToInt32(cbbxMateria.SelectedValue)))
+            {
+                Comision comision = new Comision();
+                comision = lco.TraerUno(curso.IDComision);
+                dtComision.Rows.Add(new object[] { comision.Descripcion, comision.ID });
+            }
+            cbbxComision.DataSource = dtComision;
+            cbbxComision.ValueMember = "ID";
+            cbbxComision.DisplayMember = "Descripción";
         }
     }
 }

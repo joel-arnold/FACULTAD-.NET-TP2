@@ -170,6 +170,7 @@
             this.cbbxMateria.Size = new System.Drawing.Size(121, 21);
             this.cbbxMateria.TabIndex = 6;
             this.cbbxMateria.ValueMember = "id_materia";
+            this.cbbxMateria.SelectedIndexChanged += new System.EventHandler(this.cbbxMateria_SelectedIndexChanged_1);
             // 
             // materiasBindingSource
             // 
@@ -196,7 +197,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(100, 20);
             this.txtID.TabIndex = 9;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // tp2_netDataSet
             // 

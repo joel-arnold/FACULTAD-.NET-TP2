@@ -48,6 +48,7 @@ namespace UI.Escritorio
         private void cargarCursos()
         {
             LogicaCurso lc = new LogicaCurso();
+            List<CursoEditado> cursosE = new List<CursoEditado>();
             List<Curso> cursos = new List<Curso>();
             LogicaDocenteCurso ldc = new LogicaDocenteCurso();
             List<DocenteCurso> dictados = new List<DocenteCurso>();
@@ -56,17 +57,27 @@ namespace UI.Escritorio
             {
                 cursos.Add(lc.TraerUno(dictado.IDCurso));
             }
-            
-            DataTable dtCurso = new DataTable();
-            dtCurso.Columns.Add("IDComision", typeof(int));
-            dtCurso.Columns.Add("IDMateria", typeof(int));
-            dtCurso.Columns.Add("ID", typeof(int));
-            dtCurso.Columns.Add("Combo", typeof(int), "IDComision+''+IDMateria");
-            foreach (Curso cu in cursos)
+            LogicaMateria lmateria = new LogicaMateria();
+            LogicaComision lcomision = new LogicaComision();
+            foreach (Curso cc in cursos)
             {
-                dtCurso.Rows.Add(new object[] { cu.IDComision, cu.IDMateria, cu.ID });
+                CursoEditado cursoE = new CursoEditado();
+                cursoE.ID = cc.ID;
+                cursoE.Materia = lmateria.TraerUno(cc.IDMateria).Descripcion;
+                cursoE.Comision = lcomision.TraerUno(cc.IDComision).Descripcion + " - ";
+                cursosE.Add(cursoE);
             }
-            cbbxCurso.DataSource = dtCurso;
+            
+            DataTable dtCursoE = new DataTable();
+            dtCursoE.Columns.Add("Comision", typeof(string));
+            dtCursoE.Columns.Add("Materia", typeof(string));
+            dtCursoE.Columns.Add("ID", typeof(int));
+            dtCursoE.Columns.Add("Combo", typeof(string), "Comision+''+Materia");
+            foreach (CursoEditado ce in cursosE)
+            {
+                dtCursoE.Rows.Add(new object[] { ce.Comision, ce.Materia, ce.ID });
+            }
+            cbbxCurso.DataSource = dtCursoE;
             cbbxCurso.ValueMember = "ID";
             cbbxCurso.DisplayMember = "Combo";
             cbbxCurso.SelectedIndex = -1;
