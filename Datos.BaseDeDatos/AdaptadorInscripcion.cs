@@ -251,11 +251,6 @@ namespace Data.Database
                 cmdAlumnoInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
                 cmdAlumnoInscripcion.ExecuteNonQuery();
             }
-            //catch (Exception Ex)
-            //{
-            //    Exception ExcepcionManejada = new Exception("Error al actualizar la inscripcion", Ex);
-            //    throw ExcepcionManejada;
-            //}
             finally
             {
                 CerrarConexion();

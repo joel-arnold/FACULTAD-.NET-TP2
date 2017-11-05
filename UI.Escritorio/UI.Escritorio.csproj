@@ -69,6 +69,18 @@
     <Compile Include="FormularioMenu.Designer.cs">
       <DependentUpon>FormularioMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioNotasCarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioNotasCarga.Designer.cs">
+      <DependentUpon>FormularioNotasCarga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioNotasCursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioNotasCursos.Designer.cs">
+      <DependentUpon>FormularioNotasCursos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioPlan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioMenu.resx">
       <DependentUpon>FormularioMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioNotasCarga.resx">
+      <DependentUpon>FormularioNotasCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioNotasCursos.resx">
+      <DependentUpon>FormularioNotasCursos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioPlan.resx">
       <DependentUpon>FormularioPlan.cs</DependentUpon>

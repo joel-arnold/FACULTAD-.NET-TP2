@@ -170,6 +170,7 @@
             this.cbbxMateria.Size = new System.Drawing.Size(121, 21);
             this.cbbxMateria.TabIndex = 6;
             this.cbbxMateria.ValueMember = "id_materia";
+            this.cbbxMateria.SelectedIndexChanged += new System.EventHandler(this.cbbxMateria_SelectedIndexChanged_1);
             // 
             // materiasBindingSource
             // 

@@ -34,6 +34,8 @@
             this.mnuABMCEspecialidad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuABMCPlanes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInscripcion = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNotas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +57,8 @@
             this.mnuABMCEspecialidad,
             this.mnuABMCPlanes,
             this.mnuInscripcion,
+            this.mnuNotas,
+            this.mnuReportes,
             this.mnuSalir});
             this.mnuAcciones.Name = "mnuAcciones";
             this.mnuAcciones.Size = new System.Drawing.Size(67, 20);
@@ -87,6 +91,20 @@
             this.mnuInscripcion.Size = new System.Drawing.Size(176, 22);
             this.mnuInscripcion.Text = "Inscripcion";
             this.mnuInscripcion.Click += new System.EventHandler(this.mnuInscripcion_Click);
+            // 
+            // mnuNotas
+            // 
+            this.mnuNotas.Name = "mnuNotas";
+            this.mnuNotas.Size = new System.Drawing.Size(176, 22);
+            this.mnuNotas.Text = "Cargar Notas";
+            this.mnuNotas.Click += new System.EventHandler(this.cargarNotasToolStripMenuItem_Click);
+            // 
+            // mnuReportes
+            // 
+            this.mnuReportes.Name = "mnuReportes";
+            this.mnuReportes.Size = new System.Drawing.Size(176, 22);
+            this.mnuReportes.Text = "Reportes";
+            this.mnuReportes.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
             // 
             // mnuSalir
             // 
@@ -124,5 +142,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuABMCEspecialidad;
         private System.Windows.Forms.ToolStripMenuItem mnuABMCPlanes;
         private System.Windows.Forms.ToolStripMenuItem mnuInscripcion;
+        private System.Windows.Forms.ToolStripMenuItem mnuNotas;
+        private System.Windows.Forms.ToolStripMenuItem mnuReportes;
     }
 }

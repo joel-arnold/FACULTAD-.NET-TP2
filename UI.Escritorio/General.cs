@@ -15,6 +15,56 @@ namespace UI.Escritorio
     public partial class General : Form
     {
         public Usuario usuarioActual;
+        private int idCursoActual;
+
+        public int IdCursoActual
+        {
+            get
+            {
+                return idCursoActual;
+            }
+            set
+            {
+                idCursoActual= value;
+            }
+        }
+
+        // Solo para notas
+        public General(int curso)
+        {
+            InitializeComponent();
+            dgvUsuarios.AutoGenerateColumns = false;
+            LogicaInscripcion logins = new LogicaInscripcion();
+            IdCursoActual = curso;
+
+            dgvUsuarios.Columns.Clear();
+            DataGridViewTextBoxColumn ncolAlumno = new DataGridViewTextBoxColumn();
+            ncolAlumno.Name = "Alumno";
+            ncolAlumno.HeaderText = "Alumno";
+            ncolAlumno.DataPropertyName = "Alumno";
+            ncolAlumno.DisplayIndex = 0;
+            ncolAlumno.Width = 140;
+            dgvUsuarios.Columns.Add(ncolAlumno);
+            DataGridViewTextBoxColumn ncolNota = new DataGridViewTextBoxColumn();
+            ncolNota.Name = "Nota";
+            ncolNota.HeaderText = "Nota";
+            ncolNota.DataPropertyName = "Nota";
+            ncolNota.DisplayIndex = 1;
+            ncolNota.Width = 70;
+            dgvUsuarios.Columns.Add(ncolNota);
+            DataGridViewTextBoxColumn ncolCondicion = new DataGridViewTextBoxColumn();
+            ncolCondicion.Name = "Condicion";
+            ncolCondicion.HeaderText = "Condicion";
+            ncolCondicion.DataPropertyName = "Condicion";
+            ncolCondicion.DisplayIndex = 2;
+            ncolCondicion.Width = 70;
+            dgvUsuarios.Columns.Add(ncolCondicion);
+
+            this.Text = "Notas";
+            Listar("tNotas");
+            tsbNuevo.Enabled = false;
+            tsbEliminar.Enabled = false;
+        }
 
         public General(string Tipo, Usuario usuario)                                         
         {
@@ -128,43 +178,28 @@ namespace UI.Escritorio
                     break;
 
                 case "tInscripciones":
-
                     dgvUsuarios.Columns.Clear();
-                    DataGridViewTextBoxColumn icolId = new DataGridViewTextBoxColumn();
-                    icolId.Name = "Id";
-                    icolId.HeaderText = "ID";
-                    icolId.DataPropertyName = "ID";
-                    icolId.DisplayIndex = 0;
-                    icolId.Width = 50;
-                    dgvUsuarios.Columns.Add(icolId);
-                    DataGridViewTextBoxColumn icolIdAlumno = new DataGridViewTextBoxColumn();
-                    icolIdAlumno.Name = "IdAlumno";
-                    icolIdAlumno.HeaderText = "ID Alumno";
-                    icolIdAlumno.DataPropertyName = "IdAlumno";
-                    icolIdAlumno.DisplayIndex = 1;
-                    icolIdAlumno.Width = 70;
-                    dgvUsuarios.Columns.Add(icolIdAlumno);
-                    DataGridViewTextBoxColumn icolIdCurso = new DataGridViewTextBoxColumn();
-                    icolIdCurso.Name = "IdCurso";
-                    icolIdCurso.HeaderText = "ID Curso";
-                    icolIdCurso.DataPropertyName = "IdCurso";
-                    icolIdCurso.DisplayIndex = 2;
-                    icolIdCurso.Width = 70;
-                    dgvUsuarios.Columns.Add(icolIdCurso);
-                    //DataGridViewTextBoxColumn icolAnioCalendario = new DataGridViewTextBoxColumn();
-                    //icolAnioCalendario.Name = "AnioCalendario";
-                    //icolAnioCalendario.HeaderText = "Año Calendario";
-                    //icolAnioCalendario.DataPropertyName = "AnioCalendario";
-                    //icolAnioCalendario.DisplayIndex = 3;
-                    //icolAnioCalendario.Width = 70;
-                    //dgvUsuarios.Columns.Add(icolAnioCalendario);
-                    //DataGridViewTextBoxColumn icolCupo = new DataGridViewTextBoxColumn();
-                    //icolCupo.Name = "Cupo";
-                    //icolCupo.HeaderText = "Cupo";
-                    //icolCupo.DataPropertyName = "Cupo";
-                    //icolCupo.DisplayIndex = 4;
-                    //icolCupo.Width = 30;
-                    //dgvUsuarios.Columns.Add(icolCupo);
+                    DataGridViewTextBoxColumn icolMateria = new DataGridViewTextBoxColumn();
+                    icolMateria.Name = "Materia";
+                    icolMateria.HeaderText = "Materia";
+                    icolMateria.DataPropertyName = "Materia";
+                    icolMateria.DisplayIndex = 0;
+                    icolMateria.Width = 70;
+                    dgvUsuarios.Columns.Add(icolMateria);
+                    DataGridViewTextBoxColumn icolComision = new DataGridViewTextBoxColumn();
+                    icolComision.Name = "Comision";
+                    icolComision.HeaderText = "Comision";
+                    icolComision.DataPropertyName = "Comision";
+                    icolComision.DisplayIndex = 1;
+                    icolComision.Width = 70;
+                    dgvUsuarios.Columns.Add(icolComision);
+                    DataGridViewTextBoxColumn icolCondicion = new DataGridViewTextBoxColumn();
+                    icolCondicion.Name = "Condicion";
+                    icolCondicion.HeaderText = "Condicion";
+                    icolCondicion.DataPropertyName = "Condicion";
+                    icolCondicion.DisplayIndex = 2;
+                    icolCondicion.Width = 70;
+                    dgvUsuarios.Columns.Add(icolCondicion);
 
                     this.Text = "Inscripciones";
                     Listar(Tipo);
@@ -179,7 +214,7 @@ namespace UI.Escritorio
             
         }
 
-        public void Listar(String Tipo)                                     //INCOMPLETO (TRAER COLUMNA PRIVILEGIO DE USUARIOS)
+        public void Listar(String Tipo)                                 
         {
             switch (Tipo)
             {
@@ -196,8 +231,44 @@ namespace UI.Escritorio
                     dgvUsuarios.DataSource = le.TraerTodos();
                     break;
                 case "tInscripciones":
+                    LogicaMateria lm = new LogicaMateria();
+                    LogicaComision lc = new LogicaComision();
+                    LogicaCurso lcu = new LogicaCurso();
                     LogicaInscripcion li = new LogicaInscripcion();
-                    dgvUsuarios.DataSource = li.TraerTodosPorIdPersona(this.usuarioActual.IDPersona);
+                    List<AlumnoInscripciones> ais = new List<AlumnoInscripciones>();
+                    ais = li.TraerTodosPorIdPersona(this.usuarioActual.IDPersona);
+                    List<InscripcionesEditado> ins = new List<InscripcionesEditado>();
+                    foreach(AlumnoInscripciones ai in ais)
+                    {
+                        InscripcionesEditado i = new InscripcionesEditado();
+                        i.ID = ai.ID;
+                        i.Materia = lm.TraerUno(lcu.TraerUno(ai.IDCurso).IDMateria).Descripcion;
+                        i.Comision = lc.TraerUno(lcu.TraerUno(ai.IDCurso).IDComision).Descripcion;
+                        i.Nota = ai.Nota;
+                        i.Condicion = ai.Condicion;
+                        ins.Add(i);
+                    }
+                    dgvUsuarios.DataSource = ins;
+                    break;
+                case "tNotas":
+                    LogicaMateria llm = new LogicaMateria();
+                    LogicaPersona llp = new LogicaPersona();
+                    LogicaCurso llcu = new LogicaCurso();
+                    LogicaInscripcion lli = new LogicaInscripcion();
+                    List<AlumnoInscripciones> aais = new List<AlumnoInscripciones>();
+                    aais = lli.TraerTodosPorIdCurso(IdCursoActual);
+                    List<InscripcionesEditado> iins = new List<InscripcionesEditado>();
+                    foreach (AlumnoInscripciones ai in aais)
+                    {
+                        InscripcionesEditado i = new InscripcionesEditado();
+                        i.ID = ai.ID;
+                        i.Materia = llm.TraerUno(llcu.TraerUno(ai.IDCurso).IDMateria).Descripcion;
+                        i.Alumno = llp.TraerUno(ai.IDAlumno).Nombre + " " + llp.TraerUno(ai.IDAlumno).Apellido;
+                        i.Nota = ai.Nota;
+                        i.Condicion = ai.Condicion;
+                        iins.Add(i);
+                    }
+                    dgvUsuarios.DataSource = iins;
                     break;
             }
         }
@@ -217,6 +288,9 @@ namespace UI.Escritorio
                     break;
                 case "tInscripciones":
                     Listar("tInscripciones");
+                    break;
+                case "tNotas":
+                    Listar("tNotas");
                     break;
             }
         }
@@ -285,6 +359,12 @@ namespace UI.Escritorio
                         aBMinscripcion.ShowDialog();
                         Listar("tInscripciones");
                         break;
+                    case "Notas":
+                        Entidades.InscripcionesEditado i = (Entidades.InscripcionesEditado)this.dgvUsuarios.SelectedRows[0].DataBoundItem;
+                        FormularioNotasCarga fnc = new FormularioNotasCarga(i);
+                        fnc.ShowDialog();
+                        Listar("tNotas");
+                        break;
                 }
             }
         }
@@ -315,7 +395,7 @@ namespace UI.Escritorio
                         Listar("tEspecialidades");
                         break;
                     case "Inscripciones":
-                        int iID = ((Entidades.AlumnoInscripciones)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+                        int iID = ((Entidades.InscripcionesEditado)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
                         FormularioInscripcion aBMinscripcion = new FormularioInscripcion(iID, FormularioAplicacion.ModosFormulario.Baja, this.usuarioActual);
                         aBMinscripcion.ShowDialog();
                         Listar("tInscripciones");
