@@ -36,6 +36,8 @@
             this.mnuInscripcion = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNotas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
+            this.personasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -101,10 +103,25 @@
             // 
             // mnuReportes
             // 
+            this.mnuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.personasToolStripMenuItem,
+            this.usuariosToolStripMenuItem});
             this.mnuReportes.Name = "mnuReportes";
             this.mnuReportes.Size = new System.Drawing.Size(176, 22);
             this.mnuReportes.Text = "Reportes";
-            this.mnuReportes.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
+            // 
+            // personasToolStripMenuItem
+            // 
+            this.personasToolStripMenuItem.Name = "personasToolStripMenuItem";
+            this.personasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.personasToolStripMenuItem.Text = "Personas";
+            this.personasToolStripMenuItem.Click += new System.EventHandler(this.personasToolStripMenuItem_Click);
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // mnuSalir
             // 
@@ -144,5 +161,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuInscripcion;
         private System.Windows.Forms.ToolStripMenuItem mnuNotas;
         private System.Windows.Forms.ToolStripMenuItem mnuReportes;
+        private System.Windows.Forms.ToolStripMenuItem personasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
     }
 }

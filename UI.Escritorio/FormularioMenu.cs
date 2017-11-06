@@ -102,9 +102,10 @@ namespace UI.Escritorio
             fnc.Show();
         }
 
-        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void personasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //desarrolar
+            ReportesPersonas rp = new ReportesPersonas();
+            rp.Show();
         }
     }
 }

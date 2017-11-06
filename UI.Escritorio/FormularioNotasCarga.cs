@@ -54,7 +54,7 @@ namespace UI.Escritorio
         {
             if (cbbxNota.SelectedItem != null)
             {
-                switch (cbbxNota.SelectedIndex)
+                switch (cbbxNota.SelectedItem)
                 {
                     case 1:
                     case 2:
