@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container">
+    <div class="container" style="width: 300px;">
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Inicie Sesión</h2>
@@ -13,8 +13,7 @@
         <asp:TextBox runat="server" type="password" id="contrasena" class="form-control" placeholder="Password" required></asp:TextBox>
         <div class="checkbox">
             <asp:Label ID="etiqIngresoIncorrecto" Visible="false" runat="server" ForeColor="Red" Text="Usuario y/o contraseña incorrectos"></asp:Label>
-            <br />
-          <label>
+          <label >
             <input type="checkbox" value="remember-me"> Recordarme
           </label>
         </div>

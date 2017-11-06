@@ -20,10 +20,14 @@ namespace UI.Web
             panelAlumnos.Visible = true;
             etiqComision.Text = LogicaComision.TraerUno(Curso.IDComision).Descripcion;
             etiqMateria.Text = LogicaMateria.TraerUno(Curso.IDMateria).Descripcion;
+            etiqValidacionNota.Visible = false;
+            panelNota.Visible = false;
         }
 
         protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtNota.Text = String.Empty;
+            etiqValidacionNota.Visible = false;
             panelNota.Visible = true;
             panelAlumnos.Visible = true;
         }

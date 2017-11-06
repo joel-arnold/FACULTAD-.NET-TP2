@@ -13,6 +13,11 @@ namespace UI.Web
     {
         #region Acciones de formulario
 
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
         #endregion
 
         #region Métodos

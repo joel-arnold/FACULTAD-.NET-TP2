@@ -1,4 +1,16 @@
-﻿/*h1{
+﻿/*.tablas{
+    width: 900px !important; 
+    font-weight:bolder !important; 
+	background-color:lightblue !important;
+	color: black !important;
+	margin-right: 0 auto !important;
+    margin-left: 0 auto !important;
+    padding-right: 10% !important;
+    padding-right: 10% !important;
+    text-align:center !important;
+}*/
+
+/*h1{
     text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight:bold;
@@ -56,18 +68,6 @@ h5{
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.tablas{
-    width: 900px;
-    font-weight:bolder;
-	background-color:lightblue;
-	color: black;
-	margin-right: 0 auto;
-    margin-left: 0 auto;
-    padding-right: 10%;
-    padding-right: 10%;
-    text-align:center;
 }
 
 #pnlMaterias{

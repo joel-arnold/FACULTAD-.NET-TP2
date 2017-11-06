@@ -1,8 +1,0 @@
-PODRIA AGREGARSE (en Web):
-**********************
--Resto de los ABM's.
-	*CONSULTA Y MODIFICACION DE DATOS PERSONALES (Docentes y alumnos)
-	*ABM ESPECIALIDADES
-	*ABM MATERIAS
-	*ABM COMISIONES
--Validación de usuarios sin usar la columna "Privilegio" sino el tipo de usuario de la tabla "Modulo_usuarios".

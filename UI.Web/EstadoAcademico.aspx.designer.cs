@@ -49,6 +49,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Label etiqFecha;
         
         /// <summary>
+        /// Control panelGrilla.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelGrilla;
+        
+        /// <summary>
         /// Control gvEstadoAcademico.
         /// </summary>
         /// <remarks>

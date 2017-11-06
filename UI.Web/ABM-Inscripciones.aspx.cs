@@ -21,6 +21,7 @@ namespace UI.Web
             pnlComision.Visible = true;
             pnlInscripcion.Visible = false;
             lblMateria.Text = Materia.Descripcion;
+            etiqYaInscripto.Visible = false;
         }
 
         protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
