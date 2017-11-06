@@ -32,16 +32,16 @@
                         <asp:CommandField SelectText="Inscribir" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
+                <asp:Label ID="etiqYaInscripto" runat="server" ForeColor="Red" Text="El alumno ya está inscripto a esta materia" Visible="False" Font-Bold="True"></asp:Label>
+                <br />
             </asp:Panel>
             <asp:Panel ID="pnlInscripcion" runat="server" Width="200px">
-                <asp:Label ID="lblInscripcion" runat="server" CssClass="etiquetas"></asp:Label>
+                <asp:Label ID="lblInscripcion" runat="server" CssClass="etiquetas" Font-Bold="True" ForeColor="Green"></asp:Label>
                 <br />
                 <asp:LinkButton ID="lbnInscribirseAOtraMateria" runat="server" CssClass="botones" OnClick="lbnInscribirseAOtraMateria_Click" >Inscribirse a otra materia</asp:LinkButton>
                 <br />
                 <asp:LinkButton ID="lbnCancelarComisiones" runat="server" CssClass="botones" OnClick="lbnCancelarComisiones_Click">Volver</asp:LinkButton>
             </asp:Panel>
         </div>
-        <asp:ValidationSummary ID="vsAlumno" runat="server" style="margin-top: 0px" ValidationGroup="validacion" CssClass="etiquetas" />
-        <asp:Label ID="lblMensaje" runat="server" CssClass="etiquetas"></asp:Label>
     </div>
 </asp:Content>

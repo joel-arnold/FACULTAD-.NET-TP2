@@ -30,10 +30,19 @@ namespace UI.Web
 
         protected void btnConfirmarNota_Click(object sender, EventArgs e)
         {
-            ModificarNota(Convert.ToInt32(txtNota.Text.Trim()), LogicaInscripcion.TraerUno((int)gvAlumnos.SelectedValue));
-            panelNota.Visible = false;
-            panelAlumnos.Visible = true;
-            CargarGrillaAlumnos((int)gvCursos.SelectedValue);
+            if (Convert.ToInt32(txtNota.Text)>0 && Convert.ToInt32(txtNota.Text) < 11)
+            {
+                ModificarNota(Convert.ToInt32(txtNota.Text.Trim()), LogicaInscripcion.TraerUno((int)gvAlumnos.SelectedValue));
+                panelNota.Visible = false;
+                panelAlumnos.Visible = true;
+                CargarGrillaAlumnos((int)gvCursos.SelectedValue);
+                etiqValidacionNota.Visible = false;
+                txtNota.Text = String.Empty;
+            }
+            else
+            {
+                etiqValidacionNota.Visible = true;
+            }
         }
 
         protected void linkVolverAlInicio_Click(object sender, EventArgs e)
@@ -111,7 +120,19 @@ namespace UI.Web
         protected void ModificarNota(int nota, AlumnoInscripciones alumno)
         {
             alumno.Nota = nota;
-            alumno.Condicion = "Aprobado";
+            if (nota >= 8)
+            {
+                alumno.Condicion = "Aprobado";
+            }
+            else if(nota >= 6)
+            {
+                alumno.Condicion = "Regular";
+            }
+            else
+            {
+                alumno.Condicion = "Aplazado";
+            }
+            
             LogicaInscripcion.Actualizar(alumno);
         }
         #endregion

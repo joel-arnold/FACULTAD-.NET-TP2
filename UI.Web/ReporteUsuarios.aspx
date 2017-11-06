@@ -3,9 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="crsReporteUsuarios" ToolbarImagesFolderUrl="" ToolPanelWidth="200px" Width="1104px" />
-    <CR:CrystalReportSource ID="crsReporteUsuarios" runat="server">
-        <Report FileName="ReporteUsuarios.rpt">
-        </Report>
-    </CR:CrystalReportSource>
+    <div class="text-center">
+        <h1>REPORTE DE USUARIOS</h1>
+        <br />
+        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="crsReporteUsuarios" ToolbarImagesFolderUrl="" ToolPanelWidth="200px" Width="1104px" />
+        <CR:CrystalReportSource ID="crsReporteUsuarios" runat="server">
+            <Report FileName="ReporteUsuarios.rpt">
+            </Report>
+        </CR:CrystalReportSource>
+    </div>
 </asp:Content>

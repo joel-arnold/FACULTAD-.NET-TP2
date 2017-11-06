@@ -263,7 +263,7 @@ namespace Data.Database
             {
                 AbrirConexion();
                 SqlCommand cmdInsertarInscripcion = new SqlCommand("INSERT INTO alumnos_inscripciones" +
-                    "(id_alumno,id_curso, condicion) VALUES(@idAlumno, @idCurso, @condicion)", SqlCon);
+                    "(id_alumno, id_curso, condicion) VALUES(@idAlumno, @idCurso, @condicion)", SqlCon);
                 cmdInsertarInscripcion.Parameters.Add("@idAlumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
                 cmdInsertarInscripcion.Parameters.Add("@idCurso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdInsertarInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;

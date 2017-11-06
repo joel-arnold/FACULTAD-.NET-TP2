@@ -145,6 +145,7 @@ namespace Data.Database
             return com;
         }
 
+        
         public void Borrar(int ID)
         {
             try

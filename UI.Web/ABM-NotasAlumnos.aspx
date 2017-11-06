@@ -62,7 +62,10 @@
         &nbsp;
         <asp:TextBox ID="txtNota" runat="server" Width="42px"></asp:TextBox>
         &nbsp;
-        <asp:LinkButton runat="server" ID="btnConfirmarNota" Text="Confirmar nota" OnClick="btnConfirmarNota_Click"></asp:LinkButton>
+        <br />
+        <asp:LinkButton ID="btnConfirmarNota" runat="server" OnClick="btnConfirmarNota_Click" Text="Confirmar nota"></asp:LinkButton>
+        <br />
+        <asp:Label ID="etiqValidacionNota" runat="server" ForeColor="Red" Text="La nota debe estar entre 1 y 10" Visible="False"></asp:Label>
 </asp:Panel>
     <br />
     <asp:LinkButton ID="linkVolverAlInicio" runat="server" CssClass="etiquetas" OnClick="linkVolverAlInicio_Click">Volver al inicio</asp:LinkButton>

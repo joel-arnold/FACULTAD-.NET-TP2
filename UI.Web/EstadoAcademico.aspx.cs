@@ -37,18 +37,20 @@ namespace UI.Web
             int idAlumno = (int)Session["idPersona"];
             DataTable dtEstadoAlumno = new DataTable();
             dtEstadoAlumno.Columns.Add("Materia", typeof(string));
+            dtEstadoAlumno.Columns.Add("Comision", typeof(string));
             dtEstadoAlumno.Columns.Add("Situación", typeof(string));
             dtEstadoAlumno.Columns.Add("Nota", typeof(int));
 
             foreach (AlumnoInscripciones ai in LogicaInscripcion.TraerTodosPorIdPersona(idAlumno))
             {
                 DataRow fila = dtEstadoAlumno.NewRow();
-                fila["Materia"] = LogicaMateria.TraerUno(ai.IDCurso).Descripcion;
+                fila["Materia"] = LogicaMateria.TraerUno(LogicaCurso.TraerUno(ai.IDCurso).IDMateria).Descripcion;
+                fila["Comision"] = LogicaComision.TraerUno(LogicaCurso.TraerUno(ai.IDCurso).IDComision).Descripcion;
                 fila["Situación"] = ai.Condicion;
                 fila["Nota"] = ai.Nota;
                 dtEstadoAlumno.Rows.Add(fila);
             }
-            dtEstadoAlumno.DefaultView.Sort = "Situación, Nota";
+            dtEstadoAlumno.DefaultView.Sort = "Materia, Comision, Situación, Nota";
             gvEstadoAcademico.DataSource = dtEstadoAlumno;
             gvEstadoAcademico.DataBind();
         }

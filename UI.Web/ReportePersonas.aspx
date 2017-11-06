@@ -4,11 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server">
+    <div class="text-center">
+        <h1>REPORTE DE PERSONAS</h1>
+        <br />
         <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="crsReportePersona" ToolbarImagesFolderUrl="" ToolPanelWidth="200px" Width="1104px" />
         <CR:CrystalReportSource ID="crsReportePersona" runat="server">
             <Report FileName="ReportePersona.rpt">
             </Report>
         </CR:CrystalReportSource>
-    </asp:Panel>
+    </div>
 </asp:Content>

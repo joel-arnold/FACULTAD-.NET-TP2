@@ -11,6 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <asp:Panel ID="gridPanel" runat="server">
+            <asp:Label runat="server">Alta, Baja y Modificación de Personas</asp:Label>
         <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False"
         SelectedRowStyle-BackColor="Green"
         SelectedRowStyle-ForeColor="White"

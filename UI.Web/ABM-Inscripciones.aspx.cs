@@ -25,11 +25,20 @@ namespace UI.Web
 
         protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Inscribir();
-            pnlInscripcion.Visible = true;
-            pnlComision.Visible = false;
-            pnlMaterias.Visible = false;
-            lblInscripcion.Text = "Inscripción exitosa";
+            if(!estaInscripto())
+            {
+                Inscribir();
+                pnlInscripcion.Visible = true;
+                pnlComision.Visible = false;
+                pnlMaterias.Visible = false;
+                etiqYaInscripto.Visible = false;
+                lblInscripcion.Text = "Inscripción exitosa";
+            }
+            else
+            {
+                etiqYaInscripto.Visible = true;
+            }
+            
         }
 
         protected void lbnInscribirseAOtraMateria_Click(object sender, EventArgs e)
@@ -77,12 +86,31 @@ namespace UI.Web
 
         protected void Inscribir()
         {
-            Curso = LogicaCurso.TraerUno((int)gvComisiones.SelectedValue);
+            Materia = LogicaMateria.TraerUno((int)gvMaterias.SelectedValue);
+            int comision = (int)gvComisiones.SelectedValue;
+            Curso = LogicaCurso.TraerUnoPorMateriaYComision(Materia.ID, comision);
             InscripcionAlumno = new AlumnoInscripciones();
             InscripcionAlumno.Condicion = "Inscripto";
             InscripcionAlumno.IDAlumno = IDSeleccionado;
             InscripcionAlumno.IDCurso = Curso.ID;
             LogicaInscripcion.Guardar(InscripcionAlumno);
+        }
+
+        public bool estaInscripto()
+        {
+            bool inscripto = false;
+            List<AlumnoInscripciones> inscripcionesPropias = new List<AlumnoInscripciones>();
+            inscripcionesPropias = LogicaInscripcion.TraerTodosPorIdPersona(IDPersona);
+            foreach (AlumnoInscripciones ip in inscripcionesPropias)
+            {
+                Curso curso;
+                curso = LogicaCurso.TraerUno(ip.IDCurso);
+                if (curso.IDMateria == (int)gvMaterias.SelectedValue)
+                {
+                    inscripto = true;
+                }
+            }
+            return inscripto;
         }
         #endregion
     }
