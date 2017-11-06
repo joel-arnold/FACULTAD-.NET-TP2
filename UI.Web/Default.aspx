@@ -2,9 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-    <div class="align-content-center" >
-        <h1>BIENVENIDO AL SISTEMA ACADEMIA</h1>
-        <p class="lead">(Trabajo Práctico Nº 2 de la materia .NET)</p>
-      </div>
+    <div class="jumbotron text-center"
+        <div class="align-content-center" >
+            <h1>BIENVENIDO AL SISTEMA ACADEMIA</h1>
+            <p class="lead">(Trabajo Práctico Nº 2 de la materia .NET)</p>
+        </div>
+    </div>
 </asp:Content>

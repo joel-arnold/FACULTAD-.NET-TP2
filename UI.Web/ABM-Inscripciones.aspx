@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Inscripción de alumno a materias</h1>
-    <div class="tablas">
-        <div class="tablas">
+    <div class="text-center">
+        <div class="table-responsive-md">
             <asp:Panel ID="pnlMaterias" runat="server" CssClass="etiquetas">
                 Seleccione la materia a inscribir al alumno
                 <asp:Label ID="lblAlumno" runat="server" Text="alummno"></asp:Label>
