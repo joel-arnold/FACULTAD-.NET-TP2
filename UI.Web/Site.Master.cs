@@ -10,19 +10,31 @@ namespace UI.Web {
         protected void Page_Load(object sender, EventArgs e) {
             if (Session["usuario"] != null)
             {
-                lblUsuarioIngre.Text = (string)Session["usuario"];
+                etiqSesion.Text = (string)Session["usuario"];
+                etiqSesion.ForeColor = System.Drawing.Color.White;
             }
 
             if (Session["usuario"] == null)
             {
-                btnCerrarSesion.Visible = false;
+                btnIngresar.Text = "Ingresar";
+            }
+            else
+            {
+                btnIngresar.Text = "Cerrar sesión";
             }
         }
 
-        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Session.Abandon();
-            Response.Redirect("Default.aspx");
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Ingreso.aspx");
+            }
+            else
+            {
+                Session.Abandon();
+                Response.Redirect("Default.aspx");
+            }
         }
     }
 }

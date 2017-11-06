@@ -17,16 +17,19 @@ namespace UI.Web
 
         }
 
-    protected void IngresoAutenticacion(object sender, AuthenticateEventArgs e)
-    {
-        bool Autenticado = false;
-        Autenticado = IngresoCorrecto(Login1.UserName, Login1.Password);
-        e.Authenticated = Autenticado; if (Autenticado)
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            if (IngresoCorrecto(correoE.Text, contrasena.Text))
+            {
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                etiqIngresoIncorrecto.Visible = true;
+            }
         }
-    }
-    private bool IngresoCorrecto(string usuario, string clave)
+
+        private bool IngresoCorrecto(string usuario, string clave)
         {
             LogicaUsuario lu = new LogicaUsuario();
             LogicaPersona lp = new LogicaPersona();
@@ -48,6 +51,5 @@ namespace UI.Web
                 return false;
             }    
         }
-
     }
 }
