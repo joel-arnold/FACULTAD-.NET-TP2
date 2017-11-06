@@ -52,6 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="crPersonas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crPersonas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="crUsuarios.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crUsuarios.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FormularioAplicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +153,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>tp2_netDataSet2.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="crPersonas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crPersonas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crUsuarios.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crUsuarios.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioAplicacion.resx">
       <DependentUpon>FormularioAplicacion.cs</DependentUpon>
     </EmbeddedResource>

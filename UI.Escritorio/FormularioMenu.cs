@@ -59,6 +59,7 @@ namespace UI.Escritorio
                     mnuABMCPlanes.Enabled = false;
                     mnuABMCUsuarios.Enabled = false;
                     mnuInscripcion.Enabled = false;
+                    mnuReportes.Enabled = false;
                     break;
                 }
             }
@@ -106,6 +107,12 @@ namespace UI.Escritorio
         {
             ReportesPersonas rp = new ReportesPersonas();
             rp.Show();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportesUsuarios ru = new ReportesUsuarios();
+            ru.Show();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace UI.Escritorio
         {
             if (cbbxNota.SelectedItem != null)
             {
-                switch (cbbxNota.SelectedItem)
+                switch (Convert.ToInt32(cbbxNota.SelectedItem))
                 {
                     case 1:
                     case 2:
