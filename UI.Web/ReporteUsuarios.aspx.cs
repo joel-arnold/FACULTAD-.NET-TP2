@@ -25,9 +25,9 @@ namespace UI.Web
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 Tables CrTables;
 
-                cryRpt.Load(@"D:\NET\TP2 _Net\UI.Web\ReporteUsuarios.rpt");
+                cryRpt.Load(@"D:\Usuario\TP2_Net\UI.Web\ReporteUsuarios.rpt");
 
-                crConnectionInfo.ServerName = "Netbook_Joel";
+                crConnectionInfo.ServerName = "Casa";
                 crConnectionInfo.DatabaseName = "tp2_net";
                 crConnectionInfo.UserID = "net";
                 crConnectionInfo.Password = "net";
